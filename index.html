@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Mihaela Burlacu — Customer Success & Operations portfolio focused on data, process design, automation, and AI.">
+  <title>Mihaela Burlacu — Customer Success & Operations</title>
+  <style>
+    :root{
+      --bg:#0d1015;
+      --panel:#151922;
+      --panel2:#1b202a;
+      --text:#f4f6fb;
+      --muted:#b9c2d3;
+      --line:#2b313d;
+      --accent:#d8c2ff;
+      --accent2:#b7d8ff;
+      --good:#bfe7d1;
+      --shadow:0 18px 45px rgba(0,0,0,.18);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at 10% 5%, rgba(216,194,255,.09), transparent 24%),
+        radial-gradient(circle at 88% 2%, rgba(183,216,255,.06), transparent 20%),
+        var(--bg);
+      color:var(--text);
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height:1.65;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1120px;margin:0 auto;padding:28px 24px 80px}
+    nav{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:8px 0 34px;
+    }
+    .brand{font-weight:800;letter-spacing:-.03em}
+    .navlinks{display:flex;gap:22px;color:var(--muted);font-size:14px}
+    .navlinks a:hover{color:var(--text)}
+    .hero{
+      padding:54px 0 48px;
+      border-bottom:1px solid var(--line);
+    }
+    .eyebrow{
+      display:inline-block;
+      padding:7px 11px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      color:var(--accent);
+      background:rgba(255,255,255,.015);
+      font-size:13px;
+      font-weight:700;
+      margin-bottom:22px;
+    }
+    h1{
+      margin:0 0 18px;
+      font-size:clamp(48px,8vw,92px);
+      line-height:.98;
+      letter-spacing:-.055em;
+    }
+    .hero p{
+      max-width:780px;
+      margin:0;
+      color:var(--muted);
+      font-size:clamp(19px,2.2vw,27px);
+      line-height:1.5;
+    }
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .btn{
+      display:inline-block;padding:11px 15px;border-radius:12px;
+      border:1px solid var(--line);font-weight:700;font-size:14px;
+      background:var(--panel);
+    }
+    .btn.primary{background:var(--text);color:#11151b}
+    section{padding:58px 0 0}
+    .section-head{
+      display:flex;justify-content:space-between;gap:28px;align-items:end;margin-bottom:22px;
+    }
+    .section-head h2{
+      margin:0;font-size:34px;letter-spacing:-.035em;
+    }
+    .section-head p{margin:0;color:var(--muted);max-width:520px}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .card{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg,var(--panel2),var(--panel));
+      border-radius:20px;
+      padding:25px;
+      box-shadow:var(--shadow);
+    }
+    .card.featured{
+      grid-column:span 2;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:28px;
+      align-items:center;
+    }
+    .kicker{
+      color:var(--accent);
+      text-transform:uppercase;
+      font-weight:800;
+      font-size:12px;
+      letter-spacing:.12em;
+    }
+    .card h3{margin:7px 0 10px;font-size:27px;letter-spacing:-.03em}
+    .card p{margin:0;color:var(--muted)}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+    .tag{
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:6px 9px;
+      color:#d5dbea;
+      font-size:12px;
+      background:rgba(255,255,255,.02);
+    }
+    .mock{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:18px;
+      background:#10141b;
+    }
+    .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .step{
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:12px 10px;
+      min-height:100px;
+      background:var(--panel);
+      font-size:12px;
+      color:var(--muted);
+    }
+    .step strong{display:block;color:var(--text);font-size:13px;margin-bottom:7px}
+    .about{
+      display:grid;grid-template-columns:.9fr 1.1fr;gap:16px
+    }
+    .about .card{height:100%}
+    .metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+    .metric{border:1px solid var(--line);border-radius:14px;padding:14px;background:#10141b}
+    .metric b{display:block;font-size:22px;letter-spacing:-.03em}
+    .metric span{font-size:12px;color:var(--muted)}
+    .tool-list{display:flex;flex-wrap:wrap;gap:9px}
+    footer{
+      margin-top:64px;padding-top:28px;border-top:1px solid var(--line);
+      color:var(--muted);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px
+    }
+    .status{
+      display:inline-flex;align-items:center;gap:8px;margin-top:20px;color:var(--good);font-size:13px;font-weight:700
+    }
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 4px rgba(191,231,209,.08)}
+    @media (max-width:780px){
+      .navlinks{display:none}
+      .grid,.about,.card.featured{grid-template-columns:1fr}
+      .card.featured{grid-column:span 1}
+      .flow{grid-template-columns:1fr 1fr}
+      .section-head{display:block}
+      .section-head p{margin-top:8px}
+      .metric-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+      <div class="brand">Mihaela Burlacu</div>
+      <div class="navlinks">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#tools">Tools</a>
+        <a href="https://github.com/michaelaspice" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="eyebrow">Customer Success · Operations · Data · Automation</div>
+      <h1>Turning complexity into clarity.</h1>
+      <p>
+        I build better customer and operational systems through process design,
+        data, automation, and practical AI use.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#work">View projects</a>
+        <a class="btn" href="https://github.com/michaelaspice" target="_blank" rel="noreferrer">GitHub profile</a>
+      </div>
+      <div class="status"><span class="dot"></span> Portfolio in progress — new case studies coming soon</div>
+    </header>
+
+    <section id="work">
+      <div class="section-head">
+        <h2>Featured work</h2>
+        <p>Small, practical projects that show how I think about customer experience, operations, data, and automation.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card featured">
+          <div>
+            <div class="kicker">Project 01 · Live</div>
+            <h3>JobFlow AI</h3>
+            <p>
+              A public case study on using AI-assisted email organization to reduce repetitive job-search admin
+              and create a clearer workflow for applications, follow-ups, and next actions.
+            </p>
+            <div class="tags">
+              <span class="tag">AI workflows</span>
+              <span class="tag">Email organization</span>
+              <span class="tag">Process design</span>
+              <span class="tag">GitHub Pages</span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn primary" href="https://michaelaspice.github.io/jobflow-ai/" target="_blank" rel="noreferrer">View live project</a>
+              <a class="btn" href="https://github.com/michaelaspice/jobflow-ai" target="_blank" rel="noreferrer">View repo</a>
+            </div>
+          </div>
+          <div class="mock" aria-label="JobFlow workflow preview">
+            <div class="flow">
+              <div class="step"><strong>1. Email arrives</strong>Job-related message enters the inbox</div>
+              <div class="step"><strong>2. AI classifies</strong>Type and intent are identified</div>
+              <div class="step"><strong>3. Organized</strong>Label or status makes it easy to find</div>
+              <div class="step"><strong>4. Next action</strong>Follow-up or tracking becomes clearer</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="kicker">Project 02 · Next</div>
+          <h3>Customer Health & Churn Analysis</h3>
+          <p>A fictional SaaS dataset used to identify churn risk, define a health score, and prioritize customer actions using SQL and business logic.</p>
+          <div class="tags">
+            <span class="tag">SQL</span><span class="tag">Customer Success</span><span class="tag">Churn</span><span class="tag">Analytics</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="kicker">Project 03 · Planned</div>
+          <h3>Revenue Operations Funnel Analysis</h3>
+          <p>A funnel case study focused on lead quality, conversion bottlenecks, pipeline visibility, and operational recommendations.</p>
+          <div class="tags">
+            <span class="tag">RevOps</span><span class="tag">CRM</span><span class="tag">SQL</span><span class="tag">Dashboards</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="kicker">Project 04 · Planned</div>
+          <h3>QA Operations System</h3>
+          <p>A simplified quality framework showing scorecards, reporting logic, coaching loops, and how QA insights can improve customer experience.</p>
+          <div class="tags">
+            <span class="tag">QA</span><span class="tag">Process design</span><span class="tag">CSAT</span><span class="tag">Coaching</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="kicker">Project 05 · Idea</div>
+          <h3>AI Customer Success Assistant</h3>
+          <p>A lightweight concept that turns account notes into a concise summary, risk signals, next actions, and a draft customer follow-up.</p>
+          <div class="tags">
+            <span class="tag">AI</span><span class="tag">Customer Success</span><span class="tag">Automation</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-head">
+        <h2>About</h2>
+        <p>I like roles where customer experience, operations, commercial thinking, and systems improvement overlap.</p>
+      </div>
+
+      <div class="about">
+        <div class="card">
+          <div class="kicker">How I work</div>
+          <h3>Structured, curious, and practical.</h3>
+          <p>
+            My background spans Customer Success, Sales, Operations, and Quality. I enjoy taking messy workflows,
+            identifying what actually matters, and turning them into clearer systems that teams can use.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="kicker">Selected experience</div>
+          <h3>From frontline CS to leadership.</h3>
+          <p>
+            I’ve worked across fast-growth environments, customer-facing teams, revenue operations, onboarding,
+            process improvement, and cross-functional delivery.
+          </p>
+          <div class="metric-grid">
+            <div class="metric"><b>20+</b><span>people managed</span></div>
+            <div class="metric"><b>$2M–$3M</b><span>monthly revenue scope</span></div>
+            <div class="metric"><b>60+</b><span>employees supported by QA operations</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tools">
+      <div class="section-head">
+        <h2>Tools & focus areas</h2>
+        <p>A mix of customer, data, CRM, automation, and workflow tools.</p>
+      </div>
+      <div class="card">
+        <div class="tool-list">
+          <span class="tag">Salesforce</span>
+          <span class="tag">HubSpot</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Excel / Google Sheets</span>
+          <span class="tag">Looker Studio</span>
+          <span class="tag">Zapier</span>
+          <span class="tag">Coupler</span>
+          <span class="tag">Pipedrive</span>
+          <span class="tag">Zendesk</span>
+          <span class="tag">Kustomer</span>
+          <span class="tag">Monday.com</span>
+          <span class="tag">Asana</span>
+          <span class="tag">AI-assisted workflows</span>
+          <span class="tag">Process architecture</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>© 2026 Mihaela Burlacu</span>
+      <span>Built with HTML/CSS and hosted on GitHub Pages.</span>
+    </footer>
+  </div>
+</body>
+</html>
