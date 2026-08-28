@@ -1,1 +1,858 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
+<title>Vanill.ai — Revenue Operations Case Study</title>
+
+<style>
+:root{
+  --bg:#0d0f16;
+  --panel:#171a24;
+  --panel2:#1d2230;
+  --text:#f7f5fb;
+  --muted:#b9bfd0;
+  --line:#2b3140;
+  --accent:#f2a8c8;
+  --accent2:#d7c3ff;
+  --cream:#fff8ef;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at 10% 0%,rgba(242,168,200,.10),transparent 26%),
+    radial-gradient(circle at 90% 8%,rgba(215,195,255,.08),transparent 22%),
+    var(--bg);
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.7;
+}
+
+a{color:inherit}
+
+.wrap{
+  max-width:1050px;
+  margin:auto;
+  padding:30px 24px 90px;
+}
+
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:60px;
+}
+
+.brand{
+  font-size:26px;
+  font-weight:800;
+  letter-spacing:-.04em;
+}
+
+.brand span{color:var(--accent)}
+
+.navlinks{
+  display:flex;
+  gap:20px;
+}
+
+.navlinks a{
+  text-decoration:none;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.eyebrow{
+  color:var(--accent);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+h1{
+  font-size:clamp(44px,7vw,76px);
+  line-height:1.02;
+  letter-spacing:-.055em;
+  margin:12px 0 20px;
+}
+
+.intro{
+  color:var(--muted);
+  font-size:20px;
+  max-width:800px;
+}
+
+.hero{
+  padding-bottom:55px;
+  border-bottom:1px solid var(--line);
+}
+
+.metrics{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-top:35px;
+}
+
+.metric{
+  background:var(--cream);
+  color:#17131b;
+  padding:20px;
+  border-radius:16px;
+}
+
+.metric small{
+  display:block;
+  color:#716a75;
+  font-weight:700;
+}
+
+.metric strong{
+  display:block;
+  color:#d9508f;
+  font-size:29px;
+  margin-top:5px;
+  letter-spacing:-.04em;
+}
+
+section{
+  padding:55px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.section-number{
+  color:var(--accent);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+h2{
+  font-size:34px;
+  letter-spacing:-.04em;
+  margin:6px 0 18px;
+}
+
+h3{
+  font-size:20px;
+  margin-top:30px;
+}
+
+p{color:var(--muted)}
+
+.callout{
+  margin-top:25px;
+  padding:24px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:linear-gradient(180deg,var(--panel2),var(--panel));
+}
+
+.callout strong{
+  color:var(--text);
+}
+
+.findings{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+  margin-top:25px;
+}
+
+.finding{
+  padding:20px;
+  background:linear-gradient(180deg,var(--panel2),var(--panel));
+  border:1px solid var(--line);
+  border-radius:16px;
+}
+
+.finding strong{
+  display:block;
+  color:var(--accent);
+  margin-bottom:6px;
+}
+
+.finding p{
+  margin:0;
+}
+
+.icp{
+  margin-top:25px;
+  padding:30px;
+  border-radius:20px;
+  background:var(--cream);
+  color:#17131b;
+}
+
+.icp h3{
+  margin:0 0 15px;
+  font-size:27px;
+}
+
+.icp-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.icp-item small{
+  display:block;
+  color:#716a75;
+  font-weight:700;
+}
+
+.icp-item strong{
+  display:block;
+  font-size:19px;
+  margin-top:3px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:25px;
+  font-size:14px;
+}
+
+th,td{
+  text-align:left;
+  padding:13px 12px;
+  border-bottom:1px solid var(--line);
+}
+
+th{color:var(--text)}
+td{color:var(--muted)}
+
+.highlight td{
+  color:var(--text);
+  font-weight:700;
+}
+
+.actions{
+  display:grid;
+  gap:12px;
+  margin-top:25px;
+}
+
+.action{
+  padding:20px;
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:#141820;
+}
+
+.action strong{
+  display:block;
+  margin-bottom:4px;
+}
+
+.action span{
+  color:var(--muted);
+}
+
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:25px;
+}
+
+.tag{
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:6px 10px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+footer{
+  padding-top:35px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+@media(max-width:800px){
+  .metrics,
+  .findings,
+  .icp-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:520px){
+  .metrics,
+  .findings,
+  .icp-grid{
+    grid-template-columns:1fr;
+  }
+
+  .navlinks{
+    gap:10px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<nav>
+  <div class="brand">vanill<span>.ai</span></div>
+
+  <div class="navlinks">
+    <a href="index.html">Dashboard</a>
+    <a href="../../index.html">Portfolio</a>
+  </div>
+</nav>
+
+
+<header class="hero">
+
+  <div class="eyebrow">
+    Revenue Operations · SQL · GTM Strategy
+  </div>
+
+  <h1>
+    Finding Vanill.ai's highest-value customers.
+  </h1>
+
+  <p class="intro">
+    A Revenue Operations case study using 1,250 synthetic B2B SaaS leads
+    to investigate funnel performance, revenue efficiency, customer
+    segmentation, and the company's ideal customer profile.
+  </p>
+
+
+  <div class="metrics">
+
+    <div class="metric">
+      <small>ICP win rate</small>
+      <strong>20.0%</strong>
+    </div>
+
+    <div class="metric">
+      <small>Other leads</small>
+      <strong>7.9%</strong>
+    </div>
+
+    <div class="metric">
+      <small>ICP ARR / lead</small>
+      <strong>€13,680</strong>
+    </div>
+
+    <div class="metric">
+      <small>ICP avg deal</small>
+      <strong>€68.4k</strong>
+    </div>
+
+  </div>
+
+</header>
+
+
+<section>
+
+  <div class="section-number">01 · The problem</div>
+
+  <h2>
+    Lead volume wasn't enough.
+  </h2>
+
+  <p>
+    Vanill.ai generated 1,250 leads across several industries, regions,
+    company sizes, and acquisition channels. The objective was to determine
+    where the funnel was losing value and which customers deserved greater
+    sales and marketing investment.
+  </p>
+
+  <p>
+    Rather than evaluating success through lead volume alone, the analysis
+    combined conversion performance with won ARR and ARR per lead.
+  </p>
+
+  <div class="callout">
+    <strong>Core question:</strong>
+    <p>
+      Which customers create the greatest commercial value for Vanill.ai,
+      and how should that change its go-to-market strategy?
+    </p>
+  </div>
+
+</section>
+
+
+<section>
+
+  <div class="section-number">02 · Analytical approach</div>
+
+  <h2>
+    Following the funnel before choosing the answer.
+  </h2>
+
+  <p>
+    The analysis began with the overall funnel and progressively segmented
+    performance by lead source, company size, industry, and region.
+    Strong characteristics were then combined into an ICP hypothesis and
+    tested against the remainder of the customer base.
+  </p>
+
+
+  <div class="findings">
+
+    <div class="finding">
+      <strong>Funnel baseline</strong>
+      <p>
+        Measured progression from lead through qualification, demo,
+        opportunity, and closed won.
+      </p>
+    </div>
+
+    <div class="finding">
+      <strong>Revenue efficiency</strong>
+      <p>
+        Added ARR per lead to distinguish high-volume channels from
+        genuinely valuable acquisition.
+      </p>
+    </div>
+
+    <div class="finding">
+      <strong>Customer segmentation</strong>
+      <p>
+        Compared company size, industry, and geography to identify
+        recurring performance patterns.
+      </p>
+    </div>
+
+    <div class="finding">
+      <strong>ICP validation</strong>
+      <p>
+        Combined the strongest characteristics and tested the resulting
+        segment across the full funnel.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section>
+
+  <div class="section-number">03 · What the data revealed</div>
+
+  <h2>
+    Conversion alone didn't tell the whole story.
+  </h2>
+
+  <p>
+    Several segments appeared healthy when viewed only through conversion.
+    Adding ARR per lead changed the picture by showing how much commercial
+    value each acquired lead ultimately produced.
+  </p>
+
+
+  <div class="findings">
+
+    <div class="finding">
+      <strong>Company size</strong>
+      <p>
+        Larger companies generated dramatically greater revenue efficiency,
+        with 1000+ employee accounts producing the strongest ARR per lead.
+      </p>
+    </div>
+
+    <div class="finding">
+      <strong>Industry</strong>
+      <p>
+        SaaS and Fintech produced the strongest combination of qualification,
+        conversion, and revenue efficiency.
+      </p>
+    </div>
+
+    <div class="finding">
+      <strong>Region</strong>
+      <p>
+        DACH led regional performance, followed by the Nordics and Benelux.
+      </p>
+    </div>
+
+    <div class="finding">
+      <strong>Healthcare</strong>
+      <p>
+        Despite reasonable deal value, Healthcare required substantial funnel
+        effort while producing weak overall revenue efficiency.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section>
+
+  <div class="section-number">04 · ICP hypothesis</div>
+
+  <h2>
+    The strongest signals pointed to one customer profile.
+  </h2>
+
+
+  <div class="icp">
+
+    <h3>Vanill.ai Target ICP</h3>
+
+    <div class="icp-grid">
+
+      <div class="icp-item">
+        <small>Industry</small>
+        <strong>SaaS & Fintech</strong>
+      </div>
+
+      <div class="icp-item">
+        <small>Company size</small>
+        <strong>501+ employees</strong>
+      </div>
+
+      <div class="icp-item">
+        <small>Region</small>
+        <strong>DACH · Nordics · Benelux</strong>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <p>
+    The individual characteristics looked promising, but that did not
+    guarantee that their combination would outperform the wider business.
+    The next step was therefore to test the proposed ICP as a single segment.
+  </p>
+
+</section>
+
+
+<section>
+
+  <div class="section-number">05 · ICP validation</div>
+
+  <h2>
+    4% of leads generated 18% of won ARR.
+  </h2>
+
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>Segment</th>
+        <th>Leads</th>
+        <th>Wins</th>
+        <th>Win rate</th>
+        <th>Avg deal</th>
+        <th>ARR / lead</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr class="highlight">
+        <td>Target ICP</td>
+        <td>50</td>
+        <td>10</td>
+        <td>20.0%</td>
+        <td>€68.4k</td>
+        <td>€13,680</td>
+      </tr>
+
+      <tr>
+        <td>Other</td>
+        <td>1,200</td>
+        <td>95</td>
+        <td>7.9%</td>
+        <td>€33.6k</td>
+        <td>€2,663</td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+
+  <div class="callout">
+
+    <strong>Result</strong>
+
+    <p>
+      Target ICP leads generated more than 5× the ARR per lead of the rest
+      of the database while also converting at more than twice the overall
+      rate.
+    </p>
+
+  </div>
+
+</section>
+
+
+<section>
+
+  <div class="section-number">06 · Funnel validation</div>
+
+  <h2>
+    The ICP wasn't only producing larger contracts.
+  </h2>
+
+  <p>
+    Target ICP accounts outperformed other leads at every measured stage
+    of the funnel.
+  </p>
+
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>Funnel stage</th>
+        <th>Target ICP</th>
+        <th>Other</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr>
+        <td>Lead → Qualified</td>
+        <td>70.0%</td>
+        <td>50.3%</td>
+      </tr>
+
+      <tr>
+        <td>Qualified → Demo</td>
+        <td>68.6%</td>
+        <td>56.8%</td>
+      </tr>
+
+      <tr>
+        <td>Demo → Opportunity</td>
+        <td>66.7%</td>
+        <td>57.7%</td>
+      </tr>
+
+      <tr>
+        <td>Opportunity → Win</td>
+        <td>62.5%</td>
+        <td>48.0%</td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</section>
+
+
+<section>
+
+  <div class="section-number">07 · Acquisition strategy</div>
+
+  <h2>
+    Targeting quality mattered more than channel alone.
+  </h2>
+
+  <p>
+    Once acquisition was restricted to the target ICP, most channels
+    generated strong commercial outcomes.
+  </p>
+
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>Lead source</th>
+        <th>ICP leads</th>
+        <th>Win rate</th>
+        <th>ARR / lead</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr>
+        <td>Referral</td>
+        <td>6</td>
+        <td>50.0%</td>
+        <td>€38,250</td>
+      </tr>
+
+      <tr>
+        <td>Partners</td>
+        <td>7</td>
+        <td>28.6%</td>
+        <td>€24,500</td>
+      </tr>
+
+      <tr>
+        <td>Organic Search</td>
+        <td>7</td>
+        <td>28.6%</td>
+        <td>€17,000</td>
+      </tr>
+
+      <tr>
+        <td>Paid Search</td>
+        <td>6</td>
+        <td>16.7%</td>
+        <td>€10,667</td>
+      </tr>
+
+      <tr>
+        <td>Outbound</td>
+        <td>10</td>
+        <td>20.0%</td>
+        <td>€10,000</td>
+      </tr>
+
+      <tr>
+        <td>LinkedIn</td>
+        <td>8</td>
+        <td>0%</td>
+        <td>€0</td>
+      </tr>
+
+      <tr>
+        <td>Events</td>
+        <td>6</td>
+        <td>0%</td>
+        <td>€0</td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+  <p>
+    Referral, Partners, and Organic Search showed the strongest revenue
+    efficiency. Outbound also performed well when directed toward the ICP,
+    suggesting that its earlier weakness was partly a targeting problem
+    rather than simply a channel problem.
+  </p>
+
+</section>
+
+
+<section>
+
+  <div class="section-number">08 · GTM recommendations</div>
+
+  <h2>
+    What Vanill.ai should change.
+  </h2>
+
+
+  <div class="actions">
+
+    <div class="action">
+      <strong>01 · Prioritize the core ICP</strong>
+      <span>
+        Shift acquisition focus toward SaaS and Fintech companies with
+        501+ employees in DACH, the Nordics, and Benelux.
+      </span>
+    </div>
+
+    <div class="action">
+      <strong>02 · Strengthen Referral, Partner, and Organic acquisition</strong>
+      <span>
+        These channels produced the strongest ARR efficiency inside the
+        identified ICP.
+      </span>
+    </div>
+
+    <div class="action">
+      <strong>03 · Keep Outbound — but make it more targeted</strong>
+      <span>
+        ICP-focused Outbound achieved a 20% lead-to-win rate, indicating
+        that customer selection materially changes channel performance.
+      </span>
+    </div>
+
+    <div class="action">
+      <strong>04 · Review LinkedIn and Events</strong>
+      <span>
+        Both generated ICP leads but no wins in the sample. Investigate
+        channel economics before increasing investment.
+      </span>
+    </div>
+
+    <div class="action">
+      <strong>05 · Deprioritize low-efficiency segments</strong>
+      <span>
+        Healthcare, smaller companies, and lower-performing regions should
+        receive less proactive acquisition focus while attractive individual
+        opportunities can still be pursued.
+      </span>
+    </div>
+
+    <div class="action">
+      <strong>06 · Continue validating the ICP</strong>
+      <span>
+        The current ICP contains 50 leads and 10 wins. The signal is strong
+        enough to guide GTM testing, but performance should be monitored as
+        volume increases.
+      </span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section>
+
+  <div class="section-number">09 · Limitations</div>
+
+  <h2>
+    What this analysis does not prove.
+  </h2>
+
+  <p>
+    This project uses a synthetic dataset created for analytical practice
+    and portfolio demonstration. Some segmented samples are small, meaning
+    extreme conversion rates should be interpreted directionally.
+  </p>
+
+  <p>
+    The analysis identifies associations and commercial patterns rather than
+    proving causation. The resulting ICP should therefore be treated as a
+    hypothesis to test through future acquisition and sales performance.
+  </p>
+
+
+  <div class="tags">
+    <span class="tag">SQL</span>
+    <span class="tag">Revenue Operations</span>
+    <span class="tag">GTM Strategy</span>
+    <span class="tag">ICP Analysis</span>
+    <span class="tag">Funnel Analysis</span>
+    <span class="tag">Data Storytelling</span>
+  </div>
+
+</section>
+
+
+<footer>
+  Vanill.ai · Synthetic Revenue Operations portfolio case study
+</footer>
+
+</div>
+
+</body>
+</html>
