@@ -1,0 +1,8 @@
+trigger_rule_id,rule_name,domain,condition,default_severity,default_owner_department,recheck_window
+TR-001,Churn Risk - Usage Drop,Customer Risk,weekly_logins < 70% baseline,Medium,Support,7 days
+TR-002,Churn Risk - Compound,Customer Risk,usage decline + low CSAT + unresolved ticket,High,Support,7 days
+TR-003,Low CSAT,Customer Experience,CSAT <= 2,Medium,Support,7 days
+TR-004,Revenue Variance,Commercial,actual revenue < 85% forecast,High,Operations,14 days
+TR-005,Deal Conversion Drop,Commercial,win rate down >= 10pp vs baseline,High,Operations,14 days
+TR-006,Handover Failure Spike,Process,handover failure > 12% over 4 weeks,High,Operations,7 days
+TR-007,Interdepartmental SLA Breach,Accountability,request acknowledgement overdue,Medium,Receiving Department,1 day

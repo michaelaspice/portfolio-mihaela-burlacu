@@ -1,0 +1,4 @@
+request_id,quality_issue_id,from_department,to_department,request_text,priority,sent_at,response_due_at,status,response_text,responded_at
+IR-0091,QI-0184,Support,Product,Technical blocker status and expected resolution,High,2026-08-27 09:10,2026-08-27 11:35,Responded,Known bug; fix planned in ~3 weeks; no workaround currently.,2026-08-27 11:35
+IR-0103,QI-0211,Operations,Sales,Review Enterprise losses and validate No Decision pattern,High,2026-08-26 10:00,2026-08-26 13:20,Responded,Pattern confirmed; long cycles and no-decision losses concentrated in Enterprise.,2026-08-26 13:20
+IR-0114,QI-0227,Operations,Sales,Reproduce Special Customer Requirements handover flow with Ops,Medium,2026-08-26 14:00,2026-08-26 15:00,Responded,Working session booked; field behavior reproduced.,2026-08-26 14:20

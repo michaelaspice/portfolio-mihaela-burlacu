@@ -1,0 +1,4 @@
+quality_issue_id,account_id,source_domain,root_cause_family,severity,status,current_owner_department,collaborating_department,summary,impact_type,created_date,closed_date
+QI-0184,AC0150,Customer Risk,Product,High,Open,Support,Product,Technical blocker unresolved; usage and CSAT declining,Customer + ARR,2026-08-27,
+QI-0211,,Commercial,Commercial,High,Investigating,Operations,Sales,Enterprise conversion below forecast,Revenue,2026-08-25,
+QI-0227,,Process,System/Process,High,Action In Progress,Operations,Sales,Sales handover failures concentrated in Special Customer Requirements field,Customer + Process,2026-08-26,

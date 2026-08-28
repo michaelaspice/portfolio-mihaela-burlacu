@@ -1,0 +1,7 @@
+team_id,team_name,department
+T-SUP-1,Support Alpha,Support
+T-SUP-2,Support Beta,Support
+T-SUP-3,Support Gamma,Support
+T-SAL-1,Sales North,Sales
+T-SAL-2,Sales South,Sales
+T-LEAD,Leadership,Cross-functional

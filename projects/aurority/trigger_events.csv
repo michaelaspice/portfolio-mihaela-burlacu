@@ -1,0 +1,4 @@
+trigger_event_id,trigger_rule_id,account_id,quality_issue_id,severity,triggered_at,assigned_department,status,evidence_summary
+TE-1001,TR-002,AC0150,QI-0184,High,2026-08-27 08:55,Support,Triggered,Usage ↓38%; adoption ↓17pp; CSAT 2/5; 2 open tickets; oldest 9 days
+TE-1002,TR-005,,QI-0211,High,2026-08-25 08:00,Operations,Triggered,Enterprise Opportunity→Won conversion down >10pp vs baseline
+TE-1003,TR-006,,QI-0227,High,2026-08-26 08:00,Operations,Triggered,Sales handover failure rate increased from ~6% to ~19%

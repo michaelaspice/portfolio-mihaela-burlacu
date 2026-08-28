@@ -1,0 +1,151 @@
+account_id,account_name,industry,region,segment,source,arr,created_at,renewal_date,status
+AC0001,Aurora Customer 001,Professional Services,Nordics,SMB,Paid Search,22000,2024-01-15,2027-02-08,Active
+AC0002,Aurora Customer 002,Media,Nordics,SMB,Outbound,27000,2023-10-29,2027-03-15,Active
+AC0003,Aurora Customer 003,E-commerce,Benelux,Mid-Market,Paid Search,68000,2023-12-20,2026-12-18,Active
+AC0004,Aurora Customer 004,Education,UKI,Enterprise,Referral,90000,2025-05-23,2026-10-04,Active
+AC0005,Aurora Customer 005,Education,CEE,SMB,Referral,12000,2024-12-12,2027-02-06,Active
+AC0006,Aurora Customer 006,Media,UKI,Mid-Market,Referral,68000,2025-05-13,2027-01-08,Active
+AC0007,Aurora Customer 007,Education,Benelux,SMB,Outbound,18000,2025-04-21,2027-03-24,Active
+AC0008,Aurora Customer 008,SaaS,Nordics,Enterprise,Paid Search,136000,2024-10-22,2027-05-01,Active
+AC0009,Aurora Customer 009,Media,UKI,SMB,Referral,28000,2023-10-22,2027-03-16,Active
+AC0010,Aurora Customer 010,Fintech,DACH,Mid-Market,Partner,33000,2025-02-17,2027-03-19,Active
+AC0011,Aurora Customer 011,Media,Southern Europe,Mid-Market,Referral,49000,2024-08-04,2026-12-27,Active
+AC0012,Aurora Customer 012,Education,DACH,SMB,Referral,15000,2024-11-02,2026-10-17,Active
+AC0013,Aurora Customer 013,Education,Benelux,Mid-Market,Partner,52000,2023-11-18,2026-12-07,Active
+AC0014,Aurora Customer 014,Fintech,UKI,SMB,Referral,28000,2024-02-03,2027-01-14,Active
+AC0015,Aurora Customer 015,Education,Benelux,Enterprise,Referral,74000,2025-02-16,2027-05-05,Active
+AC0016,Aurora Customer 016,Professional Services,UKI,SMB,Paid Search,22000,2024-07-10,2027-01-27,Active
+AC0017,Aurora Customer 017,Healthcare,Southern Europe,Enterprise,Paid Search,85000,2023-10-17,2027-06-23,Active
+AC0018,Aurora Customer 018,SaaS,DACH,Enterprise,Inbound,154000,2024-12-21,2027-02-24,Active
+AC0019,Aurora Customer 019,Media,Nordics,SMB,Outbound,24000,2025-06-06,2027-01-06,Active
+AC0020,Aurora Customer 020,SaaS,Nordics,Mid-Market,Paid Search,67000,2025-07-01,2027-02-19,Active
+AC0021,Aurora Customer 021,Healthcare,DACH,Mid-Market,Referral,43000,2024-06-18,2027-01-26,Active
+AC0022,Aurora Customer 022,Media,Benelux,SMB,Paid Search,25000,2025-05-27,2026-12-28,Active
+AC0023,Aurora Customer 023,E-commerce,Nordics,Mid-Market,Inbound,45000,2023-12-31,2027-02-19,Active
+AC0024,Aurora Customer 024,E-commerce,DACH,Enterprise,Paid Search,131000,2024-12-28,2027-05-24,Active
+AC0025,Aurora Customer 025,Media,Nordics,Mid-Market,Inbound,58000,2024-06-23,2027-05-03,Active
+AC0026,Aurora Customer 026,Healthcare,CEE,SMB,Outbound,12000,2025-03-09,2027-01-24,Active
+AC0027,Aurora Customer 027,Healthcare,CEE,Mid-Market,Referral,66000,2025-03-13,2027-01-15,Active
+AC0028,Aurora Customer 028,Professional Services,Nordics,SMB,Paid Search,16000,2024-01-06,2027-06-13,Active
+AC0029,Aurora Customer 029,E-commerce,Nordics,SMB,Referral,28000,2024-11-06,2027-07-07,Active
+AC0030,Aurora Customer 030,SaaS,CEE,Enterprise,Referral,158000,2024-05-21,2027-07-06,Active
+AC0031,Aurora Customer 031,Education,Benelux,SMB,Outbound,17000,2024-06-20,2027-03-15,Active
+AC0032,Aurora Customer 032,SaaS,Benelux,SMB,Inbound,16000,2024-12-21,2026-11-20,Active
+AC0033,Aurora Customer 033,SaaS,Southern Europe,Mid-Market,Paid Search,64000,2024-02-28,2027-05-21,Active
+AC0034,Aurora Customer 034,E-commerce,DACH,SMB,Paid Search,24000,2025-05-01,2026-10-05,Active
+AC0035,Aurora Customer 035,Media,Nordics,SMB,Inbound,19000,2025-04-12,2026-11-28,Active
+AC0036,Aurora Customer 036,Fintech,Southern Europe,SMB,Referral,16000,2023-10-30,2026-12-01,Active
+AC0037,Aurora Customer 037,SaaS,CEE,Mid-Market,Inbound,69000,2024-05-27,2027-07-13,Active
+AC0038,Aurora Customer 038,Fintech,UKI,SMB,Referral,12000,2025-05-29,2027-03-27,Active
+AC0039,Aurora Customer 039,SaaS,DACH,SMB,Outbound,24000,2024-07-08,2027-07-13,Active
+AC0040,Aurora Customer 040,Fintech,Benelux,Mid-Market,Referral,33000,2024-04-10,2027-06-08,Active
+AC0041,Aurora Customer 041,SaaS,Benelux,SMB,Paid Search,23000,2024-11-18,2027-06-21,Active
+AC0042,Aurora Customer 042,E-commerce,DACH,Mid-Market,Inbound,42000,2025-07-22,2026-11-08,Active
+AC0043,Aurora Customer 043,Professional Services,Nordics,SMB,Referral,17000,2024-01-31,2027-01-25,Active
+AC0044,Aurora Customer 044,Fintech,Nordics,SMB,Outbound,18000,2023-10-16,2027-03-04,Active
+AC0045,Aurora Customer 045,SaaS,DACH,SMB,Partner,27000,2025-04-10,2027-02-08,Active
+AC0046,Aurora Customer 046,SaaS,DACH,Mid-Market,Partner,66000,2024-05-14,2026-11-30,Active
+AC0047,Aurora Customer 047,E-commerce,Southern Europe,Enterprise,Partner,178000,2024-04-25,2026-09-12,Active
+AC0048,Aurora Customer 048,SaaS,UKI,Mid-Market,Inbound,33000,2024-11-06,2027-05-25,Active
+AC0049,Aurora Customer 049,Professional Services,Nordics,Enterprise,Inbound,100000,2025-02-01,2027-05-28,Active
+AC0050,Aurora Customer 050,E-commerce,Southern Europe,Mid-Market,Inbound,55000,2025-04-16,2027-02-10,Active
+AC0051,Aurora Customer 051,Healthcare,Benelux,SMB,Referral,22000,2023-10-18,2027-05-28,Active
+AC0052,Aurora Customer 052,SaaS,Nordics,SMB,Inbound,12000,2023-11-18,2026-12-21,Active
+AC0053,Aurora Customer 053,Fintech,UKI,SMB,Outbound,23000,2025-02-27,2027-03-21,Active
+AC0054,Aurora Customer 054,SaaS,Southern Europe,SMB,Inbound,20000,2025-02-18,2027-06-14,Active
+AC0055,Aurora Customer 055,Media,Nordics,SMB,Inbound,17000,2024-02-06,2026-09-11,Active
+AC0056,Aurora Customer 056,E-commerce,Nordics,Mid-Market,Paid Search,49000,2023-11-28,2027-02-23,Active
+AC0057,Aurora Customer 057,E-commerce,UKI,Enterprise,Paid Search,125000,2024-03-20,2026-09-20,Active
+AC0058,Aurora Customer 058,SaaS,CEE,Mid-Market,Referral,58000,2025-04-10,2027-03-15,Active
+AC0059,Aurora Customer 059,E-commerce,DACH,SMB,Inbound,29000,2024-09-22,2027-01-11,Active
+AC0060,Aurora Customer 060,Education,CEE,Mid-Market,Outbound,59000,2025-06-04,2027-01-12,Active
+AC0061,Aurora Customer 061,Professional Services,DACH,Enterprise,Paid Search,132000,2023-12-31,2026-10-21,Active
+AC0062,Aurora Customer 062,Healthcare,CEE,Enterprise,Paid Search,91000,2025-05-07,2027-05-17,Active
+AC0063,Aurora Customer 063,E-commerce,UKI,SMB,Inbound,19000,2025-05-24,2027-06-10,Active
+AC0064,Aurora Customer 064,E-commerce,Benelux,Enterprise,Partner,137000,2025-03-27,2026-11-15,Active
+AC0065,Aurora Customer 065,Fintech,Nordics,Enterprise,Partner,166000,2024-04-03,2027-06-19,Active
+AC0066,Aurora Customer 066,SaaS,DACH,Mid-Market,Outbound,58000,2025-02-14,2027-01-24,Active
+AC0067,Aurora Customer 067,Fintech,UKI,Mid-Market,Outbound,40000,2024-02-09,2027-07-18,Active
+AC0068,Aurora Customer 068,Healthcare,UKI,Mid-Market,Inbound,55000,2024-05-26,2026-12-28,Active
+AC0069,Aurora Customer 069,Education,Benelux,SMB,Referral,27000,2024-01-28,2026-12-22,Active
+AC0070,Aurora Customer 070,Fintech,UKI,SMB,Outbound,20000,2024-09-17,2027-04-03,Active
+AC0071,Aurora Customer 071,Professional Services,Benelux,Mid-Market,Partner,64000,2023-10-07,2027-03-21,Active
+AC0072,Aurora Customer 072,Fintech,Benelux,SMB,Outbound,14000,2024-05-11,2027-06-02,Active
+AC0073,Aurora Customer 073,Professional Services,Southern Europe,Mid-Market,Referral,68000,2024-04-27,2026-11-11,Active
+AC0074,Aurora Customer 074,Education,CEE,Mid-Market,Referral,46000,2024-11-22,2027-01-04,Active
+AC0075,Aurora Customer 075,Healthcare,CEE,Mid-Market,Partner,50000,2025-05-29,2027-03-03,Active
+AC0076,Aurora Customer 076,SaaS,Nordics,SMB,Referral,25000,2025-07-12,2027-07-09,Active
+AC0077,Aurora Customer 077,Fintech,CEE,SMB,Inbound,24000,2024-01-13,2027-01-06,Active
+AC0078,Aurora Customer 078,Fintech,DACH,SMB,Partner,16000,2023-12-09,2027-01-01,Active
+AC0079,Aurora Customer 079,SaaS,CEE,SMB,Paid Search,23000,2025-07-26,2026-10-17,Active
+AC0080,Aurora Customer 080,Media,CEE,Mid-Market,Paid Search,46000,2023-10-26,2026-10-11,Active
+AC0081,Aurora Customer 081,E-commerce,CEE,SMB,Inbound,18000,2024-12-11,2026-10-15,Active
+AC0082,Aurora Customer 082,Media,DACH,SMB,Referral,15000,2025-07-01,2027-02-27,Active
+AC0083,Aurora Customer 083,Fintech,CEE,SMB,Referral,15000,2025-05-22,2027-06-01,Active
+AC0084,Aurora Customer 084,Media,UKI,SMB,Partner,29000,2024-12-02,2027-01-31,Active
+AC0085,Aurora Customer 085,Healthcare,UKI,Enterprise,Partner,172000,2024-03-23,2026-12-29,Active
+AC0086,Aurora Customer 086,Professional Services,CEE,Mid-Market,Referral,54000,2024-01-28,2026-11-17,Active
+AC0087,Aurora Customer 087,Fintech,DACH,Enterprise,Referral,134000,2023-12-27,2027-07-03,Active
+AC0088,Aurora Customer 088,Healthcare,UKI,Enterprise,Outbound,140000,2024-04-05,2027-01-13,Active
+AC0089,Aurora Customer 089,E-commerce,Nordics,Mid-Market,Paid Search,55000,2024-04-05,2027-04-07,Active
+AC0090,Aurora Customer 090,Fintech,Nordics,Enterprise,Referral,100000,2025-01-20,2026-10-29,Active
+AC0091,Aurora Customer 091,Education,UKI,SMB,Paid Search,13000,2025-04-25,2027-04-19,Active
+AC0092,Aurora Customer 092,SaaS,UKI,Mid-Market,Paid Search,63000,2024-08-05,2027-04-15,Active
+AC0093,Aurora Customer 093,Fintech,Nordics,SMB,Inbound,20000,2024-06-08,2027-05-08,Active
+AC0094,Aurora Customer 094,Fintech,CEE,Mid-Market,Outbound,65000,2025-06-08,2026-10-31,Active
+AC0095,Aurora Customer 095,Professional Services,CEE,Mid-Market,Inbound,51000,2025-06-01,2027-04-05,Active
+AC0096,Aurora Customer 096,E-commerce,DACH,SMB,Outbound,19000,2024-08-20,2026-11-05,Active
+AC0097,Aurora Customer 097,Media,Benelux,SMB,Paid Search,16000,2024-11-21,2026-12-18,Active
+AC0098,Aurora Customer 098,Media,DACH,Mid-Market,Outbound,34000,2025-01-20,2027-06-12,Active
+AC0099,Aurora Customer 099,Education,Southern Europe,Enterprise,Inbound,105000,2024-04-30,2026-11-21,Active
+AC0100,Aurora Customer 100,SaaS,Southern Europe,Enterprise,Referral,175000,2024-05-27,2026-12-13,Active
+AC0101,Aurora Customer 101,SaaS,Southern Europe,Enterprise,Referral,133000,2024-10-21,2027-05-05,Active
+AC0102,Aurora Customer 102,Professional Services,CEE,Mid-Market,Outbound,54000,2024-11-20,2026-10-19,Active
+AC0103,Aurora Customer 103,Professional Services,Southern Europe,Mid-Market,Paid Search,61000,2024-05-06,2027-06-19,Active
+AC0104,Aurora Customer 104,Professional Services,CEE,Mid-Market,Partner,68000,2025-04-24,2026-10-06,Active
+AC0105,Aurora Customer 105,Fintech,CEE,Enterprise,Outbound,167000,2023-10-05,2027-06-14,Active
+AC0106,Aurora Customer 106,Fintech,Southern Europe,SMB,Inbound,25000,2025-07-18,2026-10-28,Active
+AC0107,Aurora Customer 107,Professional Services,Benelux,Mid-Market,Paid Search,38000,2024-12-03,2026-12-05,Active
+AC0108,Aurora Customer 108,E-commerce,UKI,SMB,Partner,13000,2024-06-12,2027-05-17,Active
+AC0109,Aurora Customer 109,E-commerce,CEE,SMB,Inbound,27000,2024-03-28,2026-12-29,Active
+AC0110,Aurora Customer 110,Media,DACH,SMB,Paid Search,25000,2024-06-18,2026-10-11,Active
+AC0111,Aurora Customer 111,Media,Nordics,SMB,Paid Search,18000,2025-02-15,2027-03-24,Active
+AC0112,Aurora Customer 112,Fintech,UKI,Mid-Market,Outbound,34000,2025-07-31,2027-03-29,Active
+AC0113,Aurora Customer 113,Professional Services,UKI,Mid-Market,Referral,52000,2024-11-04,2027-05-01,Active
+AC0114,Aurora Customer 114,Professional Services,DACH,Mid-Market,Inbound,57000,2024-10-14,2027-04-15,Active
+AC0115,Aurora Customer 115,SaaS,Southern Europe,SMB,Inbound,13000,2024-01-11,2027-05-18,Active
+AC0116,Aurora Customer 116,Professional Services,Benelux,Mid-Market,Partner,30000,2025-02-25,2026-12-17,Active
+AC0117,Aurora Customer 117,Professional Services,CEE,Enterprise,Paid Search,179000,2024-10-03,2026-12-31,Active
+AC0118,Aurora Customer 118,E-commerce,Nordics,SMB,Referral,13000,2025-06-04,2027-07-04,Active
+AC0119,Aurora Customer 119,SaaS,Benelux,SMB,Inbound,23000,2024-01-25,2026-10-12,Active
+AC0120,Aurora Customer 120,Media,DACH,Mid-Market,Outbound,41000,2024-09-15,2026-10-10,Active
+AC0121,Aurora Customer 121,Education,Southern Europe,Enterprise,Referral,106000,2025-06-12,2027-07-07,Active
+AC0122,Aurora Customer 122,Healthcare,UKI,SMB,Partner,16000,2024-04-01,2027-05-26,Active
+AC0123,Aurora Customer 123,Professional Services,DACH,SMB,Referral,29000,2024-02-06,2026-11-30,Active
+AC0124,Aurora Customer 124,SaaS,DACH,Mid-Market,Inbound,46000,2025-06-05,2027-05-29,Active
+AC0125,Aurora Customer 125,Professional Services,CEE,Mid-Market,Outbound,62000,2025-05-12,2026-12-15,Active
+AC0126,Aurora Customer 126,Professional Services,DACH,Enterprise,Partner,79000,2025-05-24,2027-07-12,Active
+AC0127,Aurora Customer 127,E-commerce,CEE,Enterprise,Paid Search,72000,2025-05-25,2027-01-09,Active
+AC0128,Aurora Customer 128,SaaS,UKI,SMB,Inbound,18000,2024-06-15,2026-11-11,Active
+AC0129,Aurora Customer 129,SaaS,Benelux,Mid-Market,Outbound,63000,2023-12-28,2027-01-15,Active
+AC0130,Aurora Customer 130,Fintech,DACH,Enterprise,Outbound,84000,2023-12-19,2027-07-12,Active
+AC0131,Aurora Customer 131,Media,Benelux,SMB,Referral,26000,2025-06-23,2026-10-22,Active
+AC0132,Aurora Customer 132,Education,Nordics,Enterprise,Paid Search,134000,2024-05-30,2027-07-06,Active
+AC0133,Aurora Customer 133,Fintech,UKI,Mid-Market,Outbound,39000,2024-01-02,2027-06-05,Active
+AC0134,Aurora Customer 134,Education,DACH,Mid-Market,Outbound,40000,2024-09-13,2027-01-22,Active
+AC0135,Aurora Customer 135,SaaS,DACH,SMB,Partner,18000,2025-01-05,2027-02-18,Active
+AC0136,Aurora Customer 136,Fintech,UKI,SMB,Partner,20000,2024-12-01,2027-01-24,Active
+AC0137,Aurora Customer 137,Fintech,Southern Europe,Enterprise,Inbound,130000,2024-06-23,2026-11-17,Active
+AC0138,Aurora Customer 138,Education,Nordics,Mid-Market,Inbound,53000,2023-10-12,2027-02-11,Active
+AC0139,Aurora Customer 139,Media,CEE,Mid-Market,Paid Search,55000,2024-04-21,2027-02-19,Active
+AC0140,Aurora Customer 140,Media,Benelux,Enterprise,Referral,177000,2025-05-20,2026-09-15,Active
+AC0141,Aurora Customer 141,Fintech,Benelux,Mid-Market,Outbound,33000,2024-04-20,2027-06-26,Active
+AC0142,Aurora Customer 142,SaaS,Benelux,Mid-Market,Inbound,61000,2025-04-22,2026-10-18,Active
+AC0143,Aurora Customer 143,Media,UKI,SMB,Outbound,24000,2024-01-30,2026-12-29,Active
+AC0144,Aurora Customer 144,Fintech,DACH,Mid-Market,Partner,60000,2024-03-02,2027-01-24,Active
+AC0145,Aurora Customer 145,Professional Services,UKI,SMB,Paid Search,18000,2025-03-20,2027-03-08,Active
+AC0146,Aurora Customer 146,E-commerce,Nordics,SMB,Outbound,21000,2025-05-24,2027-01-14,Active
+AC0147,Aurora Customer 147,Media,Nordics,Mid-Market,Referral,37000,2024-07-20,2027-02-03,Active
+AC0148,Aurora Customer 148,E-commerce,Nordics,SMB,Outbound,24000,2025-02-22,2027-04-23,Active
+AC0149,Aurora Customer 149,Fintech,Nordics,SMB,Outbound,26000,2024-01-24,2027-02-12,Active
+AC0150,Northstar Labs,SaaS,UKI,Enterprise,Inbound,72000,2024-02-10,2026-10-18,Active

@@ -1,0 +1,5 @@
+action_id,quality_issue_id,owner_department,action_text,due_date,status,action_type
+ACT-0301,QI-0184,Support,"Contact Northstar, apologise, give status/update cadence; apply service recovery per policy",2026-08-28,Open,Customer Recovery
+ACT-0302,QI-0184,Product,Maintain technical status update to Support until resolved,2026-09-03,Open,Product Resolution
+ACT-0320,QI-0227,Operations,Fix/redefine Special Customer Requirements field and integration mapping,2026-08-29,In Progress,Process Fix
+ACT-0321,QI-0227,Operations,Recheck handover failure rate at 7/14/30 days,2026-09-02,Scheduled,Recheck
