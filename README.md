@@ -2,7 +2,7 @@
 
 A lightweight public portfolio focused on Customer Success, Operations, Data, Automation, and practical AI use.
 
-## Featured project
+## Featured projects
 - [JobFlow AI](https://michaelaspice.github.io/jobflow-ai/)
 - [MorpheusGroup - Customer Health & Churn Analysis](https://michaelaspice.github.io/portfolio-mihaela-burlacu/projects/morpheusgroup/)
 - [Vanill.ai - Revenue Operations Funnel & ICP Analysis](projects/vanillai/)
