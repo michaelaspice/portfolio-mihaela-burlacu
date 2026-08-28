@@ -4,7 +4,7 @@ A lightweight public portfolio focused on Customer Success, Operations, Data, Au
 
 ## Featured project
 - [JobFlow AI](https://michaelaspice.github.io/jobflow-ai/)
-- [MorpheusGroup — Customer Health & Churn Analysis](https://michaelaspice.github.io/portfolio-mihaela-burlacu/projects/morpheusgroup/)
+- [MorpheusGroup - Customer Health & Churn Analysis](https://michaelaspice.github.io/portfolio-mihaela-burlacu/projects/morpheusgroup/)
 
 ## Planned case studies
 1. Revenue Operations Funnel Analysis
