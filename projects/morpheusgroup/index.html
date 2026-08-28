@@ -1,1 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MorpheusGroup — Customer Health & Churn Analysis</title>
+<style>
+:root{
+  --bg:#0d1015;--panel:#171c25;--text:#f4f6fb;--muted:#b9c1d0;
+  --line:#2b323e;--accent:#d8c4ff;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:radial-gradient(circle at 12% 0%,rgba(216,196,255,.10),transparent 28%),var(--bg);
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.65;
+}
+a{color:inherit}
+.wrap{max-width:1040px;margin:auto;padding:34px 24px 80px}
+nav{display:flex;justify-content:space-between;gap:18px;margin-bottom:48px;align-items:center}
+.brand{font-weight:800;letter-spacing:-.02em}
+.back{text-decoration:none;color:var(--muted);font-size:14px}
+.back:hover{color:var(--text)}
+.hero{padding:15px 0 46px;border-bottom:1px solid var(--line)}
+.eyebrow{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+h1{font-size:clamp(44px,7vw,76px);line-height:1;letter-spacing:-.05em;margin:10px 0 18px}
+h2{font-size:32px;letter-spacing:-.03em;margin:0 0 18px}
+h3{margin:0 0 8px}
+p{color:var(--muted)}
+section{padding-top:52px}
+.note,.card{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:18px}
+.note{margin-top:22px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.metric b{font-size:34px;display:block}
+.metric span{color:var(--muted);font-size:13px}
+.rank{display:grid;gap:12px}
+.rank .card{display:grid;grid-template-columns:55px 1fr;gap:10px}
+.num{font-size:28px;font-weight:800;color:var(--accent)}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line)}
+th,td{padding:11px 13px;border-bottom:1px solid var(--line);text-align:left}
+th{font-size:13px}
+td{color:var(--muted)}
+tr:last-child td{border-bottom:0}
+.callout{font-size:21px;border-left:3px solid var(--accent);padding-left:16px}
+.tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{border:1px solid var(--line);padding:6px 9px;border-radius:999px;color:var(--muted);font-size:12px}
+footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+@media(max-width:760px){
+  .grid{grid-template-columns:1fr}
+  nav{align-items:flex-start;flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav>
+  <div class="brand">MorpheusGroup</div>
+  <a class="back" href="../../index.html">← Back to portfolio</a>
+</nav>
+
+<header class="hero">
+  <div class="eyebrow">Customer Success · SQL · Churn Analysis</div>
+  <h1>Customer Health & Churn Analysis</h1>
+  <p>Identifying the behavioral and operational signals most closely associated with churn in a fictional B2B SaaS customer base.</p>
+  <div class="note">MorpheusGroup is a fictional company created for this portfolio case study. The dataset is synthetic and contains no real customer information.</div>
+</header>
+
+<section>
+  <h2>The business problem</h2>
+  <p>MorpheusGroup has 500 SaaS customers. The goal was to identify which signals could help a Customer Success team prioritize churn risk earlier and respond with the right intervention.</p>
+</section>
+
+<section>
+  <h2>What I found</h2>
+  <div class="rank">
+    <div class="card"><div class="num">01</div><div><h3>Unresolved tickets</h3><p>The strongest operational warning signal across the analysis.</p></div></div>
+    <div class="card"><div class="num">02</div><div><h3>Feature adoption</h3><p>The strongest product-engagement signal, with churn falling consistently as adoption increased.</p></div></div>
+    <div class="card"><div class="num">03</div><div><h3>Seat utilization</h3><p>A strong supporting engagement signal, especially when combined with unresolved support issues.</p></div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Feature adoption</h2>
+  <table>
+    <tr><th>Feature adoption</th><th>Churn rate</th></tr>
+    <tr><td>Under 40%</td><td>43.8%</td></tr>
+    <tr><td>40–59%</td><td>28.5%</td></tr>
+    <tr><td>60–79%</td><td>15.8%</td></tr>
+    <tr><td>80%+</td><td>11.6%</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>Seat utilization</h2>
+  <table>
+    <tr><th>Seat utilization</th><th>Churn rate</th></tr>
+    <tr><td>Under 40%</td><td>41.1%</td></tr>
+    <tr><td>40–59%</td><td>21.8%</td></tr>
+    <tr><td>60–79%</td><td>16.3%</td></tr>
+    <tr><td>80%+</td><td>12.0%</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>Support friction</h2>
+  <table>
+    <tr><th>Unresolved tickets</th><th>Customers</th><th>Churn rate</th></tr>
+    <tr><td>0</td><td>310</td><td>17.1%</td></tr>
+    <tr><td>1</td><td>129</td><td>19.4%</td></tr>
+    <tr><td>2</td><td>51</td><td>31.4%</td></tr>
+    <tr><td>3+</td><td>10</td><td>80.0%</td></tr>
+  </table>
+  <p>The 3+ group is small, so the 80% result should be interpreted cautiously. The broader pattern still points to unresolved issues as an important churn-risk signal.</p>
+</section>
+
+<section>
+  <h2>Highest-risk profile</h2>
+  <div class="card">
+    <div class="callout"><strong>Low adoption + Low seat utilization + Multiple unresolved tickets → 60.9% churn</strong></div>
+    <p>This segment contained 23 customers and was the strongest meaningful combined-risk profile found in the analysis.</p>
+  </div>
+</section>
+
+<section>
+  <h2>What did not help much</h2>
+  <div class="grid">
+    <div class="card"><h3>Account age</h3><p>Little separation in churn across tenure groups.</p></div>
+    <div class="card"><h3>Renewal timing</h3><p>No consistent progression as renewal approached.</p></div>
+    <div class="card"><h3>Sentiment / CSAT</h3><p>Comparatively weak or noisy as standalone indicators.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Recommended CS response</h2>
+  <div class="rank">
+    <div class="card"><div class="num">A</div><div><h3>Escalate unresolved issues</h3><p>Multiple unresolved tickets should trigger immediate support escalation and proactive CSM follow-up.</p></div></div>
+    <div class="card"><div class="num">B</div><div><h3>Improve adoption</h3><p>Use-case reviews, enablement, and targeted training for low-adoption accounts.</p></div></div>
+    <div class="card"><div class="num">C</div><div><h3>Diagnose low utilization</h3><p>Check whether low usage reflects adoption gaps, over-provisioning, or weaker product fit.</p></div></div>
+  </div>
+</section>
+
+<section>
+  <h2>What I would collect next</h2>
+  <p>Some highly engaged customers still churned. To investigate those cases, I would add structured cancellation reasons, pricing feedback, competitor data, stakeholder changes, budget constraints, and contract history.</p>
+</section>
+
+<section>
+  <h2>Method</h2>
+  <p>The analysis was completed in SQL using a synthetic 500-account dataset. I tested plan-level churn, product engagement, support friction, CSM contact, tenure, renewal timing, and combined-risk segments before deciding which signals were useful enough to keep.</p>
+  <div class="tags">
+    <span class="tag">SQL</span>
+    <span class="tag">SQLite</span>
+    <span class="tag">Customer Success</span>
+    <span class="tag">Churn analysis</span>
+    <span class="tag">Customer health</span>
+  </div>
+</section>
+
+<footer>MorpheusGroup · Synthetic portfolio project</footer>
+</div>
+</body>
+</html>
 
