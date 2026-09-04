@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Elix.ai — GTM & ICP Analysis</title>
+<style>
+:root{
+  --bg:#0b1010;--panel:#111a18;--panel2:#17231f;--text:#f6f3e9;
+  --muted:#b8c3ba;--line:#2c3b35;--accent:#b7d66d;--accent2:#d9a85d;--cream:#f4ead1;
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 12% 0%,rgba(183,214,109,.12),transparent 28%),radial-gradient(circle at 88% 8%,rgba(217,168,93,.10),transparent 24%),radial-gradient(circle at 55% 55%,rgba(72,126,91,.07),transparent 35%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}
+a{color:inherit}.wrap{max-width:1180px;margin:auto;padding:30px 24px 80px}
+nav{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:36px}
+.brand{font-size:28px;font-weight:800;letter-spacing:-.04em}.brand span{color:var(--accent)}
+.back{text-decoration:none;color:var(--muted);font-size:14px}
+.hero{display:grid;grid-template-columns:1.1fr 1.9fr;gap:22px;align-items:stretch;margin-bottom:22px}
+.hero-copy,.hero-kpis,.card{border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,var(--panel2),var(--panel))}
+.hero-copy{padding:30px}.eyebrow{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+h1{font-size:clamp(44px,6vw,72px);line-height:1;letter-spacing:-.05em;margin:10px 0 16px}
+.hero-copy p{color:var(--muted);font-size:18px}
+.hero-kpis{padding:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi{background:var(--cream);color:#172019;border-radius:16px;padding:20px}
+.kpi .label{font-size:12px;font-weight:700;color:#5d675e}.kpi .value{font-size:34px;font-weight:800;letter-spacing:-.04em;margin-top:10px;color:#739b48}.kpi .sub{font-size:12px;color:#697168;margin-top:4px}
+.grid{display:grid;grid-template-columns:1fr 2fr;gap:18px}.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+.card{padding:20px}.card h2{font-size:22px;letter-spacing:-.03em;margin:0 0 14px}
+.meta-list{display:grid;gap:14px}.meta{padding:14px 0;border-bottom:1px solid var(--line)}.meta:last-child{border-bottom:0}
+.meta small{display:block;color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:.08em}.meta strong{display:block;margin-top:3px;font-size:18px}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:11px 10px;border-bottom:1px solid var(--line);text-align:left}th{font-size:12px;color:#d9dce5}td{color:var(--muted)}
+tr:last-child td{border-bottom:0}.highlight td{color:#fff}.pill{display:inline-block;padding:5px 9px;border-radius:999px;background:rgba(183,214,109,.12);border:1px solid rgba(183,214,109,.28);color:#d9e9ad;font-size:12px}
+.funnel{display:grid;gap:12px}.stage{display:grid;grid-template-columns:150px 1fr 76px;gap:12px;align-items:center}
+.stage-label{color:#dfe3eb;font-size:13px}.bar-wrap{height:18px;background:#252a36;border-radius:999px;overflow:hidden}.bar{height:100%;border-radius:999px}.bar.icp{background:linear-gradient(90deg,#779f49,#c8dc7b)}.bar.other{background:#68746c}.stage-val{font-size:13px;color:#f2f4f8;text-align:right}
+.note{margin-top:12px;color:var(--muted);font-size:13px}.actions{display:grid;gap:12px}.action{padding:14px;border:1px solid var(--line);border-radius:14px;background:#141820}.action strong{display:block;margin-bottom:4px}
+.tags{display:flex;gap:8px;flex-wrap:wrap}.tag{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:6px 9px;color:var(--muted)}
+footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+.hero-copy{position:relative;overflow:hidden}
+.hero-copy:after{content:"";position:absolute;width:150px;height:150px;right:-46px;bottom:-58px;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(220,239,147,.32),rgba(105,155,73,.16) 42%,rgba(42,86,61,.04) 68%,transparent 70%);filter:blur(1px);pointer-events:none}
+.brand span{text-shadow:0 0 18px rgba(183,214,109,.22)}
+.card{box-shadow:inset 0 1px 0 rgba(226,239,190,.025)}
+@media(max-width:900px){.hero,.grid,.two{grid-template-columns:1fr}.hero-kpis{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.hero-kpis{grid-template-columns:1fr}.stage{grid-template-columns:1fr}.stage-val{text-align:left}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><div class="brand">vanill<span>.ai</span></div><a class="back" href="../../index.html">← Back to portfolio</a></nav>
+
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">Revenue Operations · SQL · GTM Strategy</div>
+    <h1>The right customers. The right growth.</h1>
+    <p>Analyzing 1,250 synthetic B2B SaaS leads to identify where pipeline value was being lost and which customer segments deserved greater acquisition focus.</p>
+  </div>
+  <div class="hero-kpis">
+    <div class="kpi"><div class="label">Target ICP win rate</div><div class="value">20.0%</div><div class="sub">vs 7.9% for other leads</div></div>
+    <div class="kpi"><div class="label">ARR per ICP lead</div><div class="value">€13,680</div><div class="sub">vs €2,663 for other leads</div></div>
+    <div class="kpi"><div class="label">Avg won ICP deal</div><div class="value">€68.4k</div><div class="sub">vs €33.6k for other leads</div></div>
+    <div class="kpi"><div class="label">ARR from ICP</div><div class="value">18%</div><div class="sub">from only 4% of all leads</div></div>
+  </div>
+</section>
+
+<div class="grid">
+  <section class="card">
+    <h2>Ideal Customer Profile</h2>
+    <div class="meta-list">
+      <div class="meta"><small>Industry</small><strong>SaaS & Fintech</strong></div>
+      <div class="meta"><small>Company size</small><strong>501+ employees</strong></div>
+      <div class="meta"><small>Priority regions</small><strong>DACH, Nordics, Benelux</strong></div>
+    </div>
+  </section>
+  <section class="card">
+    <h2>ICP vs. Other</h2>
+    <table>
+      <thead><tr><th>Segment</th><th>Leads</th><th>Wins</th><th>Win rate</th><th>Won ARR</th><th>Avg deal</th><th>ARR / lead</th></tr></thead>
+      <tbody>
+        <tr class="highlight"><td><span class="pill">Target ICP</span></td><td>50</td><td>10</td><td>20.0%</td><td>€684k</td><td>€68.4k</td><td>€13,680</td></tr>
+        <tr><td>Other</td><td>1,200</td><td>95</td><td>7.9%</td><td>€3.195M</td><td>€33.6k</td><td>€2,663</td></tr>
+      </tbody>
+    </table>
+    <p class="note">The ICP represents only 4% of leads but generates about 18% of total won ARR and more than 5× the ARR per lead.</p>
+  </section>
+</div>
+
+<div class="two">
+  <section class="card">
+    <h2>ICP outperforms at every funnel stage</h2>
+    <div class="funnel">
+      <div class="stage"><div class="stage-label">Lead → Qualified</div><div><div class="bar-wrap"><div class="bar icp" style="width:70%"></div></div><div class="bar-wrap" style="margin-top:5px"><div class="bar other" style="width:50.3%"></div></div></div><div class="stage-val">70.0 / 50.3</div></div>
+      <div class="stage"><div class="stage-label">Qualified → Demo</div><div><div class="bar-wrap"><div class="bar icp" style="width:68.6%"></div></div><div class="bar-wrap" style="margin-top:5px"><div class="bar other" style="width:56.8%"></div></div></div><div class="stage-val">68.6 / 56.8</div></div>
+      <div class="stage"><div class="stage-label">Demo → Opportunity</div><div><div class="bar-wrap"><div class="bar icp" style="width:66.7%"></div></div><div class="bar-wrap" style="margin-top:5px"><div class="bar other" style="width:57.7%"></div></div></div><div class="stage-val">66.7 / 57.7</div></div>
+      <div class="stage"><div class="stage-label">Opportunity → Win</div><div><div class="bar-wrap"><div class="bar icp" style="width:62.5%"></div></div><div class="bar-wrap" style="margin-top:5px"><div class="bar other" style="width:48%"></div></div></div><div class="stage-val">62.5 / 48.0</div></div>
+    </div>
+    <p class="note">Elixir green = Target ICP · Gray = Other</p>
+  </section>
+  <section class="card">
+    <h2>ICP performance by lead source</h2>
+    <table>
+      <thead><tr><th>Source</th><th>ICP leads</th><th>Win rate</th><th>ARR / lead</th></tr></thead>
+      <tbody>
+        <tr><td>Referral</td><td>6</td><td>50.0%</td><td>€38,250</td></tr>
+        <tr><td>Partners</td><td>7</td><td>28.6%</td><td>€24,500</td></tr>
+        <tr><td>Organic Search</td><td>7</td><td>28.6%</td><td>€17,000</td></tr>
+        <tr><td>Paid Search</td><td>6</td><td>16.7%</td><td>€10,667</td></tr>
+        <tr><td>Outbound</td><td>10</td><td>20.0%</td><td>€10,000</td></tr>
+        <tr><td>LinkedIn</td><td>8</td><td>0%</td><td>€0</td></tr>
+        <tr><td>Events</td><td>6</td><td>0%</td><td>€0</td></tr>
+      </tbody>
+    </table>
+    <p class="note">These are directional signals because the ICP channel samples are small.</p>
+  </section>
+</div>
+
+<div class="two">
+  <section class="card">
+    <h2>GTM recommendations</h2>
+    <div class="actions">
+      <div class="action"><strong>Prioritize the core ICP</strong>Focus acquisition on SaaS and Fintech companies with 501+ employees in DACH, the Nordics, and Benelux.</div>
+      <div class="action"><strong>Scale Referral, Partners, and Organic</strong>These channels produced the strongest ARR efficiency inside the ICP.</div>
+      <div class="action"><strong>Keep Outbound — but target it better</strong>Outbound performs well when focused on the right ICP, so targeting quality matters more than channel alone.</div>
+      <div class="action"><strong>Review LinkedIn and Events</strong>Both generated ICP leads but no wins in this sample; investigate before increasing spend.</div>
+    </div>
+  </section>
+  <section class="card">
+    <h2>Strategic caveats</h2>
+    <div class="actions">
+      <div class="action"><strong>Healthcare should be deprioritized, not banned</strong>It had the weakest revenue efficiency and funnel conversion, but selective high-value opportunities may still be worth pursuing.</div>
+      <div class="action"><strong>Enterprise pricing deserves investigation</strong>Price represented 50% of six lost 1000+ Outbound opportunities vs 23.9% company-wide, but the sample is too small for a pricing change.</div>
+      <div class="action"><strong>Keep validating the ICP</strong>The current ICP is based on 50 leads and 10 wins — strong enough to guide a GTM test, not enough to treat as permanent truth.</div>
+    </div>
+  </section>
+</div>
+
+<section class="card" style="margin-top:18px">
+  <h2>Project scope</h2>
+  <p style="color:var(--muted)">Synthetic data was used for portfolio and analytical practice. The project covers funnel conversion, ARR efficiency, lead-source performance, company size, industry, region, ICP development, and GTM recommendations.</p>
+  <div class="tags"><span class="tag">SQL</span><span class="tag">Revenue Operations</span><span class="tag">ICP analysis</span><span class="tag">GTM strategy</span><span class="tag">Pipeline analysis</span><span class="tag">B2B SaaS</span></div>
+</section>
+
+<footer>Elix.ai · Synthetic portfolio project</footer>
+</div>
+</body>
+</html>
+
