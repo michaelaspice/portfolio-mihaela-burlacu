@@ -213,6 +213,14 @@
     .reveal.is-visible{opacity:1;transform:none}
     .project-mark{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;margin-left:8px;border:1px solid var(--line);border-radius:50%;font-size:13px;vertical-align:middle;background:rgba(255,255,255,.02)}
     .project-mark.star{color:#f3c0d3}.project-mark.paw{color:#e7b494}.project-mark.node{color:#dcb4d0}.project-mark.dot{color:#ef9fbe}
+    .project-vanillai-startup{position:relative;overflow:hidden;background:radial-gradient(circle at 88% 18%,rgba(255,235,216,.10),transparent 28%),radial-gradient(circle at 14% 92%,rgba(236,159,191,.08),transparent 30%),linear-gradient(180deg,#21151d,#160f16);border-color:rgba(239,183,205,.18)}
+    .project-vanillai-startup:before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.025) 49%,transparent 60%);pointer-events:none}
+    .project-vanillai-startup .kicker{color:#efb7cc}
+    .project-vanillai-startup h3{font-family:Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:-.035em}
+    .project-vanillai-startup h3 em{font-style:italic;color:#f2b6cf}
+    .project-vanillai-startup .tag{border-color:rgba(239,183,205,.18);color:#e8cbd6;background:rgba(239,183,205,.04)}
+    .project-vanillai-startup .status{color:#efb7cc}
+    .project-vanillai-startup .status .dot{background:#efb7cc;box-shadow:0 0 0 4px rgba(239,183,205,.08),0 0 18px rgba(239,183,205,.18)}
     .status{display:inline-flex;align-items:center;gap:8px;margin-top:20px;color:var(--mint);font-size:13px;font-weight:700}
     .dot{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px rgba(233,160,189,.08)}
     @media(max-width:900px){
@@ -463,6 +471,16 @@
           <div class="tags">
             <span class="tag">AI</span><span class="tag">Customer Success</span><span class="tag">Automation</span>
           </div>
+        </article>
+
+        <article class="card project-card project-vanillai-startup">
+          <div class="kicker">Project 06 · Startup in progress</div>
+          <h3>vanill<em>.ai</em> <span class="project-mark dot" title="Vanill.ai">◌</span></h3>
+          <p>An AI software startup currently in development. Built around a real product idea, with the concept, product direction, workflows, and first implementation being shaped from the ground up.</p>
+          <div class="tags">
+            <span class="tag">AI Product</span><span class="tag">Startup</span><span class="tag">Product Strategy</span><span class="tag">In Development</span>
+          </div>
+          <div class="status"><span class="dot"></span> Building now</div>
         </article>
       </div>
     </section>
