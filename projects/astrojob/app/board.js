@@ -44,6 +44,19 @@ function formatSalary(job) {
   return `Salary: ${parts.join(' · ')}`;
 }
 
+const TAXONOMY_ICONS = {
+  'Core Match': '☀️',
+  'Transferable Match': '🪐',
+  'Stretch Match': '🌌',
+  'Wild Card': '🎲',
+  'Black Hole': '🕳️'
+};
+
+function taxonomyLabel(value) {
+  const clean = String(value || 'Wild Card').replace(/^[^A-Za-z]+/, '').trim();
+  return `${TAXONOMY_ICONS[clean] || '✨'} ${clean}`;
+}
+
 function recommendationLabel(result) {
   const labels = { APPLY_NOW: '🔥 APPLY NOW', APPLY: 'APPLY', STRETCH: 'STRETCH', MAYBE: 'MAYBE', REJECT: 'REJECT' };
   return labels[result.decision] || result.decision;
@@ -111,7 +124,7 @@ function renderCard(job) {
   node.querySelector('.job-title').textContent = job.title;
   node.querySelector('.job-meta').textContent = meta;
   badge.textContent = recommendationLabel(job.score);
-  if (taxonomy) taxonomy.textContent = job.score.taxonomy || '☄️ Wild Card';
+  if (taxonomy) taxonomy.textContent = taxonomyLabel(job.score.taxonomy);
   if (job.score.priority >= 85 && job.score.decision !== 'REJECT') badge.classList.add('hot');
   if (job.score.decision === 'REJECT') badge.classList.add('reject');
 
