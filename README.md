@@ -3,13 +3,14 @@
 A lightweight public portfolio focused on Customer Success, Operations, Data, Automation, and practical AI use.
 
 ## Featured projects
-- [JobFlow AI](https://michaelaspice.github.io/jobflow-ai/)
+- [AstroJob](https://michaelaspice.github.io/astrojob/)
 - [MorpheusGroup - Customer Health & Churn Analysis](https://michaelaspice.github.io/portfolio-mihaela-burlacu/projects/morpheusgroup/)
-- [Vanill.ai - Revenue Operations Funnel & ICP Analysis](projects/vanillai/)
+- [Elix.ai - Revenue Operations Funnel & ICP Analysis](projects/elixai/)
 - [Aurority - Quality Operations System](projects/aurority/)
 
 ## Planned case studies
 1. AI Customer Success Assistant
+2. Vanill.ai - stat-up prject
 
 ## Structure
 
