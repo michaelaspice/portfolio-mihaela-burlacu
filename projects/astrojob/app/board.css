@@ -407,3 +407,14 @@ button,select,input,.apply-link{border-color:var(--line)!important}
  .match-legend{grid-template-columns:1fr!important}
  .legend-items{grid-template-columns:repeat(5,125px)!important}
 }
+
+/* Job-card taxonomy uses the exact same artwork as the legend */
+.taxonomy-badge{display:inline-flex!important;align-items:center!important;gap:7px!important}
+.taxonomy-card-image{
+  width:22px!important;
+  height:22px!important;
+  flex:0 0 22px!important;
+  object-fit:cover!important;
+  border-radius:50%!important;
+  box-shadow:0 0 9px rgba(112,90,255,.22)!important;
+}
