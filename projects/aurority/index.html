@@ -19,7 +19,10 @@ a{color:inherit}.shell{max-width:1180px;margin:auto;padding:28px 24px 90px}nav{d
 section{padding:50px 0;border-top:1px solid rgba(255,255,255,.07)}h2{font-size:clamp(30px,4vw,45px);letter-spacing:-.035em;margin:0 0 13px}h3{margin:0 0 8px;font-size:17px}.section-lede{font-size:16px;line-height:1.7;color:var(--muted);max-width:800px;margin-bottom:28px}p{color:var(--muted);line-height:1.7}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.card,.source,.monitor,.tech{border-radius:18px;padding:19px}.card p,.source p,.monitor p,.tech p{font-size:13px;margin-bottom:0}
 .callout{border-radius:22px;padding:25px;margin:28px 0;background:linear-gradient(135deg,rgba(185,156,255,.09),rgba(141,230,209,.055))}.callout strong{font-size:21px;line-height:1.45;display:block}.callout p{margin-bottom:0}
 .problem{display:grid;grid-template-columns:1.15fr .85fr;gap:13px}ul{color:var(--muted);line-height:1.7;padding-left:18px}li{margin:5px 0}
-.flow{display:flex;gap:7px;flex-wrap:wrap;margin:22px 0}.flow span{font-size:11px;border:1px solid var(--line);background:var(--panel2);border-radius:999px;padding:8px 10px;color:#d9e0ef}.arrow{border:0!important;background:none!important;color:#63718e!important;padding-inline:2px!important}
+.flow{display:flex;gap:7px;flex-wrap:wrap;margin:22px 0}.flow span{font-size:11px;border:1px solid var(--line);background:var(--panel2);border-radius:999px;padding:8px 10px;color:#d9e0ef}
+.design-path{display:grid;grid-template-columns:repeat(11,auto);gap:7px;align-items:center;margin:24px 0}.design-path .step{min-height:68px;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;border:1px solid var(--line);border-radius:14px;background:var(--panel2);font-size:11px;color:#dce5f5}.design-path .arr{color:var(--mint);opacity:.65;text-align:center}
+.decision-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:20px}.decision-card{border:1px solid var(--line);background:var(--panel);border-radius:17px;padding:17px}.decision-card b{display:block;color:var(--mint);font-size:10px;text-transform:uppercase;letter-spacing:.11em;margin-bottom:7px}.decision-card p{font-size:13px;margin:0}.design-note{margin-top:14px;padding:16px 18px;border-left:2px solid var(--violet);background:linear-gradient(90deg,rgba(185,156,255,.075),transparent);border-radius:0 14px 14px 0;color:var(--muted);font-size:13px}
+@media(max-width:900px){.design-path{grid-template-columns:1fr}.design-path .arr{transform:rotate(90deg)}.decision-grid{grid-template-columns:1fr}}.arrow{border:0!important;background:none!important;color:#63718e!important;padding-inline:2px!important}
 .arch{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:12px;align-items:stretch}.stage{border-radius:20px;padding:20px}.stage .n{color:var(--mint);font-size:10px;letter-spacing:.15em;text-transform:uppercase;font-weight:800}.stage p{font-size:13px}.stage.mid{background:linear-gradient(145deg,rgba(185,156,255,.1),rgba(134,191,255,.06))}
 .monitor b{display:block;margin-bottom:5px}.monitor span{font-size:12px;color:var(--muted)}
 .rule{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin:20px 0}.rule div{padding:13px;border:1px solid var(--line);border-radius:13px;background:var(--panel2);font-size:12px;text-align:center}.rule b{display:block;color:var(--mint);font-size:10px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
@@ -49,7 +52,7 @@ section{padding:50px 0;border-top:1px solid rgba(255,255,255,.07)}h2{font-size:c
 </div>
 
 <div class="toc">
-<a href="#context">Context</a><a href="#discovery">Discovery</a><a href="#principles">Principles</a><a href="#architecture">Architecture</a><a href="#monitoring">Monitoring</a><a href="#triggers">Triggers</a><a href="#accountability">Accountability</a><a href="#qa">QA & Coaching</a><a href="#data">Data Model</a><a href="#scenarios">Scenarios</a><a href="#validation">Validation</a>
+<a href="#context">Context</a><a href="#approach">Design Approach</a><a href="#discovery">Discovery</a><a href="#principles">Principles</a><a href="#architecture">Architecture</a><a href="#monitoring">Monitoring</a><a href="#triggers">Triggers</a><a href="#accountability">Accountability</a><a href="#qa">QA & Coaching</a><a href="#data">Data Model</a><a href="#scenarios">Scenarios</a><a href="#validation">Validation</a>
 </div>
 
 <section id="context"><div class="eyebrow">01 · Business context</div><h2>The problem was bigger than QA.</h2>
@@ -59,7 +62,31 @@ section{padding:50px 0;border-top:1px solid rgba(255,255,255,.07)}h2{font-size:c
 <div class="card"><h3>What is missing</h3><ul><li>No formal QA department or common scorecard.</li><li>No pass threshold or calibration process.</li><li>Team Lead reviews are inconsistent.</li><li>No central quality reporting or coaching tracking.</li><li>No recurring complaint root-cause analysis.</li></ul></div>
 </div></section>
 
-<section id="discovery"><div class="eyebrow">02 · Discovery</div><h2>Map the work before designing the system.</h2>
+<section id="approach"><div class="eyebrow">02 · Design Approach</div><h2>From operational friction to a usable system.</h2>
+<p class="section-lede">The primary focus was not to build another QA dashboard. It was to design an operating system that could turn fragmented signals into accountable action while keeping human judgment where context matters.</p>
+
+<div class="design-path" aria-label="Aurority design process">
+  <div class="step">Operational problem</div><div class="arr">→</div>
+  <div class="step">Map friction</div><div class="arr">→</div>
+  <div class="step">Define requirements</div><div class="arr">→</div>
+  <div class="step">Design workflow</div><div class="arr">→</div>
+  <div class="step">Set ownership</div><div class="arr">→</div>
+  <div class="step">Recheck outcome</div>
+</div>
+
+<div class="decision-grid">
+  <div class="decision-card"><b>01 · Find The Friction</b><p>I started with the breakdowns leadership could already see—declining CSAT, inconsistent answers, handover failures and disconnected coaching—then traced where information or ownership was being lost.</p></div>
+  <div class="decision-card"><b>02 · Separate Signal From Cause</b><p>A poor outcome can come from people, process, knowledge, systems, product or commercial decisions. The workflow therefore opens an investigation before assigning blame or prescribing action.</p></div>
+  <div class="decision-card"><b>03 · Automate The Repetitive</b><p>Stable IDs, routing, trigger creation, notifications, due dates and rechecks can be automated. Diagnosis, severity judgment, coaching and cross-functional decisions remain human responsibilities.</p></div>
+  <div class="decision-card"><b>04 · Keep Source Tools Intact</b><p>Zendesk, HubSpot, Aircall and the other operational tools remain systems of record. Aurority pulls only the structured information required to connect evidence, ownership and action.</p></div>
+  <div class="decision-card"><b>05 · Design For Accountability</b><p>Every meaningful issue needs an owner, evidence, a due date, a route for cross-functional requests and a visible status so problems cannot disappear inside Slack threads.</p></div>
+  <div class="decision-card"><b>06 · Close The Loop</b><p>An intervention is not considered successful because a task was completed. The system rechecks the relevant outcome so the team can see whether the action actually improved quality.</p></div>
+</div>
+
+<div class="design-note"><strong style="color:var(--text)">Core design decision:</strong> automate coordination, not judgment. Aurority is designed to make the right information visible to the right owner at the right time, while people remain responsible for interpreting context and deciding what to do.</div>
+</section>
+
+<section id="discovery"><div class="eyebrow">03 · Discovery</div><h2>Map the work before designing the system.</h2>
 <p class="section-lede">The first step is not choosing QA software. It is understanding where information is created, where it changes hands, where decisions happen and where context disappears.</p>
 <div class="grid3">
 <div class="source"><h3>Zendesk</h3><p>Email/chat interactions, tickets, internal notes, tags, escalations and CSAT.</p></div>
@@ -75,7 +102,7 @@ section{padding:50px 0;border-top:1px solid rgba(255,255,255,.07)}h2{font-size:c
 <div class="callout"><strong>The discovery question: where does the work actually break?</strong><p>Support handover notes are inconsistent. Escalations have no common reporting logic. Sales exceptions can live only in Slack. 1:1s are intended biweekly but are inconsistently held and coaching is not tracked. New hires complete two weeks of onboarding without QA certification or 30/60/90-day quality monitoring.</p></div>
 </section>
 
-<section id="principles"><div class="eyebrow">03 · Design principles</div><h2>Centralized does not mean duplicated.</h2>
+<section id="principles"><div class="eyebrow">04 · Design principles</div><h2>Centralized does not mean duplicated.</h2>
 <p class="section-lede">Aurority is not a replacement for the tools where work happens. It pulls only the structured information needed to detect, diagnose, route and recheck quality outcomes.</p>
 <div class="grid2">
 <div class="card"><h3>Capture once</h3><p>Never ask a human to re-enter data a source system already knows. Add the right structured fields to Zendesk and HubSpot and pull only what the central layer needs.</p></div>
@@ -86,7 +113,7 @@ section{padding:50px 0;border-top:1px solid rgba(255,255,255,.07)}h2{font-size:c
 <div class="callout"><strong>A bad customer outcome is not automatically an agent-performance problem.</strong><p>The same symptom can be caused by People, Process, Knowledge, System, Product, Commercial decisions or a customer-specific situation.</p></div>
 </section>
 
-<section id="architecture"><div class="eyebrow">04 · Architecture</div><h2>Source → Quality Operations → action.</h2>
+<section id="architecture"><div class="eyebrow">05 · Architecture</div><h2>Source → Quality Operations → action.</h2>
 <div class="arch">
 <div class="stage"><div class="n">Layer 01</div><h3>Source systems</h3><p>Zendesk · Aircall · HubSpot · Product usage · Typeform · Notion · Deputy.</p><p>Structured fields are captured where work happens.</p></div>
 <div class="stage mid"><div class="n">Layer 02</div><h3>Aurority Quality Operations</h3><p>Business outcomes · trigger engine · Quality Issue IDs · evidence · severity · root cause · owner · interdepartmental requests · actions · due dates · rechecks.</p></div>
@@ -95,7 +122,7 @@ section{padding:50px 0;border-top:1px solid rgba(255,255,255,.07)}h2{font-size:c
 <div class="callout"><strong>Capture once. Structure at source. Pull only what is needed. Detect meaningful change. Diagnose before prescribing. Route to the correct owner. Recheck every intervention.</strong></div>
 </section>
 
-<section id="monitoring"><div class="eyebrow">05 · What Aurority monitors</div><h2>Business outcomes first. QA metrics second.</h2>
+<section id="monitoring"><div class="eyebrow">06 · What Aurority monitors</div><h2>Business outcomes first. QA metrics second.</h2>
 <p class="section-lede">The top layer answers whether the business or customer experience is changing. Lower layers help explain why.</p>
 <div class="grid4">
 <div class="monitor"><b>CSAT</b><span>Score, comments, ticket context, agent notes, interaction review and root cause.</span></div>
@@ -109,7 +136,7 @@ section{padding:50px 0;border-top:1px solid rgba(255,255,255,.07)}h2{font-size:c
 </div>
 </section>
 
-<section id="triggers"><div class="eyebrow">06 · Trigger engine</div><h2>A trigger starts an investigation.</h2>
+<section id="triggers"><div class="eyebrow">07 · Trigger engine</div><h2>A trigger starts an investigation.</h2>
 <p class="section-lede">Expert-defined V1 rules are transparent and testable. They can later be validated against actual outcomes. No fake machine learning is required to make the system useful.</p>
 <div class="rule"><div><b>01</b>Condition</div><div><b>02</b>Severity</div><div><b>03</b>Action</div><div><b>04</b>Owner / escalation</div><div><b>05</b>Recheck</div></div>
 <div class="grid2">
@@ -121,7 +148,7 @@ section{padding:50px 0;border-top:1px solid rgba(255,255,255,.07)}h2{font-size:c
 <div class="flow"><span>Signal</span><span class="arrow">→</span><span>Threshold</span><span class="arrow">→</span><span>Trigger</span><span class="arrow">→</span><span>Investigation</span><span class="arrow">→</span><span>Action</span><span class="arrow">→</span><span>Recheck</span></div>
 </section>
 
-<section id="accountability"><div class="eyebrow">07 · Accountability model</div><h2>Automation supports ownership. It does not replace it.</h2>
+<section id="accountability"><div class="eyebrow">08 · Accountability model</div><h2>Automation supports ownership. It does not replace it.</h2>
 <div class="callout"><strong>The system guarantees visibility, ownership and communication. People retain responsibility for judgment and decisions.</strong></div>
 <div class="grid2">
 <div class="card"><h3>Customer-specific issue</h3><p>The relevant customer-facing team owns the initial investigation. If another department is needed, a linked interdepartmental request transfers the question — not the entire history.</p></div>
@@ -147,7 +174,7 @@ section{padding:50px 0;border-top:1px solid rgba(255,255,255,.07)}h2{font-size:c
 <p>A short “Report Quality Issue” Typeform captures Department, interaction/customer link, issue type, short description, customer impact and urgency in under a minute. Automation creates the QI ID, routes it and sends the appropriate feed/nudge.</p>
 </section>
 
-<section id="qa"><div class="eyebrow">08 · QA, coaching & knowledge</div><h2>Quality review should create learning, not just scores.</h2>
+<section id="qa"><div class="eyebrow">09 · QA, coaching & knowledge</div><h2>Quality review should create learning, not just scores.</h2>
 <div class="grid3">
 <div class="card"><h3>QA scorecard</h3><p>Communication · resolution · accuracy · process adherence · documentation · ownership · critical failure · overall score · <code>agent_controlled</code>.</p></div>
 <div class="card"><h3>Coaching loop</h3><p>QA finding → coaching action → Team Lead → 1:1 → follow-up review → improvement measured.</p></div>
@@ -157,7 +184,7 @@ section{padding:50px 0;border-top:1px solid rgba(255,255,255,.07)}h2{font-size:c
 <h3>Notion Quality Knowledge Hub</h3><p>Notion remains the home for standards, scorecards, calibration guidance, QA processes, known issues, training and change logs — not the issue database. Every governed page has an owner, version, last-reviewed date and next-review date.</p>
 </section>
 
-<section id="data"><div class="eyebrow">09 · Data model</div><h2>Enough structure to investigate. No monster database.</h2>
+<section id="data"><div class="eyebrow">10 · Data model</div><h2>Enough structure to investigate. No monster database.</h2>
 <p class="section-lede">The model centers customer and operational evidence around stable IDs, while source references avoid copying recordings or unnecessary source data.</p>
 <div class="grid4">
 <div class="tech"><h3>Customer</h3><p>accounts<br>users<br>product_usage<br>surveys</p></div>
@@ -172,7 +199,7 @@ Quality Issue → owner / interdepartmental request / action / recheck
 source systems remain systems of record</div>
 </section>
 
-<section id="scenarios"><div class="eyebrow">10 · Scenario walkthroughs</div><h2>Testing the operating model against real decisions.</h2>
+<section id="scenarios"><div class="eyebrow">11 · Scenario walkthroughs</div><h2>Testing the operating model against real decisions.</h2>
 
 <div class="scenario"><div class="scenario-head"><div><h3>01 · Northstar Labs — churn-risk investigation</h3><p>Customer-specific issue → Support owns initial investigation.</p></div><span class="pill">HIGH RISK</span></div>
 <div class="signals"><span>€72k ARR</span><span>Renewal: 52 days</span><span>Usage ↓38%</span><span>Feature adoption ↓17pp</span><span>CSAT 2/5</span><span>2 open tickets</span><span>Oldest unresolved: 9 days</span></div>
