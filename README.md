@@ -16,7 +16,7 @@ A lightweight public portfolio focused on Customer Success, Operations, Data, Au
 
 - `index.html` - main portfolio homepage
 - `projects/morpheusgroup/` - Customer Health & Churn Analysis
-- `projects/vanillai/` - Revenue Operations Funnel & ICP Analysis
+- `projects/elixai/` - Revenue Operations Funnel & ICP Analysis
 - `projects/aurority/` - Quality Operations System
 - Future case studies will be added under `projects/`
 
