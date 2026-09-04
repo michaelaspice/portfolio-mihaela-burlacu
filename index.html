@@ -244,7 +244,8 @@
     .status{display:inline-flex;align-items:center;gap:8px;margin-top:20px;color:var(--mint);font-size:13px;font-weight:700}
     .dot{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px rgba(233,160,189,.08)}
     @media(max-width:900px){
-      .profile-chip{position:static;margin-top:24px;width:max-content}
+      .profile-stack{position:absolute;right:0;top:38px;display:flex;flex-direction:column;gap:10px;align-items:stretch}.profile-stack .profile-chip{position:relative;right:auto;top:auto}.linkedin-chip{border-color:rgba(124,171,213,.26)!important}.linkedin-chip span{color:#8fb9dc!important}.linkedin-mark{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#17334a,#0a66c2);border:1px solid rgba(143,185,220,.34);font-weight:850;font-size:20px;color:white;flex:0 0 auto}
+.profile-stack{position:static;margin-top:24px;width:max-content}.profile-stack .profile-chip{width:100%}
       .hero{min-height:0}
     }
     @media(max-width:780px){
@@ -277,10 +278,16 @@
         I design practical customer and operational systems through process improvement,
         analytics, automation, and applied AI.
       </p>
-      <a class="profile-chip" href="https://github.com/michaelaspice" target="_blank" rel="noreferrer" aria-label="Mihaela Burlacu on GitHub">
-        <img src="https://avatars.githubusercontent.com/u/321937379?v=4" alt="Mihaela Burlacu">
-        <div><strong>@michaelaspice</strong><span>GitHub</span></div>
-      </a>
+      <div class="profile-stack">
+        <a class="profile-chip" href="https://github.com/michaelaspice" target="_blank" rel="noreferrer" aria-label="Mihaela Burlacu on GitHub">
+          <img src="https://avatars.githubusercontent.com/u/321937379?v=4" alt="Mihaela Burlacu">
+          <div><strong>@michaelaspice</strong><span>GitHub</span></div>
+        </a>
+        <a class="profile-chip linkedin-chip" href="https://www.linkedin.com/in/mihaela-burlacu/" target="_blank" rel="noreferrer" aria-label="Mihaela Burlacu on LinkedIn">
+          <div class="linkedin-mark" aria-hidden="true">in</div>
+          <div><strong>Mihaela Burlacu</strong><span>LinkedIn</span></div>
+        </a>
+      </div>
       <div class="hero-actions">
         <a class="btn primary" href="#work">View projects</a>
         <a class="btn" href="https://github.com/michaelaspice" target="_blank" rel="noreferrer">GitHub profile</a>
