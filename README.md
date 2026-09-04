@@ -15,6 +15,7 @@ A lightweight public portfolio focused on Customer Success, Operations, Data, Au
 ## Structure
 
 - `index.html` - main portfolio homepage
+- `projects/astrojob/` - Individually Tailor Job Search Tool
 - `projects/morpheusgroup/` - Customer Health & Churn Analysis
 - `projects/elixai/` - Revenue Operations Funnel & ICP Analysis
 - `projects/aurority/` - Quality Operations System
