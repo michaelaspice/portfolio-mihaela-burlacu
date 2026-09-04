@@ -24,6 +24,20 @@ h1{font-size:clamp(44px,6vw,72px);line-height:1;letter-spacing:-.05em;margin:10p
 .kpi{background:var(--cream);color:#172019;border-radius:16px;padding:20px}
 .kpi .label{font-size:12px;font-weight:700;color:#5d675e}.kpi .value{font-size:34px;font-weight:800;letter-spacing:-.04em;margin-top:10px;color:#3f8156}.kpi .sub{font-size:12px;color:#697168;margin-top:4px}
 .grid{display:grid;grid-template-columns:1fr 2fr;gap:18px}.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+.focus-card{margin:0 0 18px;position:relative;overflow:hidden}
+.focus-card:after{content:"";position:absolute;width:220px;height:220px;right:-90px;top:-110px;border-radius:50%;background:radial-gradient(circle,rgba(105,184,121,.11),transparent 68%);pointer-events:none}
+.focus-lead{max-width:900px;color:var(--muted);font-size:16px;margin-bottom:20px}
+.icp-flow{display:grid;grid-template-columns:repeat(11,auto);gap:7px;align-items:center;margin:20px 0 22px}
+.icp-flow .flow-step{border:1px solid var(--line);border-radius:13px;padding:11px 9px;text-align:center;font-size:11px;color:var(--cream);background:rgba(7,16,13,.48);min-height:62px;display:flex;align-items:center;justify-content:center}
+.icp-flow .flow-arrow{color:var(--accent2);opacity:.7;text-align:center}
+.build-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.build-step{border:1px solid var(--line);border-radius:14px;padding:15px;background:rgba(7,16,13,.34)}
+.build-step b{display:block;color:var(--accent2);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.build-step p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}
+.icp-result{margin-top:14px;padding:15px 17px;border-left:2px solid var(--accent);background:rgba(105,184,121,.055);border-radius:0 12px 12px 0;color:var(--muted);font-size:13px}
+.icp-result strong{color:var(--text)}
+@media(max-width:900px){.icp-flow{grid-template-columns:1fr}.icp-flow .flow-arrow{transform:rotate(90deg)}.build-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.build-grid{grid-template-columns:1fr}}
 .card{padding:20px}.card h2{font-size:22px;letter-spacing:-.03em;margin:0 0 14px}
 .meta-list{display:grid;gap:14px}.meta{padding:14px 0;border-bottom:1px solid var(--line)}.meta:last-child{border-bottom:0}
 .meta small{display:block;color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:.08em}.meta strong{display:block;margin-top:3px;font-size:18px}
@@ -61,6 +75,30 @@ footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--line);color:v
     <div class="kpi"><div class="label">Avg won ICP deal</div><div class="value">€68.4k</div><div class="sub">vs €33.6k for other leads</div></div>
     <div class="kpi"><div class="label">ARR from ICP</div><div class="value">18%</div><div class="sub">from only 4% of all leads</div></div>
   </div>
+</section>
+
+<section class="card focus-card">
+  <div class="eyebrow">GTM Question</div>
+  <h2>Primary Focus</h2>
+  <p class="focus-lead"><strong style="color:var(--text)">Which customer profile represented the strongest growth opportunity?</strong> The analysis was designed to go beyond lead volume and identify the segments producing stronger conversion, larger deals, and greater revenue efficiency.</p>
+
+  <div class="icp-flow" aria-label="ICP development process">
+    <div class="flow-step">1,250 leads</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Segment pipeline</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Compare conversion</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Compare ARR</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Test lead sources</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Define ICP</div>
+  </div>
+
+  <h2 style="font-size:18px;margin-top:4px">Building The ICP</h2>
+  <div class="build-grid">
+    <div class="build-step"><b>01 · Segment</b><p>I compared company size, industry, and region to see which account profiles consistently produced stronger commercial outcomes.</p></div>
+    <div class="build-step"><b>02 · Measure Quality</b><p>I looked beyond raw lead counts and compared win rate, won ARR, average deal size, and ARR per lead.</p></div>
+    <div class="build-step"><b>03 · Add Channel Context</b><p>I analyzed acquisition sources inside the strongest segments to understand where efficient pipeline was actually coming from.</p></div>
+    <div class="build-step"><b>04 · Validate The Profile</b><p>I compared the proposed ICP against all other leads across the funnel before using it as the basis for GTM recommendations.</p></div>
+  </div>
+  <div class="icp-result"><strong>Resulting test ICP:</strong> SaaS &amp; Fintech companies with 501+ employees in DACH, the Nordics, and Benelux. The profile represents only 4% of leads, so I treated it as a strong GTM hypothesis to validate—not a permanent definition.</div>
 </section>
 
 <div class="grid">
