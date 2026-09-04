@@ -1,4 +1,4 @@
-# Vanill.ai — Revenue Operations Funnel & ICP Analysis
+# Elix.ai — Revenue Operations Funnel & ICP Analysis
 
 Synthetic B2B SaaS Revenue Operations case study using SQL to identify funnel performance, revenue-efficient segments, and a target ICP.
 
