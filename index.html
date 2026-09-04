@@ -7,149 +7,132 @@
   <title>Mihaela Burlacu — Customer Success & Operations</title>
   <style>
     :root{
-      --bg:#0d1015;
-      --panel:#151922;
-      --panel2:#1b202a;
-      --text:#f4f6fb;
-      --muted:#b9c2d3;
-      --line:#2b313d;
-      --accent:#d8c2ff;
-      --accent2:#b7d8ff;
-      --good:#bfe7d1;
-      --shadow:0 18px 45px rgba(0,0,0,.18);
+      --bg:#14070f;
+      --bg2:#220b18;
+      --panel:#1d0c16;
+      --panel2:#27101d;
+      --text:#f7f2f6;
+      --muted:#c8b8c3;
+      --line:rgba(240,118,160,.18);
+      --accent:#eb6f9b;
+      --accent-soft:#f7a9c3;
+      --mint:#78e0bf;
+      --mint-soft:#b6f0dc;
+      --shadow:0 18px 45px rgba(0,0,0,.24);
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
       background:
-        radial-gradient(circle at 10% 5%, rgba(216,194,255,.09), transparent 24%),
-        radial-gradient(circle at 88% 2%, rgba(183,216,255,.06), transparent 20%),
-        var(--bg);
+        radial-gradient(circle at 12% 4%,rgba(235,111,155,.10),transparent 24%),
+        radial-gradient(circle at 90% 0%,rgba(120,224,191,.06),transparent 21%),
+        linear-gradient(180deg,var(--bg),#10060c 55%,#12070e);
       color:var(--text);
-      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       line-height:1.65;
     }
     a{color:inherit;text-decoration:none}
     .wrap{max-width:1120px;margin:0 auto;padding:28px 24px 80px}
-    nav{
-      display:flex;justify-content:space-between;align-items:center;
-      padding:8px 0 34px;
-    }
-    .brand{font-weight:800;letter-spacing:-.03em}
-    .navlinks{display:flex;gap:22px;color:var(--muted);font-size:14px}
-    .navlinks a:hover{color:var(--text)}
+    nav{display:flex;justify-content:space-between;align-items:center;padding:8px 0 34px;border-bottom:1px solid var(--line)}
+    .brand{font-family:Georgia,"Times New Roman",serif;font-size:21px;font-weight:700;letter-spacing:.01em}
+    .navlinks{display:flex;gap:24px;color:var(--muted);font-size:14px}
+    .navlinks a:hover{color:var(--mint)}
     .hero{
-      padding:54px 0 48px;
+      position:relative;
+      padding:72px 0 58px;
       border-bottom:1px solid var(--line);
+      min-height:420px;
     }
     .eyebrow{
       display:inline-block;
-      padding:7px 11px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      color:var(--accent);
-      background:rgba(255,255,255,.015);
-      font-size:13px;
-      font-weight:700;
-      margin-bottom:22px;
+      color:var(--accent-soft);
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      margin-bottom:20px;
     }
+    h1,h2,h3{font-family:Georgia,"Times New Roman",serif}
     h1{
-      margin:0 0 18px;
-      font-size:clamp(48px,8vw,92px);
-      line-height:.98;
-      letter-spacing:-.055em;
+      margin:0 0 20px;
+      max-width:760px;
+      font-size:clamp(48px,7vw,84px);
+      line-height:1.02;
+      letter-spacing:-.045em;
+      font-weight:500;
     }
     .hero p{
-      max-width:780px;
+      max-width:650px;
       margin:0;
       color:var(--muted);
-      font-size:clamp(19px,2.2vw,27px);
-      line-height:1.5;
+      font-size:clamp(18px,2vw,23px);
+      line-height:1.55;
     }
+    .profile-chip{
+      position:absolute;
+      right:0;
+      top:74px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:10px 12px;
+      border:1px solid var(--line);
+      background:rgba(29,12,22,.78);
+      border-radius:16px;
+      backdrop-filter:blur(12px);
+    }
+    .profile-chip img{
+      width:58px;height:58px;border-radius:50%;object-fit:cover;
+      border:1px solid rgba(235,111,155,.55)
+    }
+    .profile-chip strong{display:block;font-size:13px}
+    .profile-chip span{display:block;color:var(--mint);font-size:12px;margin-top:2px}
     .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
     .btn{
-      display:inline-block;padding:11px 15px;border-radius:12px;
+      display:inline-block;padding:11px 15px;border-radius:10px;
       border:1px solid var(--line);font-weight:700;font-size:14px;
-      background:var(--panel);
+      background:rgba(39,16,29,.72);
     }
-    .btn.primary{background:var(--text);color:#11151b}
+    .btn:hover{border-color:rgba(120,224,191,.55)}
+    .btn.primary{background:linear-gradient(135deg,#d95786,#ec789f);color:#fff;border-color:transparent}
     section{padding:58px 0 0}
-    .section-head{
-      display:flex;justify-content:space-between;gap:28px;align-items:end;margin-bottom:22px;
-    }
-    .section-head h2{
-      margin:0;font-size:34px;letter-spacing:-.035em;
-    }
+    .section-head{display:flex;justify-content:space-between;gap:28px;align-items:end;margin-bottom:22px}
+    .section-head h2{margin:0;font-size:36px;letter-spacing:-.025em;font-weight:500}
     .section-head p{margin:0;color:var(--muted);max-width:520px}
     .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
     .card{
       border:1px solid var(--line);
-      background:linear-gradient(180deg,var(--panel2),var(--panel));
-      border-radius:20px;
+      background:linear-gradient(180deg,rgba(39,16,29,.92),rgba(29,12,22,.94));
+      border-radius:18px;
       padding:25px;
       box-shadow:var(--shadow);
     }
-    .card.featured{
-      grid-column:span 2;
-      display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:28px;
-      align-items:center;
-    }
-    .kicker{
-      color:var(--accent);
-      text-transform:uppercase;
-      font-weight:800;
-      font-size:12px;
-      letter-spacing:.12em;
-    }
-    .card h3{margin:7px 0 10px;font-size:27px;letter-spacing:-.03em}
+    .card.featured{grid-column:span 2;display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+    .kicker{color:var(--accent-soft);text-transform:uppercase;font-weight:800;font-size:12px;letter-spacing:.12em}
+    .card h3{margin:7px 0 10px;font-size:29px;letter-spacing:-.02em;font-weight:500}
     .card p{margin:0;color:var(--muted)}
     .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-    .tag{
-      border:1px solid var(--line);
-      border-radius:999px;
-      padding:6px 9px;
-      color:#d5dbea;
-      font-size:12px;
-      background:rgba(255,255,255,.02);
-    }
-    .mock{
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:18px;
-      background:#10141b;
-    }
+    .tag{border:1px solid rgba(120,224,191,.22);border-radius:999px;padding:6px 9px;color:var(--mint-soft);font-size:12px;background:rgba(120,224,191,.04)}
+    .mock{border:1px solid rgba(120,224,191,.16);border-radius:15px;padding:18px;background:linear-gradient(180deg,#120818,#0d0912)}
     .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-    .step{
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:12px 10px;
-      min-height:100px;
-      background:var(--panel);
-      font-size:12px;
-      color:var(--muted);
-    }
-    .step strong{display:block;color:var(--text);font-size:13px;margin-bottom:7px}
-    .about{
-      display:grid;grid-template-columns:.9fr 1.1fr;gap:16px
-    }
+    .step{border:1px solid var(--line);border-radius:12px;padding:12px 10px;min-height:100px;background:rgba(38,15,28,.66);font-size:12px;color:var(--muted)}
+    .step strong{display:block;color:var(--mint-soft);font-size:13px;margin-bottom:7px}
+    .about{display:grid;grid-template-columns:.9fr 1.1fr;gap:16px}
     .about .card{height:100%}
     .metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
-    .metric{border:1px solid var(--line);border-radius:14px;padding:14px;background:#10141b}
-    .metric b{display:block;font-size:22px;letter-spacing:-.03em}
+    .metric{border:1px solid var(--line);border-radius:13px;padding:14px;background:rgba(18,8,18,.65)}
+    .metric b{display:block;font-size:22px;letter-spacing:-.03em;color:var(--mint)}
     .metric span{font-size:12px;color:var(--muted)}
     .tool-list{display:flex;flex-wrap:wrap;gap:9px}
-    footer{
-      margin-top:64px;padding-top:28px;border-top:1px solid var(--line);
-      color:var(--muted);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px
+    footer{margin-top:64px;padding-top:28px;border-top:1px solid var(--line);color:var(--muted);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px}
+    .status{display:inline-flex;align-items:center;gap:8px;margin-top:20px;color:var(--mint);font-size:13px;font-weight:700}
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px rgba(120,224,191,.08)}
+    @media(max-width:900px){
+      .profile-chip{position:static;margin-top:24px;width:max-content}
+      .hero{min-height:0}
     }
-    .status{
-      display:inline-flex;align-items:center;gap:8px;margin-top:20px;color:var(--good);font-size:13px;font-weight:700
-    }
-    .dot{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 4px rgba(191,231,209,.08)}
-    @media (max-width:780px){
+    @media(max-width:780px){
       .navlinks{display:none}
       .grid,.about,.card.featured{grid-template-columns:1fr}
       .card.featured{grid-column:span 1}
@@ -176,9 +159,13 @@
       <div class="eyebrow">Customer Success · Operations · Data · Automation</div>
       <h1>Turning complexity into clarity.</h1>
       <p>
-        I build better customer and operational systems through process design,
-        data, automation, and practical AI use.
+        I design practical customer and operational systems through process improvement,
+        analytics, automation, and applied AI.
       </p>
+      <a class="profile-chip" href="https://github.com/michaelaspice" target="_blank" rel="noreferrer" aria-label="Mihaela Burlacu on GitHub">
+        <img src="https://avatars.githubusercontent.com/u/321937379?v=4" alt="Mihaela Burlacu">
+        <div><strong>@michaelaspice</strong><span>GitHub</span></div>
+      </a>
       <div class="hero-actions">
         <a class="btn primary" href="#work">View projects</a>
         <a class="btn" href="https://github.com/michaelaspice" target="_blank" rel="noreferrer">GitHub profile</a>
