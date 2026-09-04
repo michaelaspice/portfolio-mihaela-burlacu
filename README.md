@@ -8,7 +8,7 @@ A lightweight public portfolio focused on Customer Success, Operations, Data, Au
 - [Elix.ai - Revenue Operations Funnel & ICP Analysis](projects/elixai/)
 - [Aurority - Quality Operations System](projects/aurority/)
 
-## Planned case studies
+## Planned projects
 1. AI Customer Success Assistant
 2. Vanill.ai - AI software project
 
