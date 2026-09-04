@@ -133,7 +133,38 @@
       padding:25px;
       box-shadow:var(--shadow);
     }
-    .card.featured{grid-column:span 2;display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+    .card.featured{grid-column:span 2;display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;position:relative;overflow:hidden}
+    .project-card{transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+    .project-card:hover{transform:translateY(-3px)}
+    .project-card:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.7}
+    .project-card > *{position:relative;z-index:1}
+    .project-astro{background:radial-gradient(circle at 82% 18%,rgba(112,80,255,.18),transparent 30%),linear-gradient(180deg,#171228,#110d1d);border-color:rgba(142,111,255,.3)}
+    .project-astro:before{background:radial-gradient(circle,#fff 1px,transparent 1px);background-size:86px 86px;opacity:.08}
+    .project-astro .kicker,.project-astro .project-mark{color:#c6b7ff}
+    .project-astro .tag{border-color:rgba(151,121,255,.24);color:#d8d0ff;background:rgba(120,84,255,.05)}
+    .project-astro .btn.primary{background:linear-gradient(135deg,#6754d9,#9b7bff)}
+    .project-morpheus{background:radial-gradient(circle at 82% 16%,rgba(167,128,78,.14),transparent 32%),linear-gradient(180deg,#2a2119,#1d1712);border-color:rgba(198,153,103,.28)}
+    .project-morpheus:before{background:linear-gradient(120deg,transparent 0 72%,rgba(157,148,103,.05) 72% 100%)}
+    .project-morpheus .kicker,.project-morpheus .project-mark{color:#ddb07c}
+    .project-morpheus .tag{border-color:rgba(159,160,113,.28);color:#d9d2aa;background:rgba(159,160,113,.04)}
+    .project-morpheus .btn.primary{background:linear-gradient(135deg,#9f6d49,#c58d62)}
+    .project-morpheus .mock{background:linear-gradient(180deg,#19150f,#12100d);border-color:rgba(198,153,103,.18)}
+    .project-morpheus .step{background:rgba(45,34,25,.72);border-color:rgba(198,153,103,.14)}
+    .project-morpheus .step strong{color:#e2bc8f}
+    .project-vanilla{background:radial-gradient(circle at 88% 10%,rgba(244,213,168,.12),transparent 30%),linear-gradient(180deg,#261d1a,#1d1515);border-color:rgba(231,190,150,.25)}
+    .project-vanilla:before{background:linear-gradient(135deg,rgba(255,232,198,.025),transparent 42%)}
+    .project-vanilla .kicker,.project-vanilla .project-mark{color:#f0c7a6}
+    .project-vanilla .tag{border-color:rgba(240,199,166,.23);color:#f1d7c4;background:rgba(240,199,166,.04)}
+    .project-vanilla .btn.primary{background:linear-gradient(135deg,#b77878,#d79a86)}
+    .project-vanilla .mock{background:linear-gradient(180deg,#1c1414,#130f10);border-color:rgba(240,199,166,.17)}
+    .project-vanilla .step{background:rgba(49,31,31,.66);border-color:rgba(240,199,166,.14)}
+    .project-vanilla .step strong{color:#edc6aa}
+    .project-aurority{background:radial-gradient(circle at 85% 15%,rgba(77,183,195,.12),transparent 28%),radial-gradient(circle at 65% 90%,rgba(134,111,220,.10),transparent 35%),linear-gradient(180deg,#111927,#0c121c);border-color:rgba(109,182,200,.25)}
+    .project-aurority .kicker,.project-aurority .project-mark{color:#9bd2d8}
+    .project-aurority .tag{border-color:rgba(109,182,200,.22);color:#bfe2e6;background:rgba(109,182,200,.04)}
+    .project-aurority .btn.primary{background:linear-gradient(135deg,#4f8995,#7362b6)}
+    .project-ai{background:radial-gradient(circle at 88% 10%,rgba(235,111,155,.12),transparent 30%),linear-gradient(180deg,rgba(47,18,33,.95),rgba(31,12,23,.95));border-color:rgba(235,111,155,.22)}
+    .project-ai .kicker{color:#f0a0bd}
     .kicker{color:var(--accent-soft);text-transform:uppercase;font-weight:800;font-size:12px;letter-spacing:.12em}
     .card h3{margin:7px 0 10px;font-size:29px;letter-spacing:-.02em;font-weight:500}
     .card p{margin:0;color:var(--muted)}
@@ -249,7 +280,7 @@
       </div>
 
       <div class="grid">
-        <article class="card featured">
+        <article class="card featured project-card project-astro">
           <div>
             <div class="kicker">Project 01 · AI Job Discovery & Matching</div>
             <h3>AstroJob 🌌 <span class="project-mark star" title="AstroJob">✦</span></h3>
@@ -284,7 +315,7 @@
             <div class="astro-foot"><span>One universe. One mission.</span><span>Find Mihaela the right job.</span></div>
           </div>
         </article>
-        <article class="card featured">
+        <article class="card featured project-card project-morpheus">
   <div>
    <div class="kicker">Project 02 · Customer Success Analytics</div>
 
@@ -338,7 +369,7 @@
   </div>
 </article>
 
-        <article class="card featured">
+        <article class="card featured project-card project-vanilla">
   <div>
     <div class="kicker">Project 03 · Revenue Operations</div>
 
@@ -394,7 +425,7 @@
 </article>
           
 
-        <article class="card featured">
+        <article class="card featured project-card project-aurority">
   <div>
     <div class="kicker">Project 04 · Quality Operations</div>
     <h3>Aurority <span class="project-mark node" title="Aurority">⌘</span></h3>
@@ -424,7 +455,7 @@
   </div>
 </article>
 
-        <article class="card">
+        <article class="card project-card project-ai">
           <div class="kicker">Project 05 · Idea</div>
           <h3>AI Customer Success Assistant</h3>
           <p>A lightweight concept that turns account notes into a concise summary, risk signals, next actions, and a draft customer follow-up.</p>
