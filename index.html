@@ -208,7 +208,7 @@
     footer{margin-top:64px;padding-top:28px;border-top:1px solid var(--line);color:var(--muted);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px}
     .art-divider{position:relative;height:54px;margin:24px 0 4px;overflow:hidden}
     .art-divider svg{width:100%;height:100%;display:block}
-    .art-divider path{fill:none;stroke-width:1.15;stroke-linecap:round;stroke-dasharray:5 12;opacity:.42;animation:dividerFlow 9s linear infinite}
+    .art-divider path{fill:none;stroke:url(#lineGradient);stroke-width:1.15;stroke-linecap:round;stroke-dasharray:5 12;opacity:.55;animation:dividerFlow 9s linear infinite}
     .art-divider:after{content:"✦";position:absolute;top:50%;left:-20px;transform:translateY(-50%);font-size:11px;color:var(--mint);text-shadow:0 0 10px rgba(233,160,189,.55);animation:dividerSpark 12s ease-in-out infinite}
     .art-divider:nth-of-type(even):after{animation-delay:-4s}
     @keyframes dividerFlow{to{stroke-dashoffset:-68}}
