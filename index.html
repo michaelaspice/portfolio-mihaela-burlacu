@@ -97,9 +97,8 @@
     }
     .profile-chip{
       position:absolute;
-      left:calc(100% + 22px);
-      top:50%;
-      transform:translateY(-50%);
+      right:0;
+      top:74px;
       display:flex;
       align-items:center;
       gap:12px;
@@ -115,7 +114,6 @@
     }
     .profile-chip strong{display:block;font-size:13px}
     .profile-chip span{display:block;color:var(--mint);font-size:12px;margin-top:2px}
-    .brand{position:relative}
     .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
     .btn{
       display:inline-block;padding:11px 15px;border-radius:10px;
@@ -218,8 +216,7 @@
     .status{display:inline-flex;align-items:center;gap:8px;margin-top:20px;color:var(--mint);font-size:13px;font-weight:700}
     .dot{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px rgba(233,160,189,.08)}
     @media(max-width:900px){
-      .profile-chip{position:static;transform:none;margin-left:16px;width:max-content;display:inline-flex;vertical-align:middle}
-      .profile-chip img{width:42px;height:42px}
+      .profile-chip{position:static;margin-top:24px;width:max-content}
       .hero{min-height:0}
     }
     @media(max-width:780px){
