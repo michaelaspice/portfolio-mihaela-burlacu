@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🌌 AstroJob — Mission Control</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="app/board.css?v=20260904-4" />
+</head>
+<body><div class="stars"></div><div class="planet planet-one"></div><div class="planet planet-two"></div>
+  <div class="satellite-flight" aria-hidden="true" style="position:fixed;left:-140px;bottom:-100px;width:110px;height:72px;pointer-events:none;">
+    <svg class="satellite" viewBox="0 0 140 90" width="110" height="72" role="presentation" style="width:110px;height:72px;display:block;">
+      <defs>
+        <linearGradient id="satBody" x1="0" x2="1"><stop offset="0" stop-color="#d9d5ef"/><stop offset="1" stop-color="#8576ba"/></linearGradient>
+        <linearGradient id="satPanel" x1="0" x2="1"><stop offset="0" stop-color="#7b63cf"/><stop offset="1" stop-color="#35285f"/></linearGradient>
+      </defs>
+      <g transform="translate(70 45) rotate(-18)">
+        <rect x="-22" y="-12" width="44" height="24" rx="7" fill="url(#satBody)" stroke="#f1c7ee" stroke-opacity=".45"/>
+        <circle cx="0" cy="0" r="8" fill="#2f2748" stroke="#c9b9ff" stroke-width="2"/>
+        <rect x="-61" y="-15" width="31" height="30" rx="3" fill="url(#satPanel)" stroke="#b8a8ff" stroke-opacity=".5"/>
+        <rect x="30" y="-15" width="31" height="30" rx="3" fill="url(#satPanel)" stroke="#b8a8ff" stroke-opacity=".5"/>
+        <path d="M-30 0H-22M22 0H30M0-12V-25" stroke="#d6cff4" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="0" cy="-29" r="5" fill="#f0b7dc"/>
+      </g>
+    </svg>
+  </div>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow astro-title">ASTROJOB</div>
+        <p class="subtitle astro-tagline">Built around one candidate. Designed around what matters.</p>
+      </div>
+      <div class="top-actions">
+        <button id="resetDemo" class="button secondary">Reset demo</button>
+      </div>
+    </header>
+    <section class="stats" id="stats" aria-label="Board summary"></section>
+    <section class="controls">
+      <label class="search-wrap"><span class="sr-only">Search jobs</span><input id="searchInput" type="search" placeholder="Search title, company, city…" /></label>
+      <select id="decisionFilter" aria-label="Filter by decision">
+        <option value="all">All recommendations</option><option value="APPLY_NOW">Apply now</option><option value="APPLY">Apply</option><option value="STRETCH">Stretch</option><option value="MAYBE">Maybe</option><option value="REJECT">Rejected by rules</option>
+      </select>
+      <select id="countryFilter" aria-label="Filter by country"><option value="all">All countries</option></select>
+      <select id="sortBy" aria-label="Sort jobs"><option value="priority">Highest priority</option><option value="fit">Highest fit</option><option value="newest">Newest found</option></select>
+    </section>
+    <nav class="tabs" id="tabs" aria-label="Application status"></nav>
+    <section id="jobsGrid" class="jobs-grid" aria-live="polite"></section>
+    <div id="emptyState" class="empty-state" hidden>No jobs match these filters.</div>
+  </main>
+  <template id="jobCardTemplate">
+    <article class="job-card">
+      <div class="card-head">
+        <div class="company-mark" aria-hidden="true"></div>
+        <div class="job-title-wrap"><div class="job-company"></div><h2 class="job-title"></h2><div class="job-meta"></div></div>
+        <div class="badge-stack"><div class="taxonomy-badge"></div><div class="priority-badge"></div></div>
+      </div>
+      <div class="scores"><div class="score"><span>Fit</span><strong class="fit-score"></strong></div><div class="score"><span>Desirability</span><strong class="desirability-score"></strong></div><div class="score"><span>Priority</span><strong class="priority-score"></strong></div></div>
+      <div class="salary-row"></div><div class="flags"></div>
+      <details class="match-details"><summary>Why this match</summary><div class="details-grid"><div><h3>Strong signals</h3><ul class="reasons-list"></ul></div><div><h3>Watch-outs</h3><ul class="gaps-list"></ul></div></div></details>
+      <div class="card-actions"><a class="button primary apply-link" target="_blank" rel="noopener">Open job</a><select class="status-select" aria-label="Update job status"><option value="new">New</option><option value="saved">Saved</option><option value="applied">Applied</option><option value="interview">Interview</option><option value="rejected">Rejected / Skipped</option></select></div>
+    </article>
+  </template>
+  <script type="module" src="app/board.js"></script>
+</body>
+</html>
