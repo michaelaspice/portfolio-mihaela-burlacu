@@ -1,4 +1,4 @@
-# Mihaela Burlacu — Portfolio
+# Mihaela Burlacu - Portfolio
 
 A lightweight public portfolio focused on Customer Success, Operations, Data, Automation, and practical AI use.
 
