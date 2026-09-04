@@ -54,6 +54,17 @@ section{padding-top:54px}
 .rank{display:grid;gap:12px}
 .rank .card{display:grid;grid-template-columns:55px 1fr;gap:10px}
 .num{font-size:28px;font-weight:800;color:var(--accent2)}
+.analysis-flow{display:grid;grid-template-columns:repeat(7,auto);gap:8px;align-items:center;margin:24px 0}
+.analysis-step{min-height:88px;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,rgba(42,32,24,.9),rgba(33,26,20,.92));color:var(--cream);font-size:12px;line-height:1.45}
+.analysis-arrow{color:var(--accent2);opacity:.7;text-align:center}
+.method-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px}
+.method-card{border:1px solid var(--line);border-radius:16px;padding:17px;background:rgba(42,32,24,.62)}
+.method-card b{display:block;color:var(--accent2);font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.method-card p{margin:0;font-size:13px}
+.sql-sample{margin-top:18px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#100d0b}
+.sql-label{padding:10px 14px;border-bottom:1px solid var(--line);font-size:11px;color:var(--accent2);letter-spacing:.09em;text-transform:uppercase}
+.sql-sample pre{margin:0;padding:16px;overflow:auto;color:#e8ddcf;font:12px/1.65 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+@media(max-width:760px){.analysis-flow{grid-template-columns:1fr}.analysis-arrow{transform:rotate(90deg)}.method-grid{grid-template-columns:1fr}}
 table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
 th,td{padding:11px 13px;border-bottom:1px solid var(--line);text-align:left}
 th{font-size:13px;color:var(--cream)}
@@ -143,6 +154,42 @@ footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);color:v
 <section>
   <h2>The business problem</h2>
   <p>MorpheusGroup has 500 SaaS customers. The goal was to identify which signals could help a Customer Success team prioritize churn risk earlier and respond with the right intervention.</p>
+</section>
+
+<section>
+  <div class="eyebrow">Analysis process</div>
+  <h2>How I got there</h2>
+  <p>I treated this as a Customer Success prioritization problem rather than simply looking for the highest churn percentage. The aim was to understand which signals were useful, how consistently they separated churned from retained customers, and whether combining them produced a more actionable risk profile.</p>
+
+  <div class="analysis-flow" aria-label="Analysis workflow">
+    <div class="analysis-step">Raw customer data</div><div class="analysis-arrow">→</div>
+    <div class="analysis-step">Segment &amp; calculate</div><div class="analysis-arrow">→</div>
+    <div class="analysis-step">Compare churn rates</div><div class="analysis-arrow">→</div>
+    <div class="analysis-step">Test combined risk</div>
+  </div>
+
+  <div class="method-grid">
+    <div class="method-card"><b>01 · Establish a baseline</b><p>I first checked churn by plan and broad account characteristics to understand the dataset before deciding where to dig deeper.</p></div>
+    <div class="method-card"><b>02 · Create comparable bands</b><p>I grouped feature adoption and seat utilization into consistent ranges, then calculated the churn rate within each cohort.</p></div>
+    <div class="method-card"><b>03 · Test operational friction</b><p>I grouped accounts by unresolved-ticket count to see whether accumulating support issues corresponded with materially higher churn.</p></div>
+    <div class="method-card"><b>04 · Combine the signals</b><p>I then crossed adoption, utilization, and unresolved-ticket levels to identify risk profiles that would be useful for CSM prioritization.</p></div>
+    <div class="method-card"><b>05 · Challenge weak signals</b><p>I also tested tenure, renewal timing, sentiment/CSAT, and other dimensions. I kept them out of the final risk story when they did not show useful separation.</p></div>
+    <div class="method-card"><b>06 · Translate analysis into action</b><p>Finally, I ranked the strongest signals by practical value and mapped each one to a Customer Success intervention rather than stopping at the numbers.</p></div>
+  </div>
+
+  <div class="sql-sample">
+    <div class="sql-label">Example · turning product usage into comparable cohorts</div>
+    <pre><code>CASE
+  WHEN feature_adoption &lt; 40 THEN 'Under 40%'
+  WHEN feature_adoption &lt; 60 THEN '40–59%'
+  WHEN feature_adoption &lt; 80 THEN '60–79%'
+  ELSE '80%+'
+END AS feature_adoption_band
+
+GROUP BY feature_adoption_band
+ORDER BY churn_rate_pct DESC;</code></pre>
+  </div>
+  <p style="font-size:13px">The same approach was repeated for seat utilization and unresolved support issues before the variables were combined into multi-signal risk segments.</p>
 </section>
 
 <section>
