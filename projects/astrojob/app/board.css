@@ -285,3 +285,17 @@ button,select,input,.apply-link{border-color:var(--line)!important}
 @media(max-width:760px){
   .candidate-profile-inline{margin:26px 0 24px;padding:18px;align-items:flex-start;flex-direction:column;gap:16px}
 }
+
+/* More breathing room for personalization layer */
+.candidate-profile-inline{
+  margin:42px 0 38px !important;
+  padding:30px 32px !important;
+  min-height:118px;
+}
+.candidate-profile-inline .eyebrow{margin-bottom:12px !important}
+.candidate-profile-inline strong{margin-bottom:10px !important;line-height:1.5 !important}
+.candidate-profile-inline .button{margin-left:12px}
+@media(max-width:760px){
+  .candidate-profile-inline{margin:32px 0 30px !important;padding:24px !important;min-height:0}
+  .candidate-profile-inline .button{margin-left:0}
+}
