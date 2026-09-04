@@ -174,6 +174,13 @@
     .metric span{font-size:12px;color:var(--muted)}
     .tool-list{display:flex;flex-wrap:wrap;gap:9px}
     footer{margin-top:64px;padding-top:28px;border-top:1px solid var(--line);color:var(--muted);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px}
+    .art-divider{position:relative;height:42px;margin:26px 0 2px;overflow:hidden}
+    .art-divider svg{width:100%;height:100%;display:block}
+    .art-divider path{fill:none;stroke:url(#lineGradient);stroke-width:1.2;stroke-linecap:round;stroke-dasharray:7 9;opacity:.55}
+    .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.is-visible{opacity:1;transform:none}
+    .project-mark{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;margin-left:8px;border:1px solid var(--line);border-radius:50%;font-size:13px;vertical-align:middle;background:rgba(255,255,255,.02)}
+    .project-mark.star{color:#f3c0d3}.project-mark.paw{color:#e7b494}.project-mark.node{color:#dcb4d0}.project-mark.dot{color:#ef9fbe}
     .status{display:inline-flex;align-items:center;gap:8px;margin-top:20px;color:var(--mint);font-size:13px;font-weight:700}
     .dot{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px rgba(233,160,189,.08)}
     @media(max-width:900px){
@@ -229,7 +236,13 @@
       </div>
     </section>
 
-    <section id="work">
+    <div class="art-divider" aria-hidden="true">
+      <svg viewBox="0 0 1000 42" preserveAspectRatio="none">
+        <defs><linearGradient id="lineGradient" x1="0" x2="1"><stop offset="0" stop-color="#6f3f57"/><stop offset=".5" stop-color="#e9a0bd"/><stop offset="1" stop-color="#6f3f57"/></linearGradient></defs>
+        <path d="M0 25 C180 2, 320 39, 500 18 S820 4, 1000 24"/>
+      </svg>
+    </div>
+    <section id="work" class="reveal">
       <div class="section-head">
         <h2>Featured work</h2>
         <p>Small, practical projects that show how I think about customer experience, operations, data, and automation.</p>
@@ -239,7 +252,7 @@
         <article class="card featured">
           <div>
             <div class="kicker">Project 01 · AI Job Discovery & Matching</div>
-            <h3>AstroJob 🌌</h3>
+            <h3>AstroJob 🌌 <span class="project-mark star" title="AstroJob">✦</span></h3>
             <p>
               A personal AI-assisted job discovery system that scores opportunities against real candidate preferences,
               applies hard rules for salary, geography, language and freshness, and turns promising roles into an actionable mission-control board.
@@ -275,7 +288,7 @@
   <div>
    <div class="kicker">Project 02 · Customer Success Analytics</div>
 
-    <h3>MorpheusGroup</h3>
+    <h3>MorpheusGroup <span class="project-mark paw" title="MorpheusGroup">🐾</span></h3>
 
     <p>
       A Customer Health & Churn Analysis using synthetic B2B SaaS data to explore
@@ -329,7 +342,7 @@
   <div>
     <div class="kicker">Project 03 · Revenue Operations</div>
 
-    <h3>Vanill.ai</h3>
+    <h3>Vanill.ai <span class="project-mark dot" title="Vanill.ai">◌</span></h3>
 
     <p>
       A Revenue Operations case study analyzing 1,250 synthetic B2B SaaS leads
@@ -384,7 +397,7 @@
         <article class="card featured">
   <div>
     <div class="kicker">Project 04 · Quality Operations</div>
-    <h3>Aurority</h3>
+    <h3>Aurority <span class="project-mark node" title="Aurority">⌘</span></h3>
     <p>A centralized Quality Operations system connecting customer, commercial, product, and operational signals to detect performance changes, diagnose root causes, assign ownership, and track measurable action.</p>
     <div class="tags">
       <span class="tag">Quality Ops</span><span class="tag">SQL</span><span class="tag">Analytics</span><span class="tag">Process Design</span>
@@ -422,7 +435,13 @@
       </div>
     </section>
 
-    <section id="about">
+    <div class="art-divider" aria-hidden="true">
+      <svg viewBox="0 0 1000 42" preserveAspectRatio="none">
+        <defs><linearGradient id="lineGradient2" x1="0" x2="1"><stop offset="0" stop-color="#6f3f57"/><stop offset=".5" stop-color="#e9a0bd"/><stop offset="1" stop-color="#6f3f57"/></linearGradient></defs>
+        <path style="stroke:url(#lineGradient2)" d="M0 22 C150 34, 300 8, 470 22 S780 36, 1000 16"/>
+      </svg>
+    </div>
+    <section id="about" class="reveal">
       <div class="section-head">
         <h2>About</h2>
         <p>I like roles where customer experience, operations, commercial thinking, and systems improvement overlap.</p>
@@ -454,7 +473,13 @@
       </div>
     </section>
 
-    <section id="tools">
+    <div class="art-divider" aria-hidden="true">
+      <svg viewBox="0 0 1000 42" preserveAspectRatio="none">
+        <defs><linearGradient id="lineGradient3" x1="0" x2="1"><stop offset="0" stop-color="#6f3f57"/><stop offset=".5" stop-color="#e9a0bd"/><stop offset="1" stop-color="#6f3f57"/></linearGradient></defs>
+        <path style="stroke:url(#lineGradient3)" d="M0 18 C190 4, 330 35, 520 20 S820 10, 1000 27"/>
+      </svg>
+    </div>
+    <section id="tools" class="reveal">
       <div class="section-head">
         <h2>Tools & focus areas</h2>
         <p>A mix of customer, data, CRM, automation, and workflow tools.</p>
@@ -484,5 +509,16 @@
       <span>Built with HTML/CSS and hosted on GitHub Pages.</span>
     </footer>
   </div>
+<script>
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+</script>
 </body>
 </html>
