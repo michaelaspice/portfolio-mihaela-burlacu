@@ -206,9 +206,14 @@
     .metric span{font-size:12px;color:var(--muted)}
     .tool-list{display:flex;flex-wrap:wrap;gap:9px}
     footer{margin-top:64px;padding-top:28px;border-top:1px solid var(--line);color:var(--muted);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px}
-    .art-divider{position:relative;height:42px;margin:26px 0 2px;overflow:hidden}
+    .art-divider{position:relative;height:54px;margin:24px 0 4px;overflow:hidden}
     .art-divider svg{width:100%;height:100%;display:block}
-    .art-divider path{fill:none;stroke:url(#lineGradient);stroke-width:1.2;stroke-linecap:round;stroke-dasharray:7 9;opacity:.55}
+    .art-divider path{fill:none;stroke-width:1.15;stroke-linecap:round;stroke-dasharray:5 12;opacity:.42;animation:dividerFlow 9s linear infinite}
+    .art-divider:after{content:"✦";position:absolute;top:50%;left:-20px;transform:translateY(-50%);font-size:11px;color:var(--mint);text-shadow:0 0 10px rgba(233,160,189,.55);animation:dividerSpark 12s ease-in-out infinite}
+    .art-divider:nth-of-type(even):after{animation-delay:-4s}
+    @keyframes dividerFlow{to{stroke-dashoffset:-68}}
+    @keyframes dividerSpark{0%{left:-20px;opacity:0;transform:translateY(-50%) scale(.6)}8%{opacity:.7}48%{opacity:.35;transform:translateY(-65%) scale(.85)}88%{opacity:.7}100%{left:calc(100% + 20px);opacity:0;transform:translateY(-50%) scale(.6)}}
+    @media(prefers-reduced-motion:reduce){.art-divider path,.art-divider:after{animation:none}.art-divider:after{display:none}}
     .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
     .reveal.is-visible{opacity:1;transform:none}
     .project-mark{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;margin-left:8px;border:1px solid var(--line);border-radius:50%;font-size:13px;vertical-align:middle;background:rgba(255,255,255,.02)}
