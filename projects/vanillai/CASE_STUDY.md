@@ -1,7 +1,7 @@
-# Vanill.ai — Revenue Operations Funnel & ICP Analysis
+# Elix.ai — Revenue Operations Funnel & ICP Analysis
 
 ## The problem
-Vanill.ai generated 1,250 leads across multiple regions, industries, and acquisition channels. The goal was to understand where pipeline value was being lost and identify which customer segments and acquisition channels deserved greater investment.
+Elix.ai generated 1,250 leads across multiple regions, industries, and acquisition channels. The goal was to understand where pipeline value was being lost and identify which customer segments and acquisition channels deserved greater investment.
 
 ## Analytical path
 1. Established the overall funnel baseline.
