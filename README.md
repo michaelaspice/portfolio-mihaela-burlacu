@@ -10,7 +10,7 @@ A lightweight public portfolio focused on Customer Success, Operations, Data, Au
 
 ## Planned case studies
 1. AI Customer Success Assistant
-2. Vanill.ai - stat-up prject
+2. Vanill.ai - AI software project
 
 ## Structure
 
