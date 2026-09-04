@@ -299,3 +299,42 @@ button,select,input,.apply-link{border-color:var(--line)!important}
   .candidate-profile-inline{margin:32px 0 30px !important;padding:24px !important;min-height:0}
   .candidate-profile-inline .button{margin-left:0}
 }
+
+/* Spacious match legend */
+.match-legend{
+  margin:24px 0 30px !important;
+  padding:24px 26px !important;
+  min-height:112px;
+  gap:30px !important;
+  border-radius:18px !important;
+}
+.legend-label{
+  font-size:11px !important;
+  letter-spacing:.13em !important;
+  min-width:100px;
+}
+.legend-items{
+  width:100%;
+  display:grid !important;
+  grid-template-columns:repeat(5,minmax(135px,1fr)) !important;
+  gap:24px !important;
+  min-width:760px;
+}
+.legend-item{gap:12px !important;align-items:center !important}
+.legend-orb{
+  flex:0 0 38px;
+  width:38px !important;
+  height:38px !important;
+  font-size:15px !important;
+}
+.legend-item strong{font-size:12px !important;line-height:1.25}
+.legend-item small{
+  margin-top:3px;
+  font-size:9.5px !important;
+  line-height:1.35;
+  white-space:normal !important;
+}
+@media(max-width:900px){
+  .match-legend{align-items:flex-start !important;flex-direction:column !important;gap:16px !important}
+  .legend-items{grid-template-columns:repeat(5,minmax(145px,1fr)) !important}
+}
