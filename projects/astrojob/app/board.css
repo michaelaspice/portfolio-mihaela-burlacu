@@ -338,3 +338,9 @@ button,select,input,.apply-link{border-color:var(--line)!important}
   .match-legend{align-items:flex-start !important;flex-direction:column !important;gap:16px !important}
   .legend-items{grid-template-columns:repeat(5,minmax(145px,1fr)) !important}
 }
+
+/* Final personalization hierarchy */
+.candidate-profile-inline{padding:34px 36px !important}
+.candidate-profile-inline strong{margin-bottom:10px !important}
+.candidate-profile-inline span{margin-bottom:26px !important}
+.candidate-profile-inline .button{margin:0 !important}
