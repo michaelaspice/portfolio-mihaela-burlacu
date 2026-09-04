@@ -80,7 +80,9 @@ footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);color:v
 .cat-eye{transform-box:fill-box;transform-origin:center;animation:blink 6.2s ease-in-out infinite}
 @keyframes wave{0%,72%,100%{transform:rotate(0deg)}8%{transform:rotate(-7deg)}16%{transform:rotate(7deg)}24%{transform:rotate(-5deg)}32%{transform:rotate(4deg)}40%{transform:rotate(0deg)}}
 @keyframes blink{0%,43%,47%,100%{transform:scaleY(1)}44%,46%{transform:scaleY(.08)}}
-.dedication{position:absolute;right:8px;bottom:-34px;font-size:11px;color:#bba894;font-style:italic;max-width:285px;text-align:right}
+.dedication{position:absolute;right:8px;bottom:-34px;font-size:11px;font-style:italic;max-width:285px;text-align:right;color:transparent;background:linear-gradient(105deg,#bba894 0%,#bba894 39%,#e7c995 46%,#fff3cf 50%,#d6ad6f 54%,#bba894 61%,#bba894 100%);background-size:240% 100%;background-position:120% 0;-webkit-background-clip:text;background-clip:text;animation:morpheusShimmer 10s ease-in-out infinite}
+@keyframes morpheusShimmer{0%,8%{background-position:120% 0}24%{background-position:-120% 0}100%{background-position:-120% 0}}
+@media(prefers-reduced-motion:reduce){.dedication{animation:none;background-position:50% 0}}
 .pawtrail{position:absolute;right:325px;bottom:65px;color:#7f674f;opacity:.55;letter-spacing:9px;font-size:18px;transform:rotate(-12deg)}
 @media(max-width:820px){
   .hero{padding-bottom:32px;min-height:0}
