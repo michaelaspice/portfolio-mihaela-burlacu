@@ -358,3 +358,28 @@ button,select,input,.apply-link{border-color:var(--line)!important}
 .legend-item strong{font-size:15px!important;line-height:1.25!important;color:#f5f4ff!important}
 .legend-item small{font-size:11px!important;line-height:1.4!important;color:#98a3c2!important;max-width:160px}
 @media(max-width:1050px){.match-legend{grid-template-columns:1fr!important}.legend-intro{border-right:0;border-bottom:1px solid rgba(155,169,214,.22);padding:0 0 18px}.legend-items{overflow-x:auto;grid-template-columns:repeat(5,160px)!important;padding-bottom:6px}}
+
+/* Compact cosmic legend: 20% smaller */
+.match-legend{
+  margin:24px 0 29px!important;
+  padding:24px 26px!important;
+  min-height:152px!important;
+  grid-template-columns:152px 1fr!important;
+  gap:22px!important;
+}
+.legend-intro{padding-right:19px!important}
+.legend-label{font-size:11px!important;margin-bottom:9px!important}
+.legend-subtitle{font-size:10px!important;line-height:1.45!important}
+.legend-items{gap:14px!important}
+.legend-item{gap:7px!important}
+.legend-orb{
+  width:58px!important;
+  height:58px!important;
+  flex-basis:58px!important;
+}
+.legend-item strong{font-size:13px!important}
+.legend-item small{font-size:9.5px!important;line-height:1.35!important;max-width:145px!important}
+@media(max-width:1050px){
+ .match-legend{grid-template-columns:1fr!important}
+ .legend-items{grid-template-columns:repeat(5,145px)!important}
+}
