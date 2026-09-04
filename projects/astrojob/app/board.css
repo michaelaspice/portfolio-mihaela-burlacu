@@ -243,3 +243,45 @@ button,select,input,.apply-link{border-color:var(--line)!important}
 .legend-orb.wildcard{color:#ffbee8;background:rgba(255,114,210,.11);border-color:rgba(255,114,210,.25)}
 .legend-orb.blackhole{color:#7a8098;background:radial-gradient(circle at 42% 38%,#252942,#05060d 68%);border-color:#272a3d;box-shadow:inset 0 0 8px #000}
 @media(max-width:700px){.match-legend{align-items:flex-start;flex-direction:column;gap:10px}.legend-items{gap:15px}}
+
+
+/* Personalization intro spacing + AstroJob-native palette */
+.candidate-profile-inline{
+  margin:34px 0 30px;
+  padding:22px 24px;
+  border:1px solid rgba(154,123,255,.20);
+  border-radius:16px;
+  background:linear-gradient(135deg,rgba(83,216,255,.055),rgba(154,123,255,.075));
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:26px;
+}
+.candidate-profile-inline>div{min-width:0}
+.candidate-profile-inline .eyebrow{
+  margin-bottom:8px;
+  color:#8fdcff;
+  letter-spacing:.13em;
+}
+.candidate-profile-inline strong{
+  display:block;
+  margin-bottom:7px;
+  color:#f3f2fb;
+  font-size:14px;
+  line-height:1.35;
+}
+.candidate-profile-inline span{
+  display:block;
+  color:#959db9;
+  font-size:11px;
+  line-height:1.5;
+}
+.candidate-profile-inline .button{
+  flex:0 0 auto;
+  white-space:nowrap;
+  border-color:rgba(154,123,255,.34);
+  background:rgba(154,123,255,.08);
+}
+@media(max-width:760px){
+  .candidate-profile-inline{margin:26px 0 24px;padding:18px;align-items:flex-start;flex-direction:column;gap:16px}
+}
