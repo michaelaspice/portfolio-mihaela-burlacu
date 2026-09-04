@@ -62,6 +62,31 @@
       letter-spacing:-.045em;
       font-weight:500;
     }
+    .headline-shimmer{
+      color:transparent;
+      background:
+        linear-gradient(105deg,
+          #f7f2f6 0%,
+          #f7f2f6 38%,
+          #f3c0d3 46%,
+          #fff7fb 50%,
+          #e9a0bd 54%,
+          #f7f2f6 62%,
+          #f7f2f6 100%);
+      background-size:240% 100%;
+      background-position:120% 0;
+      -webkit-background-clip:text;
+      background-clip:text;
+      animation:headlineSweep 12s ease-in-out infinite;
+    }
+    @keyframes headlineSweep{
+      0%,8%{background-position:120% 0}
+      24%{background-position:-120% 0}
+      100%{background-position:-120% 0}
+    }
+    @media (prefers-reduced-motion: reduce){
+      .headline-shimmer{animation:none;background-position:50% 0}
+    }
     .hero p{
       max-width:650px;
       margin:0;
@@ -180,7 +205,7 @@
 
     <header class="hero">
       <div class="eyebrow">Customer Success · Operations · Data · Automation</div>
-      <h1>Turning complexity into clarity.</h1>
+      <h1 class="headline-shimmer">Turning complexity into clarity.</h1>
       <p>
         I design practical customer and operational systems through process improvement,
         analytics, automation, and applied AI.
