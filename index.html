@@ -188,8 +188,15 @@
     .astro-orbits{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:8px;align-items:center;min-height:130px}
     .astro-orbits:before,.astro-orbits:after{content:"";position:absolute;left:2%;right:2%;top:50%;height:58px;border:1px solid rgba(235,111,155,.18);border-radius:50%;transform:translateY(-50%)}
     .astro-orbits:after{left:12%;right:12%;height:96px;border-color:rgba(233,160,189,.12)}
-    .orbit-node{position:relative;z-index:2;text-align:center;border:1px solid rgba(235,111,155,.32);border-radius:50%;aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;align-items:center;background:rgba(17,9,25,.86);box-shadow:0 0 22px rgba(235,111,155,.08)}
-    .orbit-node.core{border-color:rgba(233,160,189,.55);box-shadow:0 0 24px rgba(233,160,189,.12)}
+    .orbit-node{position:relative;z-index:2;text-align:center;border:1px solid rgba(235,111,155,.32);border-radius:50%;aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;align-items:center;background:rgba(17,9,25,.86);box-shadow:inset -10px -8px 18px rgba(0,0,0,.22),0 0 22px rgba(235,111,155,.08)}
+    .orbit-node:nth-child(1){border-color:rgba(190,168,211,.52);background:radial-gradient(circle at 35% 30%,rgba(180,163,197,.16),transparent 25%),radial-gradient(circle at 64% 64%,rgba(112,91,132,.13),transparent 12%),linear-gradient(135deg,#21162c,#110b19 70%);box-shadow:inset -12px -9px 18px rgba(0,0,0,.32),0 0 18px rgba(183,154,207,.10)}
+    .orbit-node:nth-child(2){border-color:rgba(211,164,119,.46);background:repeating-linear-gradient(178deg,rgba(194,139,96,.15) 0 5px,rgba(119,77,93,.09) 5px 10px),linear-gradient(135deg,#2b1825,#120c18 72%);box-shadow:inset -12px -9px 18px rgba(0,0,0,.3),0 0 18px rgba(211,164,119,.08)}
+    .orbit-node:nth-child(3){border-color:rgba(89,151,218,.62);background:radial-gradient(circle at 32% 30%,rgba(85,160,213,.20),transparent 22%),radial-gradient(ellipse at 58% 55%,rgba(76,133,113,.13),transparent 18%),linear-gradient(135deg,#102943,#0d1024 70%);box-shadow:inset -12px -9px 18px rgba(0,0,0,.3),0 0 20px rgba(72,145,219,.14)}
+    .orbit-node:nth-child(4){border-color:rgba(218,183,145,.52);background:repeating-linear-gradient(176deg,rgba(202,168,126,.12) 0 5px,rgba(128,91,105,.08) 5px 10px),linear-gradient(135deg,#30202b,#130d18 72%);box-shadow:inset -12px -9px 18px rgba(0,0,0,.28),0 0 18px rgba(218,183,145,.09)}
+    .orbit-node:nth-child(4):before,.orbit-node:nth-child(4):after{content:"";position:absolute;left:-12%;right:-12%;top:50%;height:28%;border:1px solid rgba(225,190,153,.48);border-radius:50%;transform:translateY(-50%) rotate(-12deg);z-index:-1;pointer-events:none}
+    .orbit-node:nth-child(4):after{left:-8%;right:-8%;height:19%;border-color:rgba(195,151,137,.24)}
+    .orbit-node:nth-child(5){border-color:rgba(183,83,91,.48);background:radial-gradient(circle at 38% 30%,rgba(184,86,73,.16),transparent 25%),radial-gradient(circle at 66% 64%,rgba(108,45,50,.14),transparent 14%),linear-gradient(135deg,#2c151c,#100a12 72%);box-shadow:inset -12px -9px 18px rgba(0,0,0,.34),0 0 18px rgba(183,83,91,.08)}
+    .orbit-node.core{box-shadow:inset -12px -9px 18px rgba(0,0,0,.32),0 0 18px rgba(183,154,207,.10)}
     .orbit-node span{font-size:8px;text-transform:uppercase;letter-spacing:.08em;color:#d8cbd4}
     .orbit-node b{font-size:22px;margin-top:4px}
     .astro-foot{position:relative;margin-top:10px;font-size:10px;color:var(--muted);display:flex;justify-content:space-between}
