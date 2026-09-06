@@ -418,3 +418,19 @@ button,select,input,.apply-link{border-color:var(--line)!important}
   border-radius:50%!important;
   box-shadow:0 0 9px rgba(112,90,255,.22)!important;
 }
+
+
+/* Wide-screen product layout */
+@media (min-width: 1200px){
+  .shell{width:min(96vw,1900px);max-width:none}
+}
+@media (min-width: 1550px){
+  .jobs-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+  .controls{grid-template-columns:minmax(360px,1.5fr) repeat(3,minmax(180px,260px))}
+  .stats{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media (min-width: 1900px){
+  .shell{width:97vw}
+  .jobs-grid{gap:20px}
+  .job-card{padding:22px}
+}
