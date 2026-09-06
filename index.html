@@ -292,7 +292,26 @@
       .section-head p{margin-top:8px}
       .metric-grid{grid-template-columns:1fr}
     }
-  </style>
+  
+.project-midnight{
+  position:relative;overflow:hidden;border-color:rgba(185,154,98,.28);
+  background:
+    radial-gradient(circle at 82% 24%,rgba(185,154,98,.09),transparent 25%),
+    linear-gradient(145deg,rgba(18,14,12,.98),rgba(8,8,12,.98));
+}
+.project-midnight:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.48;background-image:radial-gradient(circle at 8% 18%,#d9c18b 0 1px,transparent 1.5px),radial-gradient(circle at 23% 68%,#b99a62 0 1px,transparent 1.5px),radial-gradient(circle at 61% 15%,#eee4cf 0 1px,transparent 1.5px),radial-gradient(circle at 87% 74%,#b99a62 0 1px,transparent 1.5px);background-size:170px 170px,230px 230px,280px 280px,320px 320px}
+.midnight-widget{position:relative;min-height:260px;border:1px solid rgba(185,154,98,.26);border-radius:18px;padding:24px;background:linear-gradient(180deg,#15110e,#080706);box-shadow:inset 0 0 45px #0008}
+.midnight-moon{position:absolute;right:22px;top:13px;font-size:42px;color:#dfc585;text-shadow:0 0 22px rgba(223,197,133,.25)}
+.midnight-title{font-family:"Cormorant Garamond",serif;letter-spacing:.14em;font-size:15px;color:#e8d8b2;margin:10px 0 34px}
+.midnight-shelf{height:92px;display:flex;align-items:flex-end;gap:6px;padding:0 16px;border-bottom:8px solid #17110d;box-shadow:0 8px 12px #0007}
+.midnight-shelf i{display:block;width:15px;border-radius:2px 2px 0 0;box-shadow:inset -2px 0 rgba(0,0,0,.22)}
+.midnight-shelf i:nth-child(1){height:64px;background:#795469}.midnight-shelf i:nth-child(2){height:76px;background:#8b7048}.midnight-shelf i:nth-child(3){height:58px;background:#4e6870}.midnight-shelf i:nth-child(4){height:82px;background:#67567b}.midnight-shelf i:nth-child(5){height:69px;background:#8a5d4d}.midnight-shelf i:nth-child(6){height:74px;background:#53634d}.midnight-shelf i:nth-child(7){height:61px;background:#9a7a55}
+.midnight-features{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}.midnight-features span{font-size:10px;letter-spacing:.06em;color:#cdbb97;border:1px solid rgba(185,154,98,.22);border-radius:999px;padding:5px 8px}
+.midnight-caption{margin-top:14px;color:var(--muted);font-size:12px}
+.magic-midnight:hover:after{content:"✦  ·  ☾  ·  ✧";position:absolute;right:7%;top:8%;color:#d8bd7e;letter-spacing:14px;animation:midnightFloat 2.8s ease-in-out infinite;pointer-events:none}
+@keyframes midnightFloat{50%{transform:translateY(-8px);opacity:.65}}
+
+</style>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23080b1c'/%3E%3Cpath d='M15 47 23 17l9 20 9-20 8 30' fill='none' stroke='%23f3a8ff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='52' cy='14' r='2' fill='%23fff'/%3E%3C/svg%3E">
 <style>
   .personality-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:20px}
@@ -599,6 +618,32 @@
             <span class="tag">AI</span><span class="tag">Customer Success</span><span class="tag">Automation</span>
           </div>
         </article>
+        <article class="card featured project-card project-midnight magic-hover magic-midnight">
+          <div>
+            <div class="kicker">Project 09 · Personal Product Build &amp; UX</div>
+            <h3>The Midnight Library <span class="project-mark" title="The Midnight Library">🌙</span></h3>
+            <p>A personal digital reading space designed around the feeling of browsing a physical library - combining collection management, reading-state tracking, atmospheric UX and interactive details into one cohesive experience.</p>
+            <div class="tags">
+              <span class="tag">Product Thinking</span><span class="tag">UX Design</span><span class="tag">Information Architecture</span><span class="tag">Interaction Design</span><span class="tag">GitHub Pages</span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn primary" href="https://michaelaspice.github.io/midnight-library/" target="_blank" rel="noreferrer">Enter the library ↗</a>
+              <a class="btn" href="projects/midnight-library/">View project story</a>
+            </div>
+          </div>
+          <div class="midnight-widget" aria-label="The Midnight Library product preview">
+            <div class="midnight-moon">☾</div>
+            <div class="midnight-title">THE MIDNIGHT LIBRARY</div>
+            <div class="midnight-shelf">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div class="midnight-features">
+              <span>Search &amp; collections</span><span>Reading memory</span><span>Atmospheric audio</span>
+            </div>
+            <div class="midnight-caption">A personal product shaped through continuous UX iteration.</div>
+          </div>
+        </article>
+
       </div>
     </section>
 
