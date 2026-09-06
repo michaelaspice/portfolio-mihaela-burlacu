@@ -312,21 +312,18 @@
 @keyframes midnightFloat{50%{transform:translateY(-8px);opacity:.65}}
 
 
-/* Let the portfolio showcase breathe on large screens while keeping narrative sections readable */
-@media (min-width:1200px){
-  #projects,
-  .projects-section{
-    width:min(1380px,calc(100vw - 56px));
-    margin-left:50%;
-    transform:translateX(-50%);
-  }
+
+
+
+.work-group-title{
+  margin:52px 0 18px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--line);
+  font-size:18px;
+  font-weight:600;
+  letter-spacing:-.01em;
 }
-@media (min-width:1600px){
-  #projects,
-  .projects-section{
-    width:min(1440px,calc(100vw - 72px));
-  }
-}
+.work-group-title:first-of-type{margin-top:28px}
 
 </style>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23080b1c'/%3E%3Cpath d='M15 47 23 17l9 20 9-20 8 30' fill='none' stroke='%23f3a8ff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='52' cy='14' r='2' fill='%23fff'/%3E%3C/svg%3E">
@@ -428,6 +425,7 @@
         <p class="typewriter-copy" data-text="Small, practical projects that show how I think about customer experience, operations, data, and automation." aria-label="Small, practical projects that show how I think about customer experience, operations, data, and automation."></p>
       </div>
 
+      <h3 class="work-group-title">Products I built</h3>
       <div class="grid">
         <article class="card featured project-card project-astro magic-hover magic-space">
           <div>
@@ -464,9 +462,38 @@
             <div class="astro-statement">Built around one candidate. Designed around what matters.</div>
           </div>
         </article>
+        <article class="card featured project-card project-midnight magic-hover magic-midnight">
+          <div>
+            <div class="kicker">Project 02 · Personal Product Build &amp; UX</div>
+            <h3>The Midnight Library <span class="project-mark" title="The Midnight Library">🌙</span></h3>
+            <p>A personal digital reading space designed around the feeling of browsing a physical library - combining collection management, reading-state tracking, atmospheric UX and interactive details into one cohesive experience.</p>
+            <div class="tags">
+              <span class="tag">Product Thinking</span><span class="tag">UX Design</span><span class="tag">Information Architecture</span><span class="tag">Interaction Design</span><span class="tag">GitHub Pages</span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn primary" href="https://michaelaspice.github.io/midnight-library/" target="_blank" rel="noreferrer">Enter the library ↗</a>
+              <a class="btn" href="projects/midnight-library/">View project story</a>
+            </div>
+          </div>
+          <div class="midnight-widget" aria-label="The Midnight Library product preview">
+            <div class="midnight-moon">☾</div>
+            <div class="midnight-title">THE MIDNIGHT LIBRARY</div>
+            <div class="midnight-shelf">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div class="midnight-features">
+              <span>Search &amp; collections</span><span>Reading memory</span><span>Atmospheric audio</span>
+            </div>
+            <div class="midnight-caption">A personal product shaped through continuous UX iteration.</div>
+          </div>
+        </article>
+      </div>
+
+      <h3 class="work-group-title">Professional projects</h3>
+      <div class="grid">
         <article class="card featured project-card project-morpheus magic-hover magic-paws">
   <div>
-   <div class="kicker">Project 02 · Customer Success Analytics</div>
+   <div class="kicker">Project 03 · Customer Success Analytics</div>
 
     <h3>MorpheusGroup <span class="project-mark paw" title="MorpheusGroup">🐾</span></h3>
 
@@ -517,10 +544,9 @@
     </div>
   </div>
 </article>
-
         <article class="card featured project-card project-elix magic-hover magic-elixir">
   <div>
-    <div class="kicker">Project 03 · Revenue Operations</div>
+    <div class="kicker">Project 04 · Revenue Operations</div>
 
     <h3>Elix.ai <span class="project-mark" title="Elix.ai">⚗️</span></h3>
 
@@ -572,11 +598,9 @@
     </div>
   </div>
 </article>
-          
-
         <article class="card featured project-card project-aurority magic-hover magic-aurora">
   <div>
-    <div class="kicker">Project 04 · Quality Operations</div>
+    <div class="kicker">Project 05 · Quality Operations</div>
     <h3>Aurority <span class="project-mark node" title="Aurority">⌘</span></h3>
     <p>A centralized Quality Operations system connecting customer, commercial, product, and operational signals to detect performance changes, diagnose root causes, assign ownership, and track measurable action.</p>
     <div class="tags">
@@ -603,8 +627,6 @@
     </div>
   </div>
 </article>
-
-
         <article class="card project-card project-member-education magic-hover magic-ideas">
           <div class="kicker">Project 06 · Project Management</div>
           <h3>Member Education Program <span class="project-mark" title="Project Management">🗂️</span></h3>
@@ -616,7 +638,10 @@
             <a class="btn primary" href="projects/member-education/">View project</a>
           </div>
         </article>
+      </div>
 
+      <h3 class="work-group-title">Upcoming</h3>
+      <div class="grid">
         <article class="card project-card project-vanillai-startup">
           <div class="kicker">Project 07 · Startup in progress</div>
           <h3>vanill<em>.ai</em> <span class="project-mark dot" title="Vanill.ai">◌</span></h3>
@@ -626,7 +651,6 @@
           </div>
           <div class="status"><span class="dot"></span> Building now</div>
         </article>
-
         <article class="card project-card project-ai">
           <div class="kicker">Project 08 · Idea</div>
           <h3>AI Customer Success Assistant</h3>
@@ -635,32 +659,6 @@
             <span class="tag">AI</span><span class="tag">Customer Success</span><span class="tag">Automation</span>
           </div>
         </article>
-        <article class="card featured project-card project-midnight magic-hover magic-midnight">
-          <div>
-            <div class="kicker">Project 09 · Personal Product Build &amp; UX</div>
-            <h3>The Midnight Library <span class="project-mark" title="The Midnight Library">🌙</span></h3>
-            <p>A personal digital reading space designed around the feeling of browsing a physical library - combining collection management, reading-state tracking, atmospheric UX and interactive details into one cohesive experience.</p>
-            <div class="tags">
-              <span class="tag">Product Thinking</span><span class="tag">UX Design</span><span class="tag">Information Architecture</span><span class="tag">Interaction Design</span><span class="tag">GitHub Pages</span>
-            </div>
-            <div class="hero-actions">
-              <a class="btn primary" href="https://michaelaspice.github.io/midnight-library/" target="_blank" rel="noreferrer">Enter the library ↗</a>
-              <a class="btn" href="projects/midnight-library/">View project story</a>
-            </div>
-          </div>
-          <div class="midnight-widget" aria-label="The Midnight Library product preview">
-            <div class="midnight-moon">☾</div>
-            <div class="midnight-title">THE MIDNIGHT LIBRARY</div>
-            <div class="midnight-shelf">
-              <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-            </div>
-            <div class="midnight-features">
-              <span>Search &amp; collections</span><span>Reading memory</span><span>Atmospheric audio</span>
-            </div>
-            <div class="midnight-caption">A personal product shaped through continuous UX iteration.</div>
-          </div>
-        </article>
-
       </div>
     </section>
 
