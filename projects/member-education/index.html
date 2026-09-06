@@ -30,6 +30,22 @@ section{padding:52px 0;border-top:1px solid rgba(255,255,255,.07)}h2{font-size:c
 .footer{padding-top:28px;margin-top:28px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;color:#7f8b8f;font-size:11px}
 @media(max-width:900px){.stats,.grid4{grid-template-columns:repeat(2,1fr)}.grid3,.phase-grid,.stake-grid,.metrics,.closeout{grid-template-columns:1fr 1fr}.timeline{grid-template-columns:130px repeat(9,1fr);overflow-x:auto}.budget-row{grid-template-columns:1fr}.risks{grid-template-columns:1fr}}
 @media(max-width:620px){.grid2,.grid3,.grid4,.phase-grid,.stake-grid,.metrics,.closeout,.stats{grid-template-columns:1fr}.shell{padding-left:18px;padding-right:18px}}
+
+/* Wide project-management canvas; narrative remains constrained */
+@media (min-width: 1200px){
+  .shell{max-width:1500px;padding-left:32px;padding-right:32px}
+  .hero .sub,.hero .lede{max-width:900px}
+  .stats{gap:14px}
+}
+@media (min-width: 1550px){
+  .shell{max-width:1660px}
+  .phase-grid{gap:13px}
+  .phase{min-height:210px}
+  .grid2{gap:16px}
+  .grid3{gap:16px}
+  .grid4{gap:14px}
+  .timeline{grid-template-columns:210px repeat(9,minmax(0,1fr));gap:6px}
+}
 </style>
 </head>
 <body><div class="shell">
