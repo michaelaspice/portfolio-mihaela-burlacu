@@ -328,28 +328,6 @@
   }
 }
 
-
-/* Curated project categories */
-.portfolio-category{margin-top:62px}
-.portfolio-category:first-of-type{margin-top:34px}
-.category-head{display:grid;grid-template-columns:minmax(210px,.55fr) minmax(260px,.8fr) minmax(320px,1.2fr);gap:24px;align-items:end;margin:0 0 20px;padding-bottom:14px;border-bottom:1px solid var(--line)}
-.category-head>span{color:var(--accent-soft);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.16em}
-.category-head h3{margin:0;font-size:28px;font-weight:500;letter-spacing:-.02em}
-.category-head p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
-.portfolio-featured .featured-grid{grid-template-columns:1fr}
-.portfolio-featured .project-midnight{grid-column:1/-1}
-.portfolio-experiments .card{min-height:100%}
-@media(min-width:1200px){
-  #work{width:min(1400px,calc(100vw - 56px));margin-left:50%;transform:translateX(-50%)}
-  #work>.section-head{max-width:1120px;margin-left:auto;margin-right:auto}
-}
-@media(max-width:760px){
-  .portfolio-category{margin-top:46px}
-  .category-head{grid-template-columns:1fr;gap:5px;align-items:start}
-  .category-head h3{font-size:25px}
-  .category-head p{margin-top:5px}
-}
-
 </style>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23080b1c'/%3E%3Cpath d='M15 47 23 17l9 20 9-20 8 30' fill='none' stroke='%23f3a8ff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='52' cy='14' r='2' fill='%23fff'/%3E%3C/svg%3E">
 <style>
@@ -445,56 +423,15 @@
       </svg>
     </div>
     <section id="work" class="reveal">
-  <div class="section-head">
-    <h2>Selected work</h2>
-    <p class="typewriter-copy" data-text="Products, analytical case studies, and operational systems — each built to show a different part of how I think and work." aria-label="Products, analytical case studies, and operational systems — each built to show a different part of how I think and work."></p>
-  </div>
+      <div class="section-head">
+        <h2>Featured work</h2>
+        <p class="typewriter-copy" data-text="Small, practical projects that show how I think about customer experience, operations, data, and automation." aria-label="Small, practical projects that show how I think about customer experience, operations, data, and automation."></p>
+      </div>
 
-  <div class="portfolio-category portfolio-featured">
-    <div class="category-head">
-      <span>Featured build</span>
-      <h3>Start here</h3>
-      <p>An immersive personal product that grew from a reading-library idea into a working experience with authentication, private access, cloud reading state and cross-device progress.</p>
-    </div>
-    <div class="grid featured-grid">
-      <article class="card featured project-card project-midnight magic-hover magic-midnight">
+      <div class="grid">
+        <article class="card featured project-card project-astro magic-hover magic-space">
           <div>
-            <div class="kicker">Project 01 · Product Build & UX</div>
-            <h3>The Midnight Library <span class="project-mark" title="The Midnight Library">🌙</span></h3>
-            <p>A personal digital reading space designed around the feeling of browsing a physical library - combining collection management, reading-state tracking, atmospheric UX and interactive details into one cohesive experience.</p>
-            <div class="tags">
-              <span class="tag">Product Thinking</span><span class="tag">UX Design</span><span class="tag">Information Architecture</span><span class="tag">Interaction Design</span><span class="tag">GitHub Pages</span>
-            </div>
-            <div class="hero-actions">
-              <a class="btn primary" href="https://michaelaspice.github.io/midnight-library/" target="_blank" rel="noreferrer">Enter the library ↗</a>
-              <a class="btn" href="projects/midnight-library/">View project story</a>
-            </div>
-          </div>
-          <div class="midnight-widget" aria-label="The Midnight Library product preview">
-            <div class="midnight-moon">☾</div>
-            <div class="midnight-title">THE MIDNIGHT LIBRARY</div>
-            <div class="midnight-shelf">
-              <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-            </div>
-            <div class="midnight-features">
-              <span>Search &amp; collections</span><span>Reading memory</span><span>Atmospheric audio</span>
-            </div>
-            <div class="midnight-caption">A personal product shaped through continuous UX iteration.</div>
-          </div>
-        </article>
-    </div>
-  </div>
-
-  <div class="portfolio-category">
-    <div class="category-head">
-      <span>Products &amp; systems</span>
-      <h3>Things I built</h3>
-      <p>Interactive products and operational systems shaped around real workflows, users and decisions.</p>
-    </div>
-    <div class="grid">
-      <article class="card featured project-card project-astro magic-hover magic-space">
-          <div>
-            <div class="kicker">Project 02 · AI Job Discovery & Matching</div>
+            <div class="kicker">Project 01 · AI Job Discovery & Matching</div>
             <h3>AstroJob <span class="project-mark star" title="AstroJob">✦</span></h3>
             <p>
               A personal AI-assisted job discovery system that scores opportunities against real candidate preferences,
@@ -527,48 +464,9 @@
             <div class="astro-statement">Built around one candidate. Designed around what matters.</div>
           </div>
         </article>
-      <article class="card featured project-card project-aurority magic-hover magic-aurora">
+        <article class="card featured project-card project-morpheus magic-hover magic-paws">
   <div>
-    <div class="kicker">Project 03 · Quality Operations</div>
-    <h3>Aurority <span class="project-mark node" title="Aurority">⌘</span></h3>
-    <p>A centralized Quality Operations system connecting customer, commercial, product, and operational signals to detect performance changes, diagnose root causes, assign ownership, and track measurable action.</p>
-    <div class="tags">
-      <span class="tag">Quality Ops</span><span class="tag">SQL</span><span class="tag">Analytics</span><span class="tag">Process Design</span>
-    </div>
-    <div class="hero-actions">
-      <a class="btn primary" href="projects/aurority/">View project</a>
-    </div>
-  </div>
-  <div class="aurority-widget" aria-label="Aurority Quality Operations preview">
-    <div class="aurority-title"><strong>AURORITY</strong></div>
-    <div class="aurority-flow">
-      <div class="aurority-stage"><b>Source systems</b><small>Zendesk<br>HubSpot<br>Aircall<br>Product usage</small></div>
-      <div class="aurority-arrow">→</div>
-      <div class="aurority-stage"><b>Quality Operations</b><small>Signals · trigger rules · issue IDs · root cause · owner · action · recheck</small></div>
-      <div class="aurority-arrow">→</div>
-      <div class="aurority-stage"><b>Action</b><small>Dashboards<br>Slack nudges<br>Team ownership</small></div>
-    </div>
-    <div class="aurority-signals">
-      <div class="aurority-signal"><b>CSAT</b><span>Customer outcome</span></div>
-      <div class="aurority-signal"><b>QA</b><span>Quality signal</span></div>
-      <div class="aurority-signal"><b>Deals</b><span>Commercial signal</span></div>
-      <div class="aurority-signal"><b>Churn</b><span>Risk signal</span></div>
-    </div>
-  </div>
-</article>
-    </div>
-  </div>
-
-  <div class="portfolio-category">
-    <div class="category-head">
-      <span>Analytics &amp; strategy</span>
-      <h3>From data to decisions</h3>
-      <p>Customer and revenue analysis designed to surface patterns, priorities and practical next actions.</p>
-    </div>
-    <div class="grid">
-      <article class="card featured project-card project-morpheus magic-hover magic-paws">
-  <div>
-   <div class="kicker">Project 04 · Customer Success Analytics</div>
+   <div class="kicker">Project 02 · Customer Success Analytics</div>
 
     <h3>MorpheusGroup <span class="project-mark paw" title="MorpheusGroup">🐾</span></h3>
 
@@ -619,9 +517,10 @@
     </div>
   </div>
 </article>
-      <article class="card featured project-card project-elix magic-hover magic-elixir">
+
+        <article class="card featured project-card project-elix magic-hover magic-elixir">
   <div>
-    <div class="kicker">Project 05 · Revenue Operations</div>
+    <div class="kicker">Project 03 · Revenue Operations</div>
 
     <h3>Elix.ai <span class="project-mark" title="Elix.ai">⚗️</span></h3>
 
@@ -673,17 +572,40 @@
     </div>
   </div>
 </article>
+          
+
+        <article class="card featured project-card project-aurority magic-hover magic-aurora">
+  <div>
+    <div class="kicker">Project 04 · Quality Operations</div>
+    <h3>Aurority <span class="project-mark node" title="Aurority">⌘</span></h3>
+    <p>A centralized Quality Operations system connecting customer, commercial, product, and operational signals to detect performance changes, diagnose root causes, assign ownership, and track measurable action.</p>
+    <div class="tags">
+      <span class="tag">Quality Ops</span><span class="tag">SQL</span><span class="tag">Analytics</span><span class="tag">Process Design</span>
+    </div>
+    <div class="hero-actions">
+      <a class="btn primary" href="projects/aurority/">View project</a>
     </div>
   </div>
-
-  <div class="portfolio-category">
-    <div class="category-head">
-      <span>Operations &amp; delivery</span>
-      <h3>Making work executable</h3>
-      <p>Planning, governance and delivery structures for complex cross-functional work.</p>
+  <div class="aurority-widget" aria-label="Aurority Quality Operations preview">
+    <div class="aurority-title"><strong>AURORITY</strong></div>
+    <div class="aurority-flow">
+      <div class="aurority-stage"><b>Source systems</b><small>Zendesk<br>HubSpot<br>Aircall<br>Product usage</small></div>
+      <div class="aurority-arrow">→</div>
+      <div class="aurority-stage"><b>Quality Operations</b><small>Signals · trigger rules · issue IDs · root cause · owner · action · recheck</small></div>
+      <div class="aurority-arrow">→</div>
+      <div class="aurority-stage"><b>Action</b><small>Dashboards<br>Slack nudges<br>Team ownership</small></div>
     </div>
-    <div class="grid">
-      <article class="card project-card project-member-education magic-hover magic-ideas">
+    <div class="aurority-signals">
+      <div class="aurority-signal"><b>CSAT</b><span>Customer outcome</span></div>
+      <div class="aurority-signal"><b>QA</b><span>Quality signal</span></div>
+      <div class="aurority-signal"><b>Deals</b><span>Commercial signal</span></div>
+      <div class="aurority-signal"><b>Churn</b><span>Risk signal</span></div>
+    </div>
+  </div>
+</article>
+
+
+        <article class="card project-card project-member-education magic-hover magic-ideas">
           <div class="kicker">Project 06 · Project Management</div>
           <h3>Member Education Program <span class="project-mark" title="Project Management">🗂️</span></h3>
           <p>An anonymized 9-month delivery strategy covering scope definition, phased execution, stakeholder governance, LMS/vendor selection, budget control, risk management, launch readiness, adoption and operational handover.</p>
@@ -694,17 +616,8 @@
             <a class="btn primary" href="projects/member-education/">View project</a>
           </div>
         </article>
-    </div>
-  </div>
 
-  <div class="portfolio-category portfolio-experiments">
-    <div class="category-head">
-      <span>Experiments &amp; in progress</span>
-      <h3>What I'm exploring next</h3>
-      <p>Early-stage concepts and builds that are still evolving.</p>
-    </div>
-    <div class="grid">
-      <article class="card project-card project-vanillai-startup">
+        <article class="card project-card project-vanillai-startup">
           <div class="kicker">Project 07 · Startup in progress</div>
           <h3>vanill<em>.ai</em> <span class="project-mark dot" title="Vanill.ai">◌</span></h3>
           <p>An AI software startup currently in development. Built around a real product idea, with the concept, product direction, workflows, and first implementation being shaped from the ground up.</p>
@@ -713,7 +626,8 @@
           </div>
           <div class="status"><span class="dot"></span> Building now</div>
         </article>
-      <article class="card project-card project-ai">
+
+        <article class="card project-card project-ai">
           <div class="kicker">Project 08 · Idea</div>
           <h3>AI Customer Success Assistant</h3>
           <p>A lightweight concept that turns account notes into a concise summary, risk signals, next actions, and a draft customer follow-up.</p>
@@ -721,9 +635,34 @@
             <span class="tag">AI</span><span class="tag">Customer Success</span><span class="tag">Automation</span>
           </div>
         </article>
-    </div>
-  </div>
-</section>
+        <article class="card featured project-card project-midnight magic-hover magic-midnight">
+          <div>
+            <div class="kicker">Project 09 · Personal Product Build &amp; UX</div>
+            <h3>The Midnight Library <span class="project-mark" title="The Midnight Library">🌙</span></h3>
+            <p>A personal digital reading space designed around the feeling of browsing a physical library - combining collection management, reading-state tracking, atmospheric UX and interactive details into one cohesive experience.</p>
+            <div class="tags">
+              <span class="tag">Product Thinking</span><span class="tag">UX Design</span><span class="tag">Information Architecture</span><span class="tag">Interaction Design</span><span class="tag">GitHub Pages</span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn primary" href="https://michaelaspice.github.io/midnight-library/" target="_blank" rel="noreferrer">Enter the library ↗</a>
+              <a class="btn" href="projects/midnight-library/">View project story</a>
+            </div>
+          </div>
+          <div class="midnight-widget" aria-label="The Midnight Library product preview">
+            <div class="midnight-moon">☾</div>
+            <div class="midnight-title">THE MIDNIGHT LIBRARY</div>
+            <div class="midnight-shelf">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div class="midnight-features">
+              <span>Search &amp; collections</span><span>Reading memory</span><span>Atmospheric audio</span>
+            </div>
+            <div class="midnight-caption">A personal product shaped through continuous UX iteration.</div>
+          </div>
+        </article>
+
+      </div>
+    </section>
 
     <div class="art-divider" aria-hidden="true">
       <svg viewBox="0 0 1000 42" preserveAspectRatio="none">
