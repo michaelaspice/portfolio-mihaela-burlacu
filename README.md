@@ -7,6 +7,7 @@ A lightweight public portfolio focused on Customer Success, Operations, Data, Au
 - [MorpheusGroup - Customer Health & Churn Analysis](https://michaelaspice.github.io/portfolio-mihaela-burlacu/projects/morpheusgroup/)
 - [Elix.ai - Revenue Operations Funnel & ICP Analysis](projects/elixai/)
 - [Aurority - Quality Operations System](projects/aurority/)
+- [Member Education Project - Project Proposal](projects/member-education/)
 
 ## Planned projects
 1. AI Customer Success Assistant
@@ -19,6 +20,7 @@ A lightweight public portfolio focused on Customer Success, Operations, Data, Au
 - `projects/morpheusgroup/` - Customer Health & Churn Analysis
 - `projects/elixai/` - Revenue Operations Funnel & ICP Analysis
 - `projects/aurority/` - Quality Operations System
+- `member-education/` - Project Proposal
 - Future case studies will be added under `projects/`
 
 Built as a static site for GitHub Pages.
