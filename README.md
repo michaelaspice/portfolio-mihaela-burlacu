@@ -20,7 +20,7 @@ A lightweight public portfolio focused on Customer Success, Operations, Data, Au
 - `projects/morpheusgroup/` - Customer Health & Churn Analysis
 - `projects/elixai/` - Revenue Operations Funnel & ICP Analysis
 - `projects/aurority/` - Quality Operations System
-- `member-education/` - Project Proposal
+- `projects/member-education/` - Project Proposal
 - Future case studies will be added under `projects/`
 
 Built as a static site for GitHub Pages.
