@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An anonymized project management case study by Mihaela Burlacu: a 9-month member education platform delivery plan.">
+<title>Member Education Program — Project Management Case Study</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗂️</text></svg>">
+<style>
+:root{--bg:#0b1013;--panel:#111a1f;--panel2:#152228;--text:#f6f2ea;--muted:#aeb8bc;--line:#273941;--teal:#8fc9c8;--sand:#d8b893;--blue:#8fb2ca;--rose:#d99cae}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:
+radial-gradient(circle at 12% 0%,rgba(86,150,157,.14),transparent 28%),
+radial-gradient(circle at 88% 6%,rgba(216,184,147,.09),transparent 26%),
+linear-gradient(180deg,#0d1519 0%,var(--bg) 48%,#090d10 100%);
+color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+a{color:inherit}.shell{max-width:1160px;margin:auto;padding:28px 24px 90px}
+nav{display:flex;justify-content:space-between;align-items:center;padding-bottom:40px}.brand{font-weight:850;letter-spacing:.03em}.back{text-decoration:none;color:var(--muted);font-size:13px;border:1px solid var(--line);padding:8px 11px;border-radius:999px}
+.hero{padding:34px 0 28px}.eyebrow,.kicker{font-size:11px;text-transform:uppercase;letter-spacing:.16em;color:var(--teal);font-weight:850}
+h1{font-size:clamp(50px,7vw,86px);line-height:.95;letter-spacing:-.055em;margin:14px 0 18px}.sub{font-size:clamp(19px,2.3vw,27px);line-height:1.45;color:#dbe2e3;max-width:900px}.lede{max-width:830px;color:var(--muted);font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:32px 0}.stat,.card,.phase,.risk,.stake{border:1px solid var(--line);background:linear-gradient(180deg,rgba(21,34,40,.9),rgba(17,26,31,.92));border-radius:18px}.stat{padding:18px}.stat b{display:block;font-size:28px;color:var(--sand)}.stat span{font-size:12px;color:var(--muted)}
+.note{border-left:2px solid var(--sand);padding:14px 16px;background:rgba(216,184,147,.06);border-radius:0 14px 14px 0;color:var(--muted);font-size:13px;margin:22px 0 45px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:50px}.toc a{text-decoration:none;color:#dbe3e4;font-size:11px;border:1px solid var(--line);padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.02)}
+section{padding:52px 0;border-top:1px solid rgba(255,255,255,.07)}h2{font-size:clamp(30px,4vw,44px);letter-spacing:-.035em;margin:0 0 12px}.section-lede{color:var(--muted);max-width:820px;margin:0 0 28px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.card{padding:20px}.card h3{font-size:18px;margin:0 0 8px}.card p,.card li{font-size:13px;color:var(--muted)}ul{padding-left:18px}.phase-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}.phase{padding:18px;min-height:220px}.phase .n{font-size:10px;color:var(--teal);text-transform:uppercase;letter-spacing:.12em;font-weight:800}.phase h3{margin:7px 0 10px;font-size:17px}.phase p{font-size:12px;color:var(--muted)}.gate{margin-top:10px;padding:8px;border-radius:10px;background:rgba(143,201,200,.06);border:1px solid rgba(143,201,200,.16);font-size:11px;color:#d7efee}
+.timeline{display:grid;grid-template-columns:180px repeat(9,1fr);gap:4px;align-items:center;font-size:10px}.timeline>div{min-height:24px}.t-label{color:var(--muted);padding-right:8px}.t-head{text-align:center;color:#e8eeee}.bar{height:16px;border-radius:999px;background:linear-gradient(90deg,var(--teal),#5c979c)}.bar.sand{background:linear-gradient(90deg,var(--sand),#b48f69)}.bar.blue{background:linear-gradient(90deg,var(--blue),#668da9)}.bar.rose{background:linear-gradient(90deg,var(--rose),#ae7185)}.empty{background:transparent}
+.budget{display:grid;gap:9px}.budget-row{display:grid;grid-template-columns:1.2fr 100px 1.8fr;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);font-size:13px}.budget-row:last-child{border-bottom:0}.budget-row b{color:var(--sand)}.budget-row span{color:var(--muted)}
+.stake-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.stake{padding:16px}.stake b{display:block;font-size:14px}.stake span{display:block;color:var(--muted);font-size:12px;margin-top:5px}.cadence{color:var(--teal)!important;font-weight:700}
+.risks{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.risk{padding:18px}.risk b{display:block;color:var(--rose);margin-bottom:6px}.risk p{font-size:12px;color:var(--muted);margin:0}.risk strong{color:#e8eeee}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:9px}.metric{border:1px solid var(--line);border-radius:16px;padding:16px;background:rgba(255,255,255,.02)}.metric b{display:block;color:var(--teal);font-size:13px}.metric span{display:block;color:var(--muted);font-size:11px;margin-top:6px}
+.closeout{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.closeout .card{border-top:2px solid var(--sand)}
+.footer{padding-top:28px;margin-top:28px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;color:#7f8b8f;font-size:11px}
+@media(max-width:900px){.stats,.grid4{grid-template-columns:repeat(2,1fr)}.grid3,.phase-grid,.stake-grid,.metrics,.closeout{grid-template-columns:1fr 1fr}.timeline{grid-template-columns:130px repeat(9,1fr);overflow-x:auto}.budget-row{grid-template-columns:1fr}.risks{grid-template-columns:1fr}}
+@media(max-width:620px){.grid2,.grid3,.grid4,.phase-grid,.stake-grid,.metrics,.closeout,.stats{grid-template-columns:1fr}.shell{padding-left:18px;padding-right:18px}}
+</style>
+</head>
+<body><div class="shell">
+<nav><div class="brand">Mihaela Burlacu</div><a class="back" href="../../index.html">← Back to portfolio</a></nav>
+<header class="hero">
+<div class="eyebrow">Project Management · Anonymized Case Study</div>
+<h1>Member Education Program</h1>
+<div class="sub">A 9-month delivery strategy for launching a scalable learning platform, aligning stakeholders, controlling scope and budget, and transferring ownership into steady-state operations.</div>
+<p class="lede">This page reframes a project-management case study as an execution blueprint rather than a presentation: what had to be decided, how the work would be structured, where risk would sit, and how success would be measured.</p>
+<div class="stats">
+<div class="stat"><b>9 months</b><span>planned delivery window</span></div>
+<div class="stat"><b>$250K</b><span>budget envelope</span></div>
+<div class="stat"><b>5+</b><span>stakeholder groups</span></div>
+<div class="stat"><b>5 phases</b><span>initiate → handover</span></div>
+</div>
+<div class="note"><strong>Context:</strong> This is an anonymized hiring case study based on a realistic delivery brief. Client and company identifiers have been removed. It demonstrates planning, governance, stakeholder, risk and execution thinking; it is not presented as a completed client engagement.</div>
+<div class="toc"><a href="#scope">Scope</a><a href="#delivery">Delivery model</a><a href="#timeline">Timeline</a><a href="#budget">Budget</a><a href="#governance">Governance</a><a href="#vendor">Vendor strategy</a><a href="#risk">Risk</a><a href="#success">Success</a><a href="#closeout">Closeout</a></div>
+</header>
+
+<section id="scope"><h2>1. Define the project before building it</h2><p class="section-lede">The first decision was to separate launch-critical work from future enhancements so the 9-month timeline and budget had a realistic boundary.</p>
+<div class="grid3">
+<div class="card"><div class="kicker">Goals</div><h3>What the program must achieve</h3><ul><li>Launch within 9 months and $250K.</li><li>Improve access to accredited education.</li><li>Reduce manual administration.</li><li>Create a sustainable member learning experience.</li></ul></div>
+<div class="card"><div class="kicker">Phase 1</div><h3>Launch scope</h3><ul><li>LMS implementation</li><li>SSO and member-data integration</li><li>Content conversion and learning workflows</li><li>Testing, training and launch communications</li></ul></div>
+<div class="card"><div class="kicker">Phase 2</div><h3>Deliberately deferred</h3><ul><li>Mobile app</li><li>Community forums</li><li>Advanced analytics</li><li>Multilingual expansion</li></ul></div>
+</div></section>
+
+<section id="delivery"><h2>2. Delivery model: phased with decision gates</h2><p class="section-lede">I structured the program around five phases, with a clear leadership checkpoint before each major transition.</p>
+<div class="phase-grid">
+<div class="phase"><div class="n">01 · Initiate</div><h3>Align</h3><p>Confirm project leadership, scope, goals, success measures and stakeholder alignment.</p><div class="gate">Gate: project brief approved</div></div>
+<div class="phase"><div class="n">02 · Plan</div><h3>Design the path</h3><p>Confirm business, technical and user requirements; evaluate vendors; baseline budget, timeline and risk log.</p><div class="gate">Gate: vendor selected</div></div>
+<div class="phase"><div class="n">03 · Build</div><h3>Configure & integrate</h3><p>LMS configuration, SSO/member-data integration and content development run in parallel.</p><div class="gate">Gate: core build complete</div></div>
+<div class="phase"><div class="n">04 · Launch</div><h3>Validate & adopt</h3><p>User testing, workflow validation, launch support, adoption tracking and issue resolution.</p><div class="gate">Gate: workflows validated</div></div>
+<div class="phase"><div class="n">05 · Handover</div><h3>Transfer ownership</h3><p>Deliver SOPs, admin guides, training and support model; move the program into steady-state ownership.</p><div class="gate">Gate: ownership transferred</div></div>
+</div></section>
+
+<section id="timeline"><h2>3. Nine-month execution timeline</h2><p class="section-lede">The plan runs technology, content, testing and adoption workstreams in parallel instead of serially.</p>
+<div class="timeline">
+<div class="t-label"></div><div class="t-head">1</div><div class="t-head">2</div><div class="t-head">3</div><div class="t-head">4</div><div class="t-head">5</div><div class="t-head">6</div><div class="t-head">7</div><div class="t-head">8</div><div class="t-head">9</div>
+<div class="t-label">Leadership & governance</div><div class="bar" style="grid-column:2/11"></div>
+<div class="t-label">Requirements alignment</div><div class="bar sand" style="grid-column:2/4"></div>
+<div class="t-label">Vendor selection</div><div class="bar blue" style="grid-column:2/5"></div>
+<div class="t-label">LMS configuration</div><div class="bar" style="grid-column:4/7"></div>
+<div class="t-label">Portal / SSO / data</div><div class="bar blue" style="grid-column:4/7"></div>
+<div class="t-label">Content design & build</div><div class="bar sand" style="grid-column:3/8"></div>
+<div class="t-label">QA & security</div><div class="bar rose" style="grid-column:6/9"></div>
+<div class="t-label">User testing & readiness</div><div class="bar" style="grid-column:7/9"></div>
+<div class="t-label">Launch comms & adoption</div><div class="bar sand" style="grid-column:7/11"></div>
+<div class="t-label">Go-live support</div><div class="bar rose" style="grid-column:9/11"></div>
+</div></section>
+
+<section id="budget"><h2>4. Budget as a control mechanism</h2><p class="section-lede">The $250K budget is intentionally allocated across technology, content, adoption and contingency so one workstream cannot silently consume the whole program.</p>
+<div class="card budget">
+<div class="budget-row"><strong>LMS platform license</strong><b>$75K · 30%</b><span>License, secure hosting, user access, vendor support and platform availability.</span></div>
+<div class="budget-row"><strong>Integration & development</strong><b>$50K · 20%</b><span>LMS configuration, SSO, member database integration, access rules and vendor coordination.</span></div>
+<div class="budget-row"><strong>Content design & production</strong><b>$50K · 20%</b><span>Instructional design, content conversion, editing, assessments and mobile-friendly formatting.</span></div>
+<div class="budget-row"><strong>Launch communications & adoption</strong><b>$37.5K · 15%</b><span>Member outreach, launch communications, leadership messaging and adoption activity.</span></div>
+<div class="budget-row"><strong>Testing, training & contingency</strong><b>$37.5K · 15%</b><span>QA, user testing, training, SOPs and room for pre-launch issues.</span></div>
+</div></section>
+
+<section id="governance"><h2>5. Governance, communication and ownership</h2><p class="section-lede">The operating model is designed to keep decisions moving, surface blockers early and make ownership visible.</p>
+<div class="stake-grid">
+<div class="stake"><b>Leadership alignment</b><span>Project sponsor & leadership</span><span class="cadence">Bi-weekly</span></div>
+<div class="stake"><b>Delivery coordination</b><span>Internal project team</span><span class="cadence">Weekly</span></div>
+<div class="stake"><b>Vendor & technical sync</b><span>LMS vendor, portal and data owners</span><span class="cadence">Weekly</span></div>
+<div class="stake"><b>Content review</b><span>Subject-matter leaders & reviewers</span><span class="cadence">Milestone-based</span></div>
+<div class="stake"><b>Launch preparation</b><span>Staff, communications and member representatives</span><span class="cadence">Pre-launch</span></div>
+</div>
+<div class="grid2" style="margin-top:12px">
+<div class="card"><div class="kicker">Project workspace</div><h3>Asana as the shared control center</h3><p>Project plan, workflow boards, risk and issue log, decision log and executive dashboard in one workspace. Every task carries an owner, deadline, dependency and status.</p></div>
+<div class="card"><div class="kicker">Escalation logic</div><h3>Make decisions visible</h3><p>Risks, blockers, change requests and cost-impacting decisions are logged and escalated before they become timeline or budget surprises.</p></div>
+</div></section>
+
+<section id="vendor"><h2>6. Vendor selection: optimize for fit, not features</h2><p class="section-lede">The platform shortlist would be validated against delivery risk, integration fit and long-term operating cost.</p>
+<div class="grid2">
+<div class="card"><h3>Selection criteria</h3><ul><li>Accreditation and certificate workflows</li><li>SSO and member-database integration</li><li>Pricing/access rules</li><li>Reporting and analytics</li><li>Mobile-friendly learner experience</li><li>Vendor support and implementation timeline</li><li>Total cost of ownership beyond launch</li></ul></div>
+<div class="card"><h3>Decision principle</h3><p>Prefer platforms with native connectors into the member-data environment where possible. That reduces custom build effort, integration risk, cost and timeline pressure.</p><div class="note" style="margin:16px 0 0">The user journey stays simple: <strong>login → learn → assess → certify</strong>. Complexity should sit behind the experience, not in front of the learner.</div></div>
+</div></section>
+
+<section id="risk"><h2>7. Risk and change management</h2><p class="section-lede">The risk plan focuses on the issues most likely to threaten scope, budget, timeline or adoption.</p>
+<div class="risks">
+<div class="risk"><b>Scope creep</b><p><strong>Impact:</strong> delay and budget pressure.<br><strong>Mitigation:</strong> formal change control, prioritization and deferral of non-essential requests to Phase 2.</p></div>
+<div class="risk"><b>Vendor delays</b><p><strong>Impact:</strong> configuration or integration slips.<br><strong>Mitigation:</strong> weekly checkpoints and milestone-based escalation.</p></div>
+<div class="risk"><b>Reviewer availability</b><p><strong>Impact:</strong> delayed content approval.<br><strong>Mitigation:</strong> early review calendar, simple templates and milestone-based feedback.</p></div>
+<div class="risk"><b>Integration issues</b><p><strong>Impact:</strong> login, access or reporting failures.<br><strong>Mitigation:</strong> early technical testing and dedicated issue-resolution tracking.</p></div>
+<div class="risk"><b>Low adoption</b><p><strong>Impact:</strong> platform launches but members do not use it.<br><strong>Mitigation:</strong> launch communications, staff support and adoption tracking.</p></div>
+<div class="risk"><b>Budget overrun</b><p><strong>Impact:</strong> reduced delivery flexibility.<br><strong>Mitigation:</strong> monthly forecast and explicit approval for cost-impacting changes.</p></div>
+</div></section>
+
+<section id="success"><h2>8. Measure delivery and adoption</h2><p class="section-lede">A project is not successful simply because the system goes live. Delivery health and post-launch value both matter.</p>
+<div class="metrics">
+<div class="metric"><b>Schedule</b><span>Launch by month 9</span></div>
+<div class="metric"><b>Budget</b><span>Final spend within $250K</span></div>
+<div class="metric"><b>Stability</b><span>No critical launch blockers</span></div>
+<div class="metric"><b>Staff readiness</b><span>Internal team can manage core workflows</span></div>
+<div class="metric"><b>Member adoption</b><span>Registration, access and completions tracked</span></div>
+<div class="metric"><b>Efficiency</b><span>Manual certificate requests and support issues reduced</span></div>
+</div>
+<div class="note" style="margin-bottom:0"><strong>Definition of done:</strong> members can use the platform confidently and internal staff can operate it without relying on the project team.</div>
+</section>
+
+<section id="closeout"><h2>9. Closeout means ownership, not just launch</h2><p class="section-lede">The final stage validates delivery, transfers operating knowledge and turns lessons learned into the next roadmap.</p>
+<div class="closeout">
+<div class="card"><div class="kicker">Validate results</div><h3>Confirm the outcome</h3><ul><li>Timeline, budget and scope performance</li><li>Adoption and support data</li><li>Leadership acceptance and sign-off</li></ul></div>
+<div class="card"><div class="kicker">Transfer ownership</div><h3>Make the program self-sufficient</h3><ul><li>SOPs and admin guides</li><li>Training materials</li><li>Named owners for reporting, content and support</li></ul></div>
+<div class="card"><div class="kicker">Capture lessons</div><h3>Improve the next phase</h3><ul><li>Lessons-learned session</li><li>Document delays and successful practices</li><li>Define Phase 2 roadmap items</li></ul></div>
+</div></section>
+
+<div class="footer"><span>Mihaela Burlacu · Project Management Case Study</span><span>Anonymized portfolio project</span></div>
+</div></body></html>
