@@ -94,6 +94,21 @@ footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);color:v
   .grid{grid-template-columns:1fr}
   nav{align-items:flex-start;flex-direction:column}
 }
+
+/* Wider analytical canvas while keeping reading lines controlled */
+@media (min-width: 1200px){
+  .wrap{max-width:1440px;padding-left:32px;padding-right:32px}
+  .hero-copy{max-width:700px}
+  .hero{min-height:440px}
+  .morpheus-wrap{width:min(430px,31vw)}
+}
+@media (min-width: 1500px){
+  .wrap{max-width:1580px}
+  .grid{gap:18px}
+  .method-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .analysis-flow{gap:11px}
+  table{font-size:14px}
+}
 </style>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23080b1c'/%3E%3Cpath d='M14 47V34h8v13m5 0V26h8v21m5 0V16h8v31' fill='none' stroke='%23a879ff' stroke-width='5'/%3E%3Cpath d='m13 28 12-9 9 4 15-13' fill='none' stroke='%236ee7ff' stroke-width='3'/%3E%3C/svg%3E">
 </head>
