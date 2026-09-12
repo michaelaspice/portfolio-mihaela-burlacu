@@ -607,3 +607,7 @@ body.pipeline-mode .jobs-grid{display:none!important}
 .demo-privacy-note{grid-column:1/-1;padding:13px 15px;border:1px solid rgba(94,205,176,.22);border-radius:13px;background:rgba(94,205,176,.055);color:#a7b8b8;font-size:11px;line-height:1.5}
 .demo-privacy-note strong{color:#9ce6ba}
 @media(max-width:700px){.how-it-works-content{grid-template-columns:1fr;padding:15px 18px 20px}.how-it-works-content .manual-section,.demo-privacy-note{grid-column:auto}.how-it-works-dialog>.dialog-head{padding:18px 18px 0}}
+
+/* Public demo brand badge */
+.astro-brand-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.astro-demo-badge{display:inline-flex;align-items:center;padding:4px 8px;border:1px solid rgba(226,174,255,.28);border-radius:999px;background:rgba(194,123,255,.08);color:#d9c3ff;font-size:9px;font-weight:800;letter-spacing:.14em;line-height:1;white-space:nowrap}
