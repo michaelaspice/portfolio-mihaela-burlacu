@@ -1,233 +1,508 @@
 import { scoreJob } from './scoring.js';
+import { MIHAELA_PROFILE } from './profile.js';
 
-const STATUS_LABELS = {
-  all: 'All', new: 'New Matches', saved: 'Saved', applied: 'Applied', interview: 'Interview', rejected: 'Rejected / Skipped'
+const DEMO_STORAGE='astrojob-demo-mirror-v1';
+const DEMO_USER={id:'demo-user'};
+const readStore=()=>{try{return JSON.parse(localStorage.getItem(DEMO_STORAGE))||{astrojob_jobs:[],astrojob_profiles:[],astrojob_memory_core:[]}}catch{return{astrojob_jobs:[],astrojob_profiles:[],astrojob_memory_core:[]}}};
+const writeStore=s=>localStorage.setItem(DEMO_STORAGE,JSON.stringify(s));
+const uuid=()=>crypto.randomUUID?crypto.randomUUID():'demo-'+Date.now()+'-'+Math.random().toString(16).slice(2);
+
+class LocalQuery{
+  constructor(table){this.table=table;this.action='select';this.payload=null;this.filters=[];this.orderBy=null;this.returning=false;this.conflict=null}
+  select(){this.returning=true;return this}
+  insert(v){this.action='insert';this.payload=Array.isArray(v)?v:[v];return this}
+  update(v){this.action='update';this.payload=v;return this}
+  upsert(v,opts={}){this.action='upsert';this.payload=Array.isArray(v)?v:[v];this.conflict=opts.onConflict||null;return this}
+  delete(){this.action='delete';return this}
+  eq(k,v){this.filters.push([k,v]);return this}
+  order(k,opts={}){this.orderBy=[k,!!opts.ascending];return this}
+  _matches(r){return this.filters.every(([k,v])=>r?.[k]===v)}
+  _run(){
+    const s=readStore();let rows=s[this.table]||[];let data=null;
+    if(this.action==='select'){
+      data=rows.filter(r=>this._matches(r)).map(r=>structuredClone(r));
+      if(this.orderBy){const[k,asc]=this.orderBy;data.sort((a,b)=>{const av=a?.[k]??'',bv=b?.[k]??'';return(asc?1:-1)*String(av).localeCompare(String(bv))})}
+    }else if(this.action==='insert'){
+      const now=new Date().toISOString();
+      const made=this.payload.map(v=>({...structuredClone(v),id:v.id||uuid(),created_at:v.created_at||now,updated_at:v.updated_at||now}));
+      rows.push(...made);s[this.table]=rows;writeStore(s);data=made;
+    }else if(this.action==='update'){
+      const now=new Date().toISOString();const changed=[];
+      rows=rows.map(r=>this._matches(r)?Object.assign({},r,structuredClone(this.payload),{updated_at:this.payload.updated_at||now}):r);
+      changed.push(...rows.filter(r=>this._matches(r)));s[this.table]=rows;writeStore(s);data=changed;
+    }else if(this.action==='delete'){
+      const removed=rows.filter(r=>this._matches(r));rows=rows.filter(r=>!this._matches(r));s[this.table]=rows;writeStore(s);data=removed;
+    }else if(this.action==='upsert'){
+      const now=new Date().toISOString();const out=[];
+      for(const v0 of this.payload){const v=structuredClone(v0);let i=-1;if(this.conflict)i=rows.findIndex(r=>r?.[this.conflict]===v?.[this.conflict]);if(i<0&&v.id)i=rows.findIndex(r=>r.id===v.id);if(i>=0){rows[i]={...rows[i],...v,updated_at:v.updated_at||now};out.push(rows[i])}else{const row={...v,id:v.id||uuid(),created_at:v.created_at||now,updated_at:v.updated_at||now};rows.push(row);out.push(row)}}s[this.table]=rows;writeStore(s);data=out;
+    }
+    return{data,error:null};
+  }
+  single(){const r=this._run();return Promise.resolve({data:Array.isArray(r.data)?r.data[0]||null:r.data,error:r.error})}
+  maybeSingle(){return this.single()}
+  then(resolve,reject){return Promise.resolve(this._run()).then(resolve,reject)}
+}
+const supabase={
+  from:table=>new LocalQuery(table),
+  auth:{
+    signOut:async()=>({error:null}),
+    getSession:async()=>({data:{session:{user:DEMO_USER}}}),
+    onAuthStateChange:()=>({data:{subscription:{unsubscribe(){}}}})
+  }
 };
 
-const state = {
-  jobs: [],
-  status: 'new',
-  query: '',
-  decision: 'all',
-  country: 'all',
-  sort: 'priority',
-  statuses: JSON.parse(localStorage.getItem('astrojob-statuses') || '{}')
+const STATUS_LABELS={all:'All',new:'New Matches',saved:'Saved',applied:'Applied',screening:'Screening',interview:'Interview',offer:'Offer',signed:'Signed',rejected:'Rejected / Skipped',withdrawn:'Withdrawn',archived:'Archived'};
+const state={jobs:[],status:'all',query:'',decision:'all',country:'all',sort:'priority',view:'board',user:null,profile:structuredClone(MIHAELA_PROFILE),memoryInsights:[]};
+const $=s=>document.querySelector(s);
+const els={authGate:$('#authGate'),appRoot:$('#appRoot'),authForm:$('#authForm'),authEmail:$('#authEmail'),authPassword:$('#authPassword'),authMessage:$('#authMessage'),signUp:$('#signUpButton'),signOut:$('#signOutButton'),grid:$('#jobsGrid'),empty:$('#emptyState'),stats:$('#stats'),tabs:$('#tabs'),search:$('#searchInput'),decision:$('#decisionFilter'),country:$('#countryFilter'),sort:$('#sortBy'),template:$('#jobCardTemplate'),add:$('#addJobButton'),emptyAdd:$('#emptyAddButton'),loadDemo:$('#loadDemoButton'),export:$('#exportButton'),import:$('#importButton'),importFile:$('#importFile'),dialog:$('#jobDialog'),form:$('#jobForm'),close:$('#closeDialog'),cancel:$('#cancelDialog'),deleteBtn:$('#deleteJobButton'),dialogTitle:$('#dialogTitle'),dialogScore:$('#dialogScore'),importUrl:$('#importJobUrl'),importStatus:$('#importJobStatus'),profileButton:$('#profileButton'),profileDialog:$('#profileDialog'),profileForm:$('#profileForm'),closeProfile:$('#closeProfileDialog'),cancelProfile:$('#cancelProfileDialog'),resetProfile:$('#resetProfileButton'),insightDialog:$('#insightDialog'),insightForm:$('#insightForm'),insightJobId:$('#insightJobId'),insightText:$('#insightText'),insightHistory:$('#insightHistory'),closeInsight:$('#closeInsightDialog'),cancelInsight:$('#cancelInsightDialog'),settingsButton:$('#settingsButton'),settingsDialog:$('#settingsDialog'),closeSettings:$('#closeSettingsDialog'),jobAgentImport:$('#jobAgentImportButton'),jobAgentFile:$('#jobAgentFile'),jobAgentStatus:$('#jobAgentImportStatus'),viewSwitch:$('#viewSwitch'),pipeline:$('#pipelineView'),jobDetailDialog:$('#jobDetailDialog'),jobDetailContent:$('#jobDetailContent'),closeJobDetail:$('#closeJobDetailDialog'),matchLegendButton:$('#matchLegendButton'),matchLegendDialog:$('#matchLegendDialog'),closeMatchLegend:$('#closeMatchLegendDialog'),boardViewButton:$('#boardViewButton'),pipelineViewButton:$('#pipelineViewButton')};
+const fields={id:$('#jobId'),url:$('#jobUrl'),title:$('#jobTitle'),company:$('#jobCompany'),country:$('#jobCountry'),city:$('#jobCity'),workModel:$('#jobWorkModel'),postedAt:$('#jobPostedAt'),renewedAt:$('#jobRenewedAt'),currency:$('#jobCurrency'),monthly:$('#jobMonthly'),annual:$('#jobAnnual'),interest:$('#jobInterest'),nextAction:$('#jobNextAction'),languages:$('#jobLanguages'),description:$('#jobDescription'),notes:$('#jobNotes')};
+const profileFields={
+  roleFamilies:$('#profileRoleFamilies'),strongSignals:$('#profileStrongSignals'),languages:$('#profileLanguages'),
+  experienceYears:$('#profileExperienceYears'),skills:$('#profileSkills'),hardTech:$('#profileHardTech'),
+  freshness:$('#profileFreshness'),polandMonthly:$('#profilePolandMonthly'),polandAnnual:$('#profilePolandAnnual'),
+  greeceMonthly:$('#profileGreeceMonthly'),greeceAnnual:$('#profileGreeceAnnual'),emeaAnnual:$('#profileEmeaAnnual')
 };
+const listToText=a=>(a||[]).join(', ');
+const textToList=v=>String(v||'').split(/[\n,]+/).map(x=>x.trim()).filter(Boolean);
+const cloneDefaultProfile=()=>structuredClone(MIHAELA_PROFILE);
 
-const els = {
-  grid: document.querySelector('#jobsGrid'),
-  empty: document.querySelector('#emptyState'),
-  stats: document.querySelector('#stats'),
-  tabs: document.querySelector('#tabs'),
-  search: document.querySelector('#searchInput'),
-  decision: document.querySelector('#decisionFilter'),
-  country: document.querySelector('#countryFilter'),
-  sort: document.querySelector('#sortBy'),
-  reset: document.querySelector('#resetDemo'),
-  template: document.querySelector('#jobCardTemplate')
-};
-
-function getStatus(job) { return state.statuses[job.id] || 'new'; }
-function setStatus(id, status) {
-  state.statuses[id] = status;
-  localStorage.setItem('astrojob-statuses', JSON.stringify(state.statuses));
+function fillProfileForm(){
+  const p=state.profile;
+  profileFields.roleFamilies.value=listToText(p.roleFamilies);
+  profileFields.strongSignals.value=listToText(p.strongSignals);
+  profileFields.languages.value=listToText(p.languages);
+  profileFields.experienceYears.value=p.relevantExperienceYears??7;
+  profileFields.skills.value=listToText(p.profileSkills);
+  profileFields.hardTech.value=listToText(p.hardTechnicalRejects);
+  profileFields.freshness.value=p.freshness?.maxAgeDays??21;
+  profileFields.polandMonthly.value=p.salaryRules?.Poland?.monthlyGrossMin??10000;
+  profileFields.polandAnnual.value=p.salaryRules?.Poland?.annualGrossMin??120000;
+  profileFields.greeceMonthly.value=p.salaryRules?.Greece?.monthlyGrossMin??2400;
+  profileFields.greeceAnnual.value=p.salaryRules?.Greece?.annualGrossMin??28000;
+  profileFields.emeaAnnual.value=p.salaryRules?.RestOfEMEA?.annualGrossMin??30000;
+}
+function profileFromForm(){
+  const p=cloneDefaultProfile();
+  p.roleFamilies=textToList(profileFields.roleFamilies.value).map(x=>x.toLowerCase());
+  p.strongSignals=textToList(profileFields.strongSignals.value).map(x=>x.toLowerCase());
+  p.languages=textToList(profileFields.languages.value).map(x=>x.toLowerCase());
+  p.relevantExperienceYears=Number(profileFields.experienceYears.value)||0;
+  p.profileSkills=textToList(profileFields.skills.value).map(x=>x.toLowerCase());
+  p.hardTechnicalRejects=textToList(profileFields.hardTech.value).map(x=>x.toLowerCase());
+  p.freshness.maxAgeDays=Number(profileFields.freshness.value)||21;
+  p.salaryRules.Poland.monthlyGrossMin=Number(profileFields.polandMonthly.value)||0;
+  p.salaryRules.Poland.annualGrossMin=Number(profileFields.polandAnnual.value)||0;
+  p.salaryRules.Greece.monthlyGrossMin=Number(profileFields.greeceMonthly.value)||0;
+  p.salaryRules.Greece.annualGrossMin=Number(profileFields.greeceAnnual.value)||0;
+  p.salaryRules.RestOfEMEA.annualGrossMin=Number(profileFields.emeaAnnual.value)||0;
+  return p;
+}
+async function loadProfile(){
+  if(!state.user)return;
+  const {data,error}=await supabase.from('astrojob_profiles').select('profile').eq('user_id',state.user.id).maybeSingle();
+  if(error){console.warn('Could not load profile',error.message);state.profile=cloneDefaultProfile();return}
+  state.profile=data?.profile&&Object.keys(data.profile).length?{...cloneDefaultProfile(),...data.profile,salaryRules:{...cloneDefaultProfile().salaryRules,...(data.profile.salaryRules||{})},freshness:{...cloneDefaultProfile().freshness,...(data.profile.freshness||{})}}:cloneDefaultProfile();
+}
+async function saveProfile(profile){
+  const {error}=await supabase.from('astrojob_profiles').upsert({user_id:state.user.id,profile,updated_at:new Date().toISOString()},{onConflict:'user_id'});
+  if(error)throw error;
+  state.profile={...profile,memoryInsights:state.memoryInsights.map(x=>x.insight)};
+  rescoreAll();
   render();
 }
 
-function formatSalary(job) {
-  const s = job.salary || {};
-  if (!Number.isFinite(s.monthlyGross) && !Number.isFinite(s.annualGross)) return 'Salary: not disclosed';
-  const parts = [];
-  const currency = s.currency || '';
-  if (Number.isFinite(s.monthlyGross)) parts.push(`${s.monthlyGross.toLocaleString()} ${currency} gross / month`);
-  if (Number.isFinite(s.annualGross)) parts.push(`${s.annualGross.toLocaleString()} ${currency} gross / year`);
-  return `Salary: ${parts.join(' · ')}`;
+const toDate=v=>v?String(v).slice(0,10):'';
+const n=v=>v===''?null:Number(v);
+const enrich=j=>({...j,status:j.status||'new',score:scoreJob(j,state.profile)});
+const fromRow=r=>enrich({id:r.id,title:r.title,company:r.company,country:r.country,city:r.city||'',workModel:r.work_model||'',url:r.url||'#',postedAt:r.posted_at,renewedAt:r.renewed_at,salary:{currency:r.salary_currency||'',monthlyGross:r.salary_monthly_gross==null?null:Number(r.salary_monthly_gross),annualGross:r.salary_annual_gross==null?null:Number(r.salary_annual_gross)},languages:r.languages||[],description:r.description||'',notes:r.notes||'',interest:r.interest||'positive',nextActionAt:r.next_action_at,status:r.status||'new',foundAt:r.found_at,createdAt:r.created_at,updatedAt:r.updated_at});
+const toRow=j=>({user_id:state.user.id,title:j.title,company:j.company,country:j.country,city:j.city||null,work_model:j.workModel||null,url:j.url==='#'?null:j.url,posted_at:toDate(j.postedAt)||null,renewed_at:toDate(j.renewedAt)||null,salary_currency:j.salary?.currency||null,salary_monthly_gross:Number.isFinite(j.salary?.monthlyGross)?j.salary.monthlyGross:null,salary_annual_gross:Number.isFinite(j.salary?.annualGross)?j.salary.annualGross:null,languages:j.languages||[],description:j.description||null,notes:j.notes||null,interest:j.interest||'positive',next_action_at:toDate(j.nextActionAt)||null,status:j.status||'new',found_at:j.foundAt||new Date().toISOString(),updated_at:new Date().toISOString()});
+
+async function loadMemoryCore(){
+  if(!state.user)return;
+  const {data,error}=await supabase.from('astrojob_memory_core').select('*').eq('user_id',state.user.id).order('created_at',{ascending:true});
+  if(error){console.warn('Could not load Memory Core',error.message);state.memoryInsights=[]}
+  else state.memoryInsights=data||[];
+  state.profile.memoryInsights=state.memoryInsights.map(x=>x.insight);
+}
+function rescoreAll(){
+  state.jobs=state.jobs.map(j=>({...j,score:scoreJob(j,state.profile)}));
+}
+function escapeHtml(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function renderInsightHistory(jobId){
+  const items=state.memoryInsights.filter(x=>x.source_job_id===jobId);
+  els.insightHistory.innerHTML=items.length
+    ? '<div class="insight-history-title">Insights already saved from this job</div>'+items.map(x=>'<div class="memory-item"><span>'+escapeHtml(x.insight)+'</span><button type="button" class="memory-delete" data-id="'+x.id+'" aria-label="Delete insight">×</button></div>').join('')
+    : '';
+  els.insightHistory.querySelectorAll('.memory-delete').forEach(btn=>btn.onclick=async()=>{
+    const id=btn.dataset.id;
+    const {error}=await supabase.from('astrojob_memory_core').delete().eq('id',id);
+    if(error)return alert('Could not delete insight: '+error.message);
+    state.memoryInsights=state.memoryInsights.filter(x=>x.id!==id);
+    state.profile.memoryInsights=state.memoryInsights.map(x=>x.insight);
+    rescoreAll();render();renderInsightHistory(jobId);
+  });
+}
+function openInsightDialog(jobId){
+  els.insightJobId.value=jobId;
+  els.insightText.value='';
+  renderInsightHistory(jobId);
+  els.insightDialog.showModal();
 }
 
-const TAXONOMY_IMAGES = {"core":"data:image/webp;base64,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","transferable":"data:image/webp;base64,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","stretch":"data:image/webp;base64,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","wildcard":"data:image/webp;base64,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","blackhole":"data:image/webp;base64,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"};
+function msg(t,type=''){els.authMessage.textContent=t;els.authMessage.className='auth-message '+type}
+async function loadJobs(){const{data,error}=await supabase.from('astrojob_jobs').select('*').order('created_at',{ascending:false});if(error){alert('Could not load jobs: '+error.message);return}state.jobs=(data||[]).map(fromRow);renderCountries();render()}
+async function enter(session){
+  if(!session?.user) return;
+  state.user=session.user;
+  await loadProfile();
+  await loadMemoryCore();
+  els.authGate.hidden=true;
+  els.authGate.style.display='none';
+  els.appRoot.hidden=false;
+  els.appRoot.style.display='block';
+  try{await loadJobs()}catch(err){console.error(err);alert('Signed in, but AstroJob could not finish loading: '+err.message)}
+}
+function leave(){state.user=null;state.jobs=[];state.memoryInsights=[];els.appRoot.hidden=true;els.appRoot.style.display='none';els.authGate.hidden=false;els.authGate.style.display='grid'}
+els.authForm?.addEventListener('submit',async e=>{e.preventDefault();msg('Signing in…');const{data,error}=await supabase.auth.signInWithPassword({email:els.authEmail.value.trim(),password:els.authPassword.value});if(error)return msg(error.message,'error');if(!data?.session)return msg('Sign-in succeeded but no session was returned. Please refresh and try again.','error');msg('Welcome back. Loading Mission Control…','success');await enter(data.session)});
+els.signUp?.addEventListener('click',async()=>{const email=els.authEmail.value.trim(),password=els.authPassword.value;if(!email||password.length<6)return msg('Enter your email and a password of at least 6 characters.','error');msg('Creating your account…');const{data,error}=await supabase.auth.signUp({email,password});if(error)return msg(error.message,'error');if(data.session){msg('Account created.','success');await enter(data.session)}else msg('Account created. Check your email to confirm it, then sign in.','success')});
+els.signOut.addEventListener('click',()=>{if(confirm('Reset the demo to its original sample jobs?')){localStorage.removeItem(DEMO_STORAGE);location.reload()}});
 
-function taxonomyBadgeMarkup(value) {
-  const clean = String(value || 'Wild Card').replace(/^[^A-Za-z]+/, '').trim();
-  const key = clean === 'Core Match' ? 'core'
-    : clean === 'Transferable Match' ? 'transferable'
-    : clean === 'Stretch Match' ? 'stretch'
-    : clean === 'Black Hole' ? 'blackhole'
-    : 'wildcard';
-  return `<img class="taxonomy-card-image" src="${TAXONOMY_IMAGES[key]}" alt="" aria-hidden="true"><span>${clean}</span>`;
+async function saveWithdrawalReason(id,value){
+ const job=state.jobs.find(j=>j.id===id);if(!job)return;
+ const reason=String(value||'').trim();
+ const old=job.withdrawalReason||'';
+ job.withdrawalReason=reason;
+ const notesBase=String(job.notes||'').replace(/\n?Withdrawal reason:.*$/m,'').trim();
+ const notes=reason?[notesBase,'Withdrawal reason: '+reason].filter(Boolean).join('\n'):notesBase;
+ job.notes=notes;
+ const{error}=await supabase.from('astrojob_jobs').update({notes,updated_at:new Date().toISOString()}).eq('id',id);
+ if(error){job.withdrawalReason=old;alert(error.message)}
+}
+async function setStatus(id,status){const job=state.jobs.find(j=>j.id===id);if(!job)return;const old=job.status;job.status=status;render();const{error}=await supabase.from('astrojob_jobs').update({status,updated_at:new Date().toISOString()}).eq('id',id);if(error){job.status=old;render();alert(error.message)}}
+function salary(j){const s=j.salary||{};if(!Number.isFinite(s.monthlyGross)&&!Number.isFinite(s.annualGross))return'Salary: not disclosed';const p=[],c=s.currency||'';if(Number.isFinite(s.monthlyGross))p.push(`${s.monthlyGross.toLocaleString()} ${c} gross / month`);if(Number.isFinite(s.annualGross))p.push(`${s.annualGross.toLocaleString()} ${c} gross / year`);return'Salary: '+p.join(' · ')}
+function rec(r){return({APPLY_NOW:'🔥 APPLY NOW',APPLY:'APPLY',STRETCH:'STRETCH',MAYBE:'MAYBE',REJECT:'REJECT'})[r.decision]||r.decision}
+function interest(v){return({love:'💗 Love this',positive:'✨ Interested',neutral:'Neutral',low:'Not excited'})[v]||''}
+function renderTabs(){els.tabs.innerHTML='';for(const[k,l]of Object.entries(STATUS_LABELS)){const count=k==='all'?state.jobs.length:state.jobs.filter(j=>j.status===k).length,b=document.createElement('button');b.className='tab '+(state.status===k?'active':'');b.textContent=`${l} ${count}`;b.onclick=()=>{state.status=k;render()};els.tabs.appendChild(b)}}
+function renderStats(){const a=state.jobs.filter(j=>['APPLY_NOW','APPLY','STRETCH'].includes(j.score.decision)&&!['rejected','withdrawn'].includes(j.status)).length,active=state.jobs.filter(j=>['applied','screening','interview'].includes(j.status)).length,interviews=state.jobs.filter(j=>j.status==='interview').length,o=state.jobs.filter(j=>['offer','signed'].includes(j.status)).length;els.stats.innerHTML=[['Actionable matches',a],['Active applications',active],['Interviews',interviews],['Offers',o]].map(([l,v])=>`<div class="stat"><span>${l}</span><strong>${v}</strong></div>`).join('')}
+function renderCountries(){const prev=state.country,c=[...new Set(state.jobs.map(j=>j.country).filter(Boolean))].sort();els.country.innerHTML='<option value="all">All countries</option>'+c.map(x=>`<option>${x}</option>`).join('');state.country=c.includes(prev)?prev:'all';els.country.value=state.country}
+function filtered(){const q=state.query.trim().toLowerCase();return[...state.jobs].filter(j=>state.status==='all'||j.status===state.status).filter(j=>state.decision==='all'||j.score.decision===state.decision).filter(j=>state.country==='all'||j.country===state.country).filter(j=>!q||[j.title,j.company,j.city,j.country,j.description,j.notes].some(v=>String(v||'').toLowerCase().includes(q))).sort((a,b)=>state.sort==='fit'?b.score.fit-a.score.fit:state.sort==='newest'?new Date(b.foundAt||0)-new Date(a.foundAt||0):b.score.priority-a.score.priority)}
+function openJobDetail(jobId){
+  const job=state.jobs.find(j=>j.id===jobId);
+  if(!job)return;
+  els.jobDetailContent.innerHTML='';
+  const frag=card(job);
+  const article=frag.querySelector('.job-card');
+  if(!article)return;
+  article.classList.add('expanded-card');
+  article.querySelector('.expand-job')?.remove();
+  els.jobDetailContent.appendChild(article);
+  els.jobDetailDialog.showModal();
 }
 
-function recommendationLabel(result) {
-  const labels = { APPLY_NOW: '🔥 APPLY NOW', APPLY: 'APPLY', STRETCH: 'STRETCH', MAYBE: 'MAYBE', REJECT: 'REJECT' };
-  return labels[result.decision] || result.decision;
+function card(job){const node=els.template.content.cloneNode(true),badge=node.querySelector('.priority-badge'),tax=node.querySelector('.taxonomy-badge');node.querySelector('.job-company').textContent=job.company||'Unknown company';node.querySelector('.job-title').textContent=job.title||'Untitled role';node.querySelector('.job-meta').textContent=[job.city,job.country,job.workModel].filter(Boolean).join(' · ');badge.textContent=rec(job.score);
+const rawTaxonomy=String(job.score.taxonomy||'Wild Card').replace(/[🌟🚀🪐☄️🕳️⭐✨🔥]/gu,'').trim();
+const taxonomyName=/^Core(?:\s+Match)?$/i.test(rawTaxonomy)?'Core Match':
+  /^Transferable(?:\s+Match)?$/i.test(rawTaxonomy)?'Transferable':
+  /^Stretch(?:\s+Match)?$/i.test(rawTaxonomy)?'Stretch':
+  /^Wild(?:\s+Card)?$/i.test(rawTaxonomy)?'Wild Card':
+  /^Black(?:\s+Hole)?$/i.test(rawTaxonomy)?'Black Hole':rawTaxonomy;
+const taxonomyKey=taxonomyName.toLowerCase().replace(/[^a-z]+/g,'-').replace(/^-|-$/g,'');
+tax.innerHTML='<span class="taxonomy-icon '+taxonomyKey+'" aria-hidden="true"></span><span>'+escapeHtml(taxonomyName)+'</span>';
+tax.classList.add('taxonomy-'+taxonomyKey);if(job.score.priority>=85&&job.score.decision!=='REJECT')badge.classList.add('hot');if(job.score.decision==='REJECT')badge.classList.add('reject');node.querySelector('.fit-score').textContent=job.score.fit+'%';node.querySelector('.desirability-score').textContent=job.score.desirability+'%';node.querySelector('.priority-score').textContent=job.score.priority+'%';node.querySelector('.salary-row').textContent=salary(job);const flags=node.querySelector('.flags');[...(job.score.flags||[]),...(job.score.hardReject?[job.score.hardReject]:[])].forEach(f=>{const s=document.createElement('span');s.className='flag';s.textContent=f;flags.appendChild(s)});if(job.interest){const s=document.createElement('span');s.className='flag';s.textContent=interest(job.interest);flags.appendChild(s)}if(job.nextActionAt){const s=document.createElement('span');s.className='flag';s.textContent='Next: '+new Date(job.nextActionAt+'T12:00:00').toLocaleDateString();flags.appendChild(s)}const reasons=node.querySelector('.reasons-list');(job.score.reasons?.length?job.score.reasons:['Passed hard filters; no strong positive signal detected yet.']).forEach(x=>{const li=document.createElement('li');li.textContent=x;reasons.appendChild(li)});const gaps=node.querySelector('.gaps-list');(job.score.gaps?.length?job.score.gaps:['No major keyword-level gaps flagged.']).forEach(x=>{const li=document.createElement('li');li.textContent=x;gaps.appendChild(li)});const intel=job.score.intelligence||{};const pct=(v)=>Number.isFinite(v)?v+'%':'—';node.querySelector('.tech-fit').textContent=pct(intel.techFit);node.querySelector('.role-fit').textContent=pct(intel.roleFit);node.querySelector('.seniority-fit').textContent=pct(intel.seniorityFit);node.querySelector('.language-fit').textContent=pct(intel.languageFit);
+ const badgeList=(sel,items,type)=>{const box=node.querySelector(sel);if(!items?.length){box.innerHTML='<span class="intel-empty">None detected</span>';return}items.forEach(x=>{const b=document.createElement('span');b.className='intel-badge '+type;b.textContent=x;box.appendChild(b)})};
+ const tb=node.querySelector('.tech-badges'),tech=[...(intel.matchedTech||[]).map(x=>[x,'match']),...(intel.learningTech||[]).map(x=>[x+' · learning','learning']),...(intel.transferableTech||[]).map(x=>[x+' · transferable','transfer']),...(intel.techGaps||[]).map(x=>[x+' · review','gap'])];if(!tech.length)tb.innerHTML='<span class="intel-empty">No named systems detected</span>';else tech.forEach(([x,t])=>{const b=document.createElement('span');b.className='intel-badge '+t;b.textContent=x;tb.appendChild(b)});
+ badgeList('.matched-badges',intel.matchedSkills,'match');
+ const langItems=(intel.mentionedLanguages||[]).map(x=>(intel.knownLanguages||[]).includes(x)?x[0].toUpperCase()+x.slice(1):x[0].toUpperCase()+x.slice(1)+' · missing');
+ badgeList('.language-badges',langItems,'match');
+ const expItems=intel.mentionedExperience||[];
+ badgeList('.experience-badges',expItems,'transfer');
+ badgeList('.gap-badges',intel.gaps,'gap');
+ const p=node.querySelector('.job-notes-preview');if(job.notes)p.textContent=job.notes.length>180?job.notes.slice(0,180)+'…':job.notes;const link=node.querySelector('.apply-link');link.href=job.url||'#';if(!job.url||job.url==='#'){link.classList.add('disabled');link.textContent='No job link';link.removeAttribute('target')}node.querySelector('.expand-job').onclick=()=>openJobDetail(job.id);node.querySelector('.open-job').onclick=()=>openDialog(job.id);node.querySelector('.insight-job').onclick=()=>openInsightDialog(job.id);const sel=node.querySelector('.status-select'),withdrawal=node.querySelector('.withdrawal-reason');
+sel.value=job.status||'new';
+withdrawal.value=job.withdrawalReason||'';
+withdrawal.hidden=sel.value!=='withdrawn';
+sel.onchange=e=>{withdrawal.hidden=e.target.value!=='withdrawn';setStatus(job.id,e.target.value)};
+withdrawal.onchange=e=>saveWithdrawalReason(job.id,e.target.value);
+return node}
+
+const PIPELINE_COLUMNS=[
+  {key:'savedprep',label:'Saved / Prep',statuses:['new','saved']},
+  {key:'applied',label:'Applied',statuses:['applied']},
+  {key:'screening',label:'Screening',statuses:['screening']},
+  {key:'interview',label:'Interview',statuses:['interview']},
+  {key:'offer',label:'Offered',statuses:['offer']},
+  {key:'signed',label:'Signed',statuses:['signed']},
+  {key:'rejected',label:'Rejected / Skipped',statuses:['rejected']},
+  {key:'withdrawn',label:'Withdrawn',statuses:['withdrawn']},
+  {key:'archived',label:'Archived',statuses:['archived']}
+];
+
+function pipelineCard(job,col){
+  const el=document.createElement('article');
+  el.className='pipeline-card';
+  el.draggable=true;
+  el.dataset.jobId=job.id;
+  const fit=Number.isFinite(job.score?.fit)?job.score.fit:null;
+  const date=job.updatedAt||job.createdAt||job.foundAt;
+  const location=[job.city,job.country,job.workModel].filter(Boolean).join(' · ')||'Location not set';
+  const statusLabel=STATUS_LABELS[job.status]||'Saved';
+  el.innerHTML=
+    '<button type="button" class="pipeline-open" aria-label="Open job">'+
+      '<strong>'+escapeHtml(job.company||'Unknown company')+'</strong>'+
+      '<span class="pipeline-role">'+escapeHtml(job.title||'Untitled role')+'</span>'+
+      '<span class="pipeline-location">⌖ '+escapeHtml(location)+'</span>'+
+      '<div class="pipeline-fit"><i style="width:'+(fit??0)+'%"></i></div>'+
+      '<div class="pipeline-meta"><small>'+(fit==null?'Fit —':'Fit '+fit+'%')+'</small>'+(date?'<time>'+new Date(date).toLocaleDateString(undefined,{month:'short',day:'numeric'})+'</time>':'')+'</div>'+
+      '<span class="pipeline-status status-'+(job.status||'saved')+'">'+escapeHtml(statusLabel)+'</span>'+
+    '</button>';
+  el.querySelector('.pipeline-open').onclick=()=>openJobDetail(job.id);
+  el.addEventListener('dragstart',e=>{e.dataTransfer.setData('text/plain',job.id);e.dataTransfer.effectAllowed='move';el.classList.add('dragging')});
+  el.addEventListener('dragend',()=>el.classList.remove('dragging'));
+  return el;
 }
 
-function enrich(job, i) {
-  const scored = scoreJob(job);
+function renderPipeline(){
+  els.pipeline.innerHTML='';
+  const header=document.createElement('div');
+  header.className='pipeline-toolbar';
+  header.innerHTML='<div><h2>Application Pipeline</h2><p>Track progress from saved roles to signed offers. Drag cards between stages to update status.</p></div>'+
+    '<div class="pipeline-toolbar-actions"><select id="pipelineCountry"><option value="all">All countries</option></select><button type="button" class="button secondary" id="pipelineBoardButton">▦ View as Board</button></div>';
+  els.pipeline.appendChild(header);
+  const countrySelect=header.querySelector('#pipelineCountry');
+  const countries=[...new Set(state.jobs.map(j=>j.country).filter(Boolean))].sort();
+  countries.forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;countrySelect.appendChild(o)});
+  countrySelect.value=state.country||'all';
+  countrySelect.onchange=e=>{state.country=e.target.value;renderPipeline()};
+  header.querySelector('#pipelineBoardButton').onclick=()=>setView('board');
+
+  const wrap=document.createElement('div');wrap.className='pipeline-board';
+  for(const col of PIPELINE_COLUMNS){
+    const jobs=state.jobs
+      .filter(j=>col.statuses.includes(j.status||'new'))
+      .filter(j=>state.country==='all'||j.country===state.country);
+    const lane=document.createElement('section');lane.className='pipeline-lane lane-'+col.key;lane.dataset.status=col.statuses[0];
+    lane.innerHTML='<div class="pipeline-lane-head"><span class="pipeline-lane-title"><i></i>'+col.label+'</span><strong>'+jobs.length+'</strong></div>';
+    const cards=document.createElement('div');cards.className='pipeline-cards';
+    if(!jobs.length){const empty=document.createElement('div');empty.className='pipeline-empty';empty.innerHTML='<span>◌</span><strong>No jobs here yet</strong><small>Move jobs here as their status changes.</small>';cards.appendChild(empty)}
+    else jobs.sort((a,z)=>new Date(z.updatedAt||z.createdAt||0)-new Date(a.updatedAt||a.createdAt||0)).forEach(j=>cards.appendChild(pipelineCard(j,col)));
+    lane.addEventListener('dragover',e=>{e.preventDefault();lane.classList.add('drag-over');e.dataTransfer.dropEffect='move'});
+    lane.addEventListener('dragleave',()=>lane.classList.remove('drag-over'));
+    lane.addEventListener('drop',async e=>{e.preventDefault();lane.classList.remove('drag-over');const id=e.dataTransfer.getData('text/plain');if(id)await setStatus(id,lane.dataset.status)});
+    lane.appendChild(cards);wrap.appendChild(lane);
+  }
+  els.pipeline.appendChild(wrap);
+}
+
+function setView(view){
+  state.view=view==='pipeline'?'pipeline':'board';
+  const pipeline=state.view==='pipeline';
+  els.pipeline.hidden=!pipeline;
+  els.grid.hidden=pipeline;
+  els.pipeline.style.display=pipeline?'block':'none';
+  els.grid.style.display=pipeline?'none':'grid';
+  els.empty.hidden=true;
+
+  const controls=document.querySelector('.controls');
+  controls.hidden=pipeline;
+  controls.style.display=pipeline?'none':'grid';
+
+  els.tabs.hidden=pipeline;
+  els.tabs.style.display=pipeline?'none':'flex';
+
+  els.stats.hidden=pipeline;
+  els.stats.style.display=pipeline?'none':'grid';
+
+  els.boardViewButton.classList.toggle('active',!pipeline);
+  els.pipelineViewButton.classList.toggle('active',pipeline);
+  document.body.classList.toggle('pipeline-mode',pipeline);
+
+  if(pipeline){
+    renderPipeline();
+  }else{
+    render();
+  }
+}
+
+function render(){renderTabs();renderStats();if(state.view==='pipeline'){renderPipeline();return}const jobs=filtered();els.grid.innerHTML='';jobs.forEach(j=>els.grid.appendChild(card(j)));els.empty.hidden=jobs.length>0}
+
+function blank(){Object.values(fields).forEach(el=>{if(el&&el.tagName!=='SELECT')el.value=''});fields.workModel.value='Remote';fields.interest.value='positive';fields.currency.value=''}
+function fill(j){fields.id.value=j.id;fields.url.value=j.url||'';fields.title.value=j.title||'';fields.company.value=j.company||'';fields.country.value=j.country||'';fields.city.value=j.city||'';fields.workModel.value=j.workModel||'Remote';fields.postedAt.value=toDate(j.postedAt);fields.renewedAt.value=toDate(j.renewedAt);fields.currency.value=j.salary?.currency||'';fields.monthly.value=Number.isFinite(j.salary?.monthlyGross)?j.salary.monthlyGross:'';fields.annual.value=Number.isFinite(j.salary?.annualGross)?j.salary.annualGross:'';fields.interest.value=j.interest||'positive';fields.nextAction.value=toDate(j.nextActionAt);fields.languages.value=(j.languages||[]).join(', ');fields.description.value=j.description||'';fields.notes.value=j.notes||''}
+function openDialog(id=null){blank();const j=id?state.jobs.find(x=>x.id===id):null;els.dialogTitle.textContent=j?'Edit job':'Add a job';els.deleteBtn.hidden=!j;if(j)fill(j);els.dialogScore.textContent=j?`${j.score.taxonomy} · Fit ${j.score.fit}% · Desirability ${j.score.desirability}% · Priority ${j.score.priority}% · ${rec(j.score)}`:'Fill in the role and AstroJob will score it when you save.';els.dialog.showModal()}
+function closeDialog(){els.dialog.close()}
+async function importFromUrl(){
+  const url=fields.url.value.trim();
+  if(!url){els.importStatus.textContent='Paste a job link first.';return}
+  els.importStatus.textContent='Scanning job listing…';
+  els.importUrl.disabled=true;
+  try{
+    const res=await fetch('https://astrojob-private.vercel.app/api/import-job',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({url})});
+    const raw=await res.text();
+    let data={};
+    try{data=raw?JSON.parse(raw):{}}catch{throw new Error(raw||('Server returned HTTP '+res.status))}
+    if(!res.ok)throw new Error(data.error||('Import failed with HTTP '+res.status));
+    const s=data.structured||{};
+    if(s.title)fields.title.value=s.title;
+    if(s.company)fields.company.value=s.company;
+    if(s.country)fields.country.value=s.country;
+    if(s.city)fields.city.value=s.city;
+    if(s.workModel)fields.workModel.value=s.workModel;
+    if(s.postedDate)fields.postedAt.value=String(s.postedDate).slice(0,10);
+    if(s.salary){
+      if(s.salary.currency)fields.currency.value=s.salary.currency;
+      if(s.salary.period==='monthly'&&Number.isFinite(s.salary.min))fields.monthly.value=s.salary.min;
+      if(s.salary.period==='annual'&&Number.isFinite(s.salary.min))fields.annual.value=s.salary.min;
+    }
+    const text=s.description||data.pageText||'';
+    if(text)fields.description.value=text;
+    els.importStatus.textContent=data.extraction==='json-ld'?'✓ Imported from structured job data. Review before saving.':'✓ Imported from page text. Review carefully before saving.';
+  }catch(err){
+    els.importStatus.textContent='Could not import automatically: '+err.message;
+  }finally{els.importUrl.disabled=false}
+}
+els.importUrl?.addEventListener('click',importFromUrl);
+function formJob(existing=null){const sal={};if(fields.currency.value)sal.currency=fields.currency.value;const m=n(fields.monthly.value),a=n(fields.annual.value);if(Number.isFinite(m))sal.monthlyGross=m;if(Number.isFinite(a))sal.annualGross=a;const now=new Date().toISOString();return{...(existing||{}),title:fields.title.value.trim(),company:fields.company.value.trim(),country:fields.country.value.trim(),city:fields.city.value.trim(),workModel:fields.workModel.value,url:fields.url.value.trim()||'#',postedAt:fields.postedAt.value||null,renewedAt:fields.renewedAt.value||null,salary:sal,languages:fields.languages.value.split(',').map(x=>x.trim()).filter(Boolean),description:fields.description.value.trim(),notes:fields.notes.value.trim(),interest:fields.interest.value,nextActionAt:fields.nextAction.value||null,status:existing?.status||'new',foundAt:existing?.foundAt||now,createdAt:existing?.createdAt||now,updatedAt:now}}
+els.form.addEventListener('submit',async e=>{e.preventDefault();if(!fields.title.value.trim()||!fields.company.value.trim()||!fields.country.value.trim())return;const existing=state.jobs.find(j=>j.id===fields.id.value),j=formJob(existing);const q=existing?supabase.from('astrojob_jobs').update(toRow(j)).eq('id',existing.id).select().single():supabase.from('astrojob_jobs').insert(toRow(j)).select().single();const{data,error}=await q;if(error)return alert('Could not save job: '+error.message);const saved=fromRow(data);if(existing)state.jobs[state.jobs.findIndex(x=>x.id===existing.id)]=saved;else state.jobs.unshift(saved);renderCountries();state.status='all';render();closeDialog()});
+els.deleteBtn.onclick=async()=>{const id=fields.id.value;if(!id||!confirm('Delete this job from AstroJob?'))return;const{error}=await supabase.from('astrojob_jobs').delete().eq('id',id);if(error)return alert(error.message);state.jobs=state.jobs.filter(j=>j.id!==id);renderCountries();render();closeDialog()};
+els.matchLegendButton.onclick=()=>els.matchLegendDialog.showModal();
+els.closeMatchLegend.onclick=()=>els.matchLegendDialog.close();
+els.matchLegendDialog.onclick=e=>{if(e.target===els.matchLegendDialog)els.matchLegendDialog.close()};
+els.settingsButton.onclick=()=>els.settingsDialog.showModal();
+els.closeSettings.onclick=()=>els.settingsDialog.close();
+els.settingsDialog.onclick=e=>{if(e.target===els.settingsDialog)els.settingsDialog.close()};
+els.boardViewButton.onclick=()=>setView('board');
+els.pipelineViewButton.onclick=()=>setView('pipeline');
+els.closeJobDetail.onclick=()=>els.jobDetailDialog.close();
+els.jobDetailDialog.onclick=e=>{if(e.target===els.jobDetailDialog)els.jobDetailDialog.close()};
+els.profileButton.onclick=()=>{fillProfileForm();els.profileDialog.showModal()};
+els.closeProfile.onclick=()=>els.profileDialog.close();
+els.cancelProfile.onclick=()=>els.profileDialog.close();
+els.resetProfile.onclick=()=>{state.profile=cloneDefaultProfile();fillProfileForm()};
+els.profileDialog.onclick=e=>{if(e.target===els.profileDialog)els.profileDialog.close()};
+els.profileForm.addEventListener('submit',async e=>{
+  e.preventDefault();
+  try{
+    await saveProfile(profileFromForm());
+    els.profileDialog.close();
+  }catch(err){alert('Could not save profile: '+err.message)}
+});
+els.closeInsight.onclick=()=>els.insightDialog.close();
+els.cancelInsight.onclick=()=>els.insightDialog.close();
+els.insightDialog.onclick=e=>{if(e.target===els.insightDialog)els.insightDialog.close()};
+els.insightForm.addEventListener('submit',async e=>{
+  e.preventDefault();
+  const insight=els.insightText.value.trim(),jobId=els.insightJobId.value;
+  if(!insight)return;
+  const {data,error}=await supabase.from('astrojob_memory_core').insert({user_id:state.user.id,source_job_id:jobId||null,insight}).select().single();
+  if(error)return alert('Could not save insight: '+error.message);
+  state.memoryInsights.push(data);
+  state.profile.memoryInsights=state.memoryInsights.map(x=>x.insight);
+  rescoreAll();
+  render();
+  els.insightDialog.close();
+});
+els.add.onclick=()=>openDialog();els.emptyAdd.onclick=()=>openDialog();els.close.onclick=closeDialog;els.cancel.onclick=closeDialog;els.dialog.onclick=e=>{if(e.target===els.dialog)closeDialog()};els.search.oninput=e=>{state.query=e.target.value;render()};els.decision.onchange=e=>{state.decision=e.target.value;render()};els.country.onchange=e=>{state.country=e.target.value;render()};els.sort.onchange=e=>{state.sort=e.target.value;render()};
+els.export.onclick=()=>{const payload=JSON.stringify({version:2,exportedAt:new Date().toISOString(),jobs:state.jobs.map(({score,...j})=>j)},null,2),blob=new Blob([payload],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='astrojob-backup.json';a.click();URL.revokeObjectURL(a.href)};
+els.import.onclick=()=>els.importFile.click();
+els.importFile.onchange=async e=>{const file=e.target.files?.[0];if(!file)return;try{const p=JSON.parse(await file.text()),jobs=Array.isArray(p)?p:p.jobs;if(!Array.isArray(jobs))throw new Error('No jobs array found');for(const raw of jobs){const j=enrich(raw),{error}=await supabase.from('astrojob_jobs').insert(toRow(j));if(error)throw error}await loadJobs()}catch(err){alert('Could not import backup: '+err.message)}e.target.value=''};
+
+const JOBAGENT_STATUS={saved:'saved',applied:'applied',screening:'screening',interview:'interview',offer:'offer',offered:'offer',signed:'signed',rejected:'rejected',withdrawn:'withdrawn',archived:'archived'};
+const CITY_COUNTRY={warsaw:'Poland','kraków':'Poland',krakow:'Poland','wrocław':'Poland',wroclaw:'Poland',katowice:'Poland','gdańsk':'Poland',gdansk:'Poland','poznań':'Poland',poznan:'Poland',athens:'Greece','chisinau':'Moldova','chișinău':'Moldova',bucharest:'Romania',london:'United Kingdom',dublin:'Ireland',berlin:'Germany',amsterdam:'Netherlands'};
+function inferJobAgentLocation(text=''){
+  const lower=String(text).toLowerCase();
+  for(const [city,country] of Object.entries(CITY_COUNTRY))if(lower.includes(city))return{city:city[0].toUpperCase()+city.slice(1),country};
+  const countries=['Poland','Greece','Moldova','Romania','Germany','France','Italy','Spain','United Kingdom','Ireland','Netherlands','Portugal','Czechia','Hungary','Austria','Switzerland','Sweden','Norway','Denmark','Finland','United Arab Emirates'];
+  const country=countries.find(x=>lower.includes(x.toLowerCase()));
+  if(country)return{city:'',country};
+  if(/\b(remote|worldwide|global|anywhere)\b/i.test(text))return{city:'',country:'Global'};
+  return{city:'',country:'Global'};
+}
+function inferWorkModel(text=''){
+  if(/\bhybrid\b/i.test(text))return'Hybrid';
+  if(/\b(remote|work from home|home-based|worldwide)\b/i.test(text))return'Remote';
+  if(/\b(on[- ]site|office[- ]based|at our .* offices?)\b/i.test(text))return'On-site';
+  return'Remote';
+}
+const normValue=v=>String(v??'').toLowerCase().trim();
+function normalizeUrl(url=''){try{const u=new URL(url);u.hash='';return u.toString().replace(/\/$/,'')}catch{return String(url||'').trim().replace(/\/$/,'')}}
+function jobAgentToAstro(app){
+  const description=app.rawJobDescription||'';
+  const loc=inferJobAgentLocation(description);
+  const sourceUrl=app.metadata?.sourceUrl||'';
+  const noteParts=[];
+  if(app.notes)noteParts.push(app.notes);
+  if(Array.isArray(app.interviewNotes)&&app.interviewNotes.length)noteParts.push('JobAgent interview notes:\n'+app.interviewNotes.map(x=>typeof x==='string'?x:JSON.stringify(x)).join('\n'));
   return {
-    ...job,
-    foundAt: job.foundAt || new Date(Date.now() - i * 86400000).toISOString(),
-    url: job.url || '#',
-    score: scored
+    title:app.jobTitle||'Untitled role',company:app.companyName||'Unknown company',
+    country:loc.country,city:loc.city,workModel:inferWorkModel(description),url:sourceUrl||'#',
+    postedAt:null,renewedAt:null,salary:{},languages:[],description,
+    notes:noteParts.join('\n\n'),interest:'positive',
+    nextActionAt:app.followUpAt?String(app.followUpAt).slice(0,10):null,
+    status:JOBAGENT_STATUS[app.status]||'saved',
+    foundAt:app.createdAt||new Date().toISOString(),createdAt:app.createdAt||new Date().toISOString(),updatedAt:app.updatedAt||new Date().toISOString()
   };
 }
-
-function renderTabs() {
-  els.tabs.innerHTML = '';
-  for (const [key, label] of Object.entries(STATUS_LABELS)) {
-    const count = key === 'all' ? state.jobs.length : state.jobs.filter(j => getStatus(j) === key).length;
-    const btn = document.createElement('button');
-    btn.className = `tab ${state.status === key ? 'active' : ''}`;
-    btn.textContent = `${label} ${count}`;
-    btn.addEventListener('click', () => { state.status = key; render(); });
-    els.tabs.appendChild(btn);
-  }
-}
-
-function renderStats() {
-  const actionable = state.jobs.filter(j => ['APPLY_NOW','APPLY','STRETCH'].includes(j.score.decision)).length;
-  const hot = state.jobs.filter(j => j.score.priority >= 85).length;
-  const applied = state.jobs.filter(j => getStatus(j) === 'applied').length;
-  const interviews = state.jobs.filter(j => getStatus(j) === 'interview').length;
-  const items = [['Actionable matches', actionable], ['🔥 Top priority', hot], ['Applied', applied], ['Interviews', interviews]];
-  els.stats.innerHTML = items.map(([label,value]) => `<div class="stat"><span>${label}</span><strong>${value}</strong></div>`).join('');
-}
-
-function renderCountries() {
-  const countries = [...new Set(state.jobs.map(j => j.country).filter(Boolean))].sort();
-  els.country.innerHTML = '<option value="all">All countries</option>' + countries.map(c => `<option value="${c}">${c}</option>`).join('');
-  els.country.value = state.country;
-}
-
-function filteredJobs() {
-  const q = state.query.trim().toLowerCase();
-  return state.jobs
-    .filter(j => state.status === 'all' || getStatus(j) === state.status)
-    .filter(j => state.decision === 'all' || j.score.decision === state.decision)
-    .filter(j => state.country === 'all' || j.country === state.country)
-    .filter(j => !q || [j.title,j.company,j.city,j.country,j.description].some(v => String(v || '').toLowerCase().includes(q)))
-    .sort((a,b) => {
-      if (state.sort === 'fit') return b.score.fit - a.score.fit;
-      if (state.sort === 'newest') return new Date(b.foundAt) - new Date(a.foundAt);
-      return b.score.priority - a.score.priority;
+async function importJobAgent(file){
+  const payload=JSON.parse(await file.text());
+  const apps=payload?.applications;
+  if(!Array.isArray(apps))throw new Error('This does not look like a JobAgent export: no applications array found.');
+  let added=0,updated=0,skipped=0;
+  const current=[...state.jobs];
+  for(const app of apps){
+    const incoming=jobAgentToAstro(app);
+    const inUrl=normalizeUrl(incoming.url==='#'?'':incoming.url);
+    const existing=current.find(j=>{
+      const sameUrl=inUrl&&normalizeUrl(j.url==='#'?'':j.url)===inUrl;
+      const sameTitleCompany=normValue(j.title)===normValue(incoming.title)&&normValue(j.company)===normValue(incoming.company);
+      return sameUrl||sameTitleCompany;
     });
-}
-
-function renderCard(job) {
-  const node = els.template.content.cloneNode(true);
-  const card = node.querySelector('.job-card');
-  const badge = node.querySelector('.priority-badge');
-  const taxonomy = node.querySelector('.taxonomy-badge');
-  const meta = [job.city, job.country, job.workModel].filter(Boolean).join(' · ');
-
-  node.querySelector('.job-company').textContent = job.company || 'Unknown company';
-  node.querySelector('.job-title').textContent = job.title;
-  node.querySelector('.job-meta').textContent = meta;
-  badge.textContent = recommendationLabel(job.score);
-  if (taxonomy) taxonomy.innerHTML = taxonomyBadgeMarkup(job.score.taxonomy);
-  if (job.score.priority >= 85 && job.score.decision !== 'REJECT') badge.classList.add('hot');
-  if (job.score.decision === 'REJECT') badge.classList.add('reject');
-
-  node.querySelector('.fit-score').textContent = `${job.score.fit}%`;
-  node.querySelector('.desirability-score').textContent = `${job.score.desirability}%`;
-  node.querySelector('.priority-score').textContent = `${job.score.priority}%`;
-  node.querySelector('.salary-row').textContent = formatSalary(job);
-
-  const flags = node.querySelector('.flags');
-  (job.score.flags || []).forEach(flag => {
-    const span = document.createElement('span'); span.className = 'flag'; span.textContent = flag; flags.appendChild(span);
-  });
-  if (job.score.hardReject) {
-    const span = document.createElement('span'); span.className = 'flag'; span.textContent = job.score.hardReject; flags.appendChild(span);
+    if(existing){
+      const merged={...existing,
+        title:incoming.title||existing.title,company:incoming.company||existing.company,
+        country:existing.country&&existing.country!=='Global'?existing.country:incoming.country,
+        city:existing.city||incoming.city,workModel:existing.workModel||incoming.workModel,
+        url:existing.url&&existing.url!=='#'?existing.url:incoming.url,
+        description:existing.description||incoming.description,
+        notes:existing.notes||incoming.notes,
+        nextActionAt:incoming.nextActionAt||existing.nextActionAt,
+        status:incoming.status||existing.status,
+        updatedAt:incoming.updatedAt||new Date().toISOString()
+      };
+      const {error}=await supabase.from('astrojob_jobs').update(toRow(merged)).eq('id',existing.id);
+      if(error)throw error;
+      Object.assign(existing,merged);
+      updated++;
+    }else{
+      const {data,error}=await supabase.from('astrojob_jobs').insert(toRow(incoming)).select().single();
+      if(error)throw error;
+      current.push(fromRow(data));added++;
+    }
   }
-
-  const intel = job.score.intelligence || {};
-  const pct = v => Number.isFinite(v) ? v + '%' : '—';
-  node.querySelector('.tech-fit').textContent = pct(intel.techFit);
-  node.querySelector('.role-fit').textContent = pct(intel.roleFit);
-  node.querySelector('.seniority-fit').textContent = pct(intel.seniorityFit);
-  node.querySelector('.language-fit').textContent = pct(intel.languageFit);
-
-  const badgeList = (selector, items, type) => {
-    const box = node.querySelector(selector);
-    if (!items?.length) { box.innerHTML = '<span class="intel-empty">None detected</span>'; return; }
-    items.forEach(item => {
-      const span = document.createElement('span');
-      span.className = 'intel-badge ' + type;
-      span.textContent = item;
-      box.appendChild(span);
-    });
-  };
-
-  const techBox = node.querySelector('.tech-badges');
-  const techItems = [
-    ...(intel.matchedTech || []).map(x => [x,'match']),
-    ...(intel.learningTech || []).map(x => [x + ' · learning','learning']),
-    ...(intel.transferableTech || []).map(x => [x + ' · transferable','transfer']),
-    ...(intel.techGaps || []).map(x => [x + ' · review','gap'])
-  ];
-  if (!techItems.length) techBox.innerHTML = '<span class="intel-empty">No named systems detected</span>';
-  else techItems.forEach(([label,type]) => {
-    const span = document.createElement('span');
-    span.className = 'intel-badge ' + type;
-    span.textContent = label;
-    techBox.appendChild(span);
-  });
-
-  badgeList('.matched-badges', intel.matchedSkills, 'match');
-  const langItems = (intel.mentionedLanguages || []).map(x => {
-    const label = x.charAt(0).toUpperCase() + x.slice(1);
-    return (intel.knownLanguages || []).includes(x) ? label : label + ' · missing';
-  });
-  badgeList('.language-badges', langItems, 'match');
-  badgeList('.experience-badges', intel.mentionedExperience, 'transfer');
-  badgeList('.gap-badges', intel.gaps, 'gap');
-
-  const reasons = node.querySelector('.reasons-list');
-  const reasonItems = job.score.reasons?.length ? job.score.reasons : ['Passed hard filters; no strong positive signal detected yet.'];
-  reasonItems.forEach(r => { const li = document.createElement('li'); li.textContent = r; reasons.appendChild(li); });
-
-  const gaps = node.querySelector('.gaps-list');
-  const gapItems = job.score.gaps?.length ? job.score.gaps : ['No major keyword-level gaps flagged.'];
-  gapItems.forEach(g => { const li = document.createElement('li'); li.textContent = g; gaps.appendChild(li); });
-
-  const link = node.querySelector('.apply-link');
-  link.href = job.url || '#';
-  if (!job.url || job.url === '#') { link.classList.add('disabled'); link.textContent = 'No link in demo'; }
-
-  const select = node.querySelector('.status-select');
-  select.value = getStatus(job);
-  select.addEventListener('change', e => setStatus(job.id, e.target.value));
-  card.dataset.id = job.id;
-  return node;
+  await loadJobs();
+  return{added,updated,skipped,total:apps.length};
 }
+els.jobAgentImport.onclick=()=>els.jobAgentFile.click();
+els.jobAgentFile.onchange=async e=>{
+  const file=e.target.files?.[0];if(!file)return;
+  els.jobAgentStatus.textContent='Importing JobAgent applications…';
+  try{
+    const r=await importJobAgent(file);
+    els.jobAgentStatus.textContent='✓ JobAgent import complete: '+r.added+' added · '+r.updated+' existing jobs updated · '+r.total+' processed.';
+  }catch(err){
+    els.jobAgentStatus.textContent='Import failed: '+err.message;
+  }
+  e.target.value='';
+};
+els.loadDemo.onclick=async()=>{const res=await fetch('./data/sample-jobs.json'),jobs=await res.json();for(const raw of jobs){const j=enrich({...raw,status:'new',foundAt:new Date().toISOString()}),{error}=await supabase.from('astrojob_jobs').insert(toRow(j));if(error)return alert(error.message)}await loadJobs()};
 
-function render() {
-  renderTabs();
-  renderStats();
-  const jobs = filteredJobs();
-  els.grid.innerHTML = '';
-  jobs.forEach(job => els.grid.appendChild(renderCard(job)));
-  els.empty.hidden = jobs.length > 0;
+await enter({user:DEMO_USER});
+if(!state.jobs.length){
+  const res=await fetch('./data/sample-jobs.json');
+  const jobs=await res.json();
+  const demoStatuses=['saved','applied','applied','interview','applied','rejected','screening','interview','offer','new','withdrawn','archived'];
+  for(let i=0;i<jobs.length;i++){
+    const raw=jobs[i];
+    const j=enrich({...raw,status:demoStatuses[i%demoStatuses.length],foundAt:raw.postedAt||new Date().toISOString()});
+    await supabase.from('astrojob_jobs').insert(toRow(j));
+  }
+  await loadJobs();
 }
-
-async function init() {
-  const res = await fetch('./data/sample-jobs.json');
-  const jobs = await res.json();
-  state.jobs = jobs.map(enrich);
-  renderCountries();
-  render();
-}
-
-els.search.addEventListener('input', e => { state.query = e.target.value; render(); });
-els.decision.addEventListener('change', e => { state.decision = e.target.value; render(); });
-els.country.addEventListener('change', e => { state.country = e.target.value; render(); });
-els.sort.addEventListener('change', e => { state.sort = e.target.value; render(); });
-els.reset.addEventListener('click', () => {
-  localStorage.removeItem('astrojob-statuses'); state.statuses = {}; state.status = 'new'; state.query=''; state.decision='all'; state.country='all'; state.sort='priority';
-  els.search.value=''; els.decision.value='all'; els.sort.value='priority'; renderCountries(); render();
-});
-
-init().catch(err => {
-  els.empty.hidden = false;
-  els.empty.textContent = `Could not load jobs: ${err.message}. Run this folder through GitHub Pages or a local web server.`;
-});
