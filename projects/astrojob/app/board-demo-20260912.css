@@ -592,3 +592,18 @@ body.pipeline-mode .jobs-grid{display:none!important}
 /* Insights only in expanded job */
 .job-card:not(.expanded-card) .insight-job{display:none!important}
 .expanded-card .insight-job{display:inline-flex!important}
+
+/* How This Works demo guide */
+.how-it-works-dialog{width:min(940px,calc(100vw - 32px));max-height:88vh;padding:0;border:1px solid rgba(154,123,255,.28);border-radius:22px;background:rgba(10,13,34,.985);color:var(--text);box-shadow:0 30px 90px rgba(0,0,0,.5)}
+.how-it-works-dialog::backdrop{background:rgba(2,4,15,.72);backdrop-filter:blur(6px)}
+.how-it-works-dialog>.dialog-head{padding:22px 26px 0}
+.how-it-works-content{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:18px 26px 26px;max-height:72vh;overflow:auto}
+.how-it-works-content section{padding:17px 18px;border:1px solid rgba(154,123,255,.15);border-radius:15px;background:rgba(255,255,255,.025)}
+.how-it-works-content h3{margin:0 0 8px;font-size:14px;color:#f4f2ff}
+.how-it-works-content p{margin:0;color:var(--muted);font-size:12px;line-height:1.65}
+.how-it-works-content .manual-section{grid-column:1/-1}
+.manual-section ol{margin:8px 0 0;padding-left:20px;display:grid;gap:8px;color:var(--muted);font-size:12px;line-height:1.55}
+.manual-section strong{color:#e9e6fb}
+.demo-privacy-note{grid-column:1/-1;padding:13px 15px;border:1px solid rgba(94,205,176,.22);border-radius:13px;background:rgba(94,205,176,.055);color:#a7b8b8;font-size:11px;line-height:1.5}
+.demo-privacy-note strong{color:#9ce6ba}
+@media(max-width:700px){.how-it-works-content{grid-template-columns:1fr;padding:15px 18px 20px}.how-it-works-content .manual-section,.demo-privacy-note{grid-column:auto}.how-it-works-dialog>.dialog-head{padding:18px 18px 0}}
