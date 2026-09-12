@@ -34,6 +34,7 @@
         <p class="subtitle astro-tagline">Built around one candidate. Designed around what matters.</p>
       </div>
       <div class="top-actions">
+        <button id="howItWorksButton" class="button secondary">How This Works</button>
         <button id="profileButton" class="button secondary">👤 Profile</button>
         <button id="addJobButton" class="button primary">＋ Add job</button>
         <button id="signOutButton" class="button secondary">Reset demo</button>
@@ -179,6 +180,48 @@
       </div>
     </form>
   </dialog></div>
+
+  <dialog id="howItWorksDialog" class="job-dialog how-it-works-dialog">
+    <div class="dialog-head">
+      <div>
+        <div class="eyebrow">ASTROJOB DEMO</div>
+        <h2>How This Works</h2>
+      </div>
+      <button type="button" id="closeHowItWorksDialog" class="icon-button" aria-label="Close">×</button>
+    </div>
+    <div class="how-it-works-content">
+      <section>
+        <h3>What is AstroJob?</h3>
+        <p>AstroJob is a candidate-first job search and application workspace. It brings job discovery, fit analysis, application tracking and candidate context into one place, then scores each role against the candidate profile instead of treating every vacancy as equally relevant.</p>
+      </section>
+      <section>
+        <h3>Why was it built?</h3>
+        <p>It started as a practical solution to a messy job search: too many roles, different salary and location rules, repeated comparisons, application notes spread across tools, and important experience that a job description or CV match can easily miss. AstroJob was built to make those decisions faster, more consistent and more personal.</p>
+      </section>
+      <section>
+        <h3>How we currently use it</h3>
+        <p>A candidate profile defines role families, skills, languages, experience, hard rules and preferences. Jobs can be added manually or imported from a link, then AstroJob parses the role, scores the match and classifies it as Core Match, Transferable, Stretch, Wild Card or Black Hole. The Board is used for discovery and comparison; the Pipeline tracks application progress. Additional Insights can add missing context, rescore a role and save that knowledge to the candidate Memory Core for future matches.</p>
+      </section>
+      <section>
+        <h3>What we intend to add</h3>
+        <p>The product is still in Beta. Planned development focuses on smarter and more reliable job-link parsing, richer interview tracking, stronger candidate-memory use, improved scoring explanations, application analytics and more automation around the journey from discovering a role to managing the interview process.</p>
+      </section>
+      <section class="manual-section">
+        <h3>Quick user manual</h3>
+        <ol>
+          <li><strong>Open Profile</strong> to see the candidate information AstroJob uses when evaluating roles.</li>
+          <li><strong>Add Job</strong> to enter a role manually or paste a job link and try automatic parsing.</li>
+          <li><strong>Check the Board</strong> to compare jobs, scores and match classifications at a glance.</li>
+          <li><strong>Expand a job</strong> to see the full fit analysis, gaps, matched skills and supporting detail.</li>
+          <li><strong>Add Additional Insights</strong> inside the expanded job when AstroJob is missing relevant candidate experience. The job is rescored and the insight becomes reusable candidate memory.</li>
+          <li><strong>Use Pipeline</strong> to track roles through Saved, Applied, Screening, Interview, Offer and later stages. Cards can be moved between stages.</li>
+          <li><strong>View Match Legend</strong> whenever you want a quick explanation of the five match types.</li>
+          <li><strong>Reset demo</strong> to clear your local changes and restore the original sample jobs.</li>
+        </ol>
+      </section>
+      <div class="demo-privacy-note"><strong>Safe to explore:</strong> this demo uses sample data and stores your demo changes locally in your browser. It does not modify the private AstroJob workspace.</div>
+    </div>
+  </dialog>
 
   <dialog id="matchLegendDialog" class="job-dialog match-legend-dialog">
     <div class="dialog-head">
