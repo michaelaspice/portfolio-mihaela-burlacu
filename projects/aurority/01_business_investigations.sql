@@ -1,4 +1,4 @@
--- Aurority — validated business investigations
+-- Aurority - validated business investigations
 -- Reference date for the synthetic scenario: 2026-08-27
 
 -- 01. Executive customer metric snapshot
