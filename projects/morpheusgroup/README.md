@@ -1,4 +1,4 @@
-# MorpheusGroup — Customer Health & Churn Analysis
+# MorpheusGroup - Customer Health & Churn Analysis
 
 This folder is designed to live inside:
 
@@ -10,10 +10,10 @@ The case study page is available at:
 
 ## Files
 
-- `index.html` — public portfolio case-study page
-- `analysis.sql` — cleaned SQL queries
-- `findings.md` — concise findings
-- `project-card.html` — card snippet for the main portfolio homepage
+- `index.html` - public portfolio case-study page
+- `analysis.sql` - cleaned SQL queries
+- `findings.md` - concise findings
+- `project-card.html` - card snippet for the main portfolio homepage
 
 ## Important
 
