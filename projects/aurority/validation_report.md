@@ -16,6 +16,6 @@ Validated against `aurority.db` after rebuilding it from the CSV source files.
 
 ## Validation status
 
-**PASS — V2 synthetic data now reproduces the intended business stories.**
+**PASS - V2 synthetic data now reproduces the intended business stories.**
 
 The project remains synthetic and is designed to demonstrate operating-system design, SQL investigation and cross-functional accountability rather than claim real-company results.
