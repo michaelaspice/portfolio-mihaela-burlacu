@@ -108,7 +108,7 @@ button,select,input,.apply-link{border-color:var(--line)!important}
   .details-grid { grid-template-columns:1fr; }
   .card-actions { grid-template-columns:1fr; }
 }
-/* Ambient space motion — intentionally subtle and entirely behind the UI */
+/* Ambient space motion - intentionally subtle and entirely behind the UI */
 .stars{
   animation:starDrift 42s ease-in-out infinite alternate, starBreath 9s ease-in-out infinite;
 }
@@ -214,7 +214,7 @@ button,select,input,.apply-link{border-color:var(--line)!important}
   max-width:680px;
 }
 
-/* Phase 1 — personal job tracker */
+/* Phase 1 - personal job tracker */
 .top-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
 .empty-state{display:flex;flex-direction:column;align-items:center;gap:12px}
 .empty-state[hidden]{display:none}
@@ -273,7 +273,7 @@ textarea:focus{border-color:#8570dd;box-shadow:0 0 0 3px rgba(155,123,255,.12)}
 .intel-scores{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:15px}.intel-scores>div{padding:9px 10px;border:1px solid rgba(255,255,255,.06);border-radius:10px;background:rgba(255,255,255,.025)}.intel-scores span{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)}.intel-scores strong{display:block;margin-top:3px;font-size:17px}.intel-panel h3{margin:0 0 7px;font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:#aeb5ce}.intel-badges{display:flex;flex-wrap:wrap;gap:6px}.intel-badge{padding:5px 8px;border-radius:999px;font-size:10px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.035)}.intel-badge.match{color:#bff5ff;border-color:rgba(85,216,255,.28)}.intel-badge.transfer{color:#e5c5ff;border-color:rgba(196,108,255,.3)}.intel-badge.learning{color:#ffe1a6;border-color:rgba(255,213,128,.3)}.intel-badge.gap{color:#ffb8b8;border-color:rgba(255,122,122,.28)}.intel-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}.intel-empty{font-size:10px;color:#707995}@media(max-width:700px){.intel-scores{grid-template-columns:repeat(2,1fr)}.intel-columns{grid-template-columns:1fr}}
 
 
-/* Intelligence panel spacing — roomier scan layout */
+/* Intelligence panel spacing - roomier scan layout */
 .intel-panel{padding:22px 22px 24px;margin:20px 0 8px}
 .intel-panel h3{margin:0 0 10px}
 .intel-scores{gap:12px;margin-bottom:22px}
@@ -327,7 +327,7 @@ textarea:focus{border-color:#8570dd;box-shadow:0 0 0 3px rgba(155,123,255,.12)}
 @media(max-width:700px){.view-switch{width:100%}.view-button{flex:1}.pipeline-board{grid-template-columns:repeat(9,190px);min-width:1800px}}
 
 
-/* Settings — compact maintenance panel */
+/* Settings - compact maintenance panel */
 .settings-dialog{
   width:min(720px,calc(100vw - 32px));
   max-height:86vh;
