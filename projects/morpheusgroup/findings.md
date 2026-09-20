@@ -1,4 +1,4 @@
-# MorpheusGroup — Customer Health & Churn Analysis
+# MorpheusGroup - Customer Health & Churn Analysis
 
 ## Core conclusion
 
