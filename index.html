@@ -344,7 +344,18 @@
   background:rgba(255,155,195,.05);
 }
 
-</style>
+
+    .book-panel{position:relative;overflow:hidden;margin-top:18px;padding:34px;border:1px solid #2a2925;border-radius:2px;background:#f3efe7;color:#161616;box-shadow:var(--shadow)}
+    .book-panel:after{content:"STILL IN PROGRESS";position:absolute;right:-38px;top:30px;transform:rotate(7deg);background:#b7ff3c;color:#161616;padding:8px 46px;font:800 10px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.09em}
+    .book-panel .book-kicker{font:800 10px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;color:#625e57}
+    .book-panel h3{font-family:Georgia,"Times New Roman",serif;font-size:clamp(48px,7vw,78px);line-height:.84;letter-spacing:-.06em;margin:24px 0 22px;font-weight:500;max-width:680px}
+    .book-panel p{color:#4e4a44;max-width:760px;font-size:16px}
+    .book-panel .book-meta{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0}
+    .book-panel .book-meta span{border:1px solid #161616;padding:6px 8px;font:700 10px ui-monospace,SFMono-Regular,Menlo,monospace;text-transform:uppercase}
+    .book-panel .book-btn{display:inline-block;background:#161616;color:#f3efe7;padding:12px 15px;text-decoration:none;font:800 11px ui-monospace,SFMono-Regular,Menlo,monospace;text-transform:uppercase;letter-spacing:.04em}
+    .book-panel .book-btn:hover{background:#333}
+
+  </style>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23080b1c'/%3E%3Cpath d='M15 47 23 17l9 20 9-20 8 30' fill='none' stroke='%23f3a8ff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='52' cy='14' r='2' fill='%23fff'/%3E%3C/svg%3E">
 <style>
   .personality-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:20px}
@@ -680,6 +691,16 @@
             <span class="tag">AI</span><span class="tag">Customer Success</span><span class="tag">Automation</span>
           </div>
         </article>
+      </div>
+    </section>
+
+    <section id="book" class="reveal">
+      <div class="book-panel">
+        <div class="book-kicker">Currently writing · Personal project · 2026</div>
+        <h3>SHE’S A<br>JOB EATER</h3>
+        <p>I started looking for a job. Somehow this became a story about recruiters, rejection, relocation, questionable financial decisions, several European countries, one fucking window, and a cat whose career prospects occasionally looked better than mine.</p>
+        <div class="book-meta"><span>17 chapters & counting</span><span>Based on unfortunately true events</span><span>Ending: unknown</span></div>
+        <a class="book-btn" href="projects/shes-a-job-eater/">Read a sneak peek →</a>
       </div>
     </section>
 
